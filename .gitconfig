@@ -1,0 +1,44 @@
+[user]
+    name            = Loïc Chardonnet
+    email           = loic.chardonnet@gmail.com
+[github]
+    user            = gnugat
+[alias]
+    st              = status
+    ci              = commit -v
+    co              = checkout
+    br              = branch -v
+    bra             = branch -v -a
+    lg              = log --graph --pretty=tformat:'%Cred%h%Creset -%C(cyan)%d %Creset%s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative
+    di              = diff
+    ds              = diff --cached
+    rebc            = rebase --continue
+    rebt            = rebase --abort
+    rebs            = rebase --skip
+    lint            = ! git status --porcelain | /bin/grep -e '^[AUM ][UM ].*\\.php$' | awk '{print $2}' | xargs -L 1 php -l
+    php-cs-fixer    = ! git status --porcelain | /bin/grep -e '^[AUM ][UM ].*\\.php$' | awk '{print $2}' | xargs -L 1 php-cs-fixer fix
+[branch]
+    autosetupmerge  = true
+[color]
+    ui              = always
+[color "branch"]
+    current         = yellow bold
+    local           = yellow
+[color "diff"]
+    meta            = cyan
+[color "status"]
+    untracked       = cyan
+[core]
+    autocrlf        = input
+    excludesfile    = ~/.gitglobalexclude
+    pager           = less
+[branch]
+    rebase          = true
+[rerere]
+    enabled         = 1
+[push]
+    default         = tracking
+[include]
+    path            = ~/.private-gitconfig
+[init]
+    templatedir     = ~/.git-template

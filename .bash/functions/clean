@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+remove_temporary_files() {
+    /usr/bin/find . -name '*~' -print -delete
+}
+alias clean=remove_temporary_files

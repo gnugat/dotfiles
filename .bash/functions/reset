@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+reset_shell() {
+    source ~/.profile
+    /usr/bin/reset
+    /usr/bin/clear
+}
+alias reset=reset_shell

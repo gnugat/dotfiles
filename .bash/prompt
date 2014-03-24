@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+# Custom prompt for bash
+
+export GIT_PS1_SHOWDIRTYSTATE=true
+export GIT_PS1_SHOWUNTRACKEDFILES=true
+
+# 0 : normal, 1 : bold, 4 underline, nothing : background
+NoColor="\[\e[0m\]"
+Black="\[\e[00;30m\]"
+Red="\[\e[00;31m\]"
+Green="\[\e[00;32m\]"
+Yellow="\[\e[00;33m\]"
+Blue="\[\e[00;34m\]"
+Purple="\[\e[00;35m\]"
+Cyan="\[\e[00;36m\]"
+
+if [[ $UID -eq 0 ]]; then
+    PROMPT_PREFIX="$Red\u@\H$NoColor"
+elif [[ $SSH_CONNECTION ]]; then
+    PROMPT_PREFIX="$Yellow\u@\H$NoColor"
+fi
+if [[ `which git` ]]; then
+    PS1GIT=$Purple'$(__git_ps1 "(%s)")'$NoColor
+fi
+
+function _set_exit_color() {
+    if [[ $? != "0" ]]; then EXITCOLOR=$Red\>$NoColor; else EXITCOLOR=$Green\>$Nocolor; fi
+}
+
+function _truncate_pwd() {
+    PWD2="${PWD/#$HOME/~}"
+    local pwdmaxlen=$((${COLUMNS:-20}/3))
+    if [ ${#PWD2} -gt $pwdmaxlen ] ; then
+        PWD2="{..}${PWD2: -$pwdmaxlen}"
+    fi
+}
+
+function _todo_number() {
+    TODO_NB=`find ~/Desktop -maxdepth 1 -type f  | wc -l`
+}
+
+PROMPT_COMMAND='_set_exit_color;_truncate_pwd;_todo_number;PS1="$EXITCOLOR$NoColor($TODO_NB)$PROMPT_PREFIX$Cyan[$PWD2]$NoColor$PS1GIT "'
