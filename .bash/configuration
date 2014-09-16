@@ -1,32 +1,32 @@
+#!/usr/bin/env bash
+# Configuration
+
+DOTBASH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 ###
 # Includes
 ###
 
-# Aliases
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # Custom configuration
-for i in ~/.bash/*; do
-    if [ -f $i ]; then
-        . $i
+for file in $DOTBASH/*; do
+    if [ -f $file ] && [ $file != "$DOTBASH/configuration" ] ; then
+        . $file
     fi
 done
-unset i
+unset file
 
 # Custom functions
-for i in ~/.bash/functions/*; do
-  . $i
+for file in $DOTBASH/functions/*; do
+  . $file
 done
-unset i
+unset file
 
 ###
 # Custom colors
 ###
 if [[ `which dircolors` ]]; then
-    if [ -f ~/.dir_colors ]; then
-        eval `dircolors --bourne-shell ~/.dir_colors`
+    if [ -f $HOME/.dir_colors ]; then
+        eval `dircolors --bourne-shell $HOME/.dir_colors`
     fi
 fi
 
@@ -39,3 +39,5 @@ shopt -s cmdhist # Log multi line commands
 shopt -s expand_aliases # Replace aliases
 shopt -s histappend # Append to history, instead of over writing
 shopt -s nocaseglob # Case insensitive
+
+unset DOTBASH

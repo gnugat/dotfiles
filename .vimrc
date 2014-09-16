@@ -1,1 +1,0 @@
-{/,/home/loic.chardonnet}/.vimrc
