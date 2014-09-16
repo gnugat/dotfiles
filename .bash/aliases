@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 ## Common bash function
 
 # Allows to sudo an alias
@@ -19,10 +20,11 @@ alias grep='grep --exclude-dir ".svn" --exclude-dir ".git" --exclude tagsi --col
 alias ack="ack-grep"
 alias sed="sed --follow-symlinks"
 
-## Services
+# Services
 alias mysql="mysql --sigint-ignore"
+alias apache="sudo /etc/init.d/apache2 restart"
 
-## Symfony
+# Symfony
 alias sf='php app/console'
 alias sfc='php app/console cache:clear'
 alias sft='php bin/vendor/phpunit -c app'

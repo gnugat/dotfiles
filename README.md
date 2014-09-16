@@ -5,7 +5,6 @@ Helps me to set the configuration of:
 * bash
 * php
 * git
-* vim
 
 Inspired by:
 
@@ -16,5 +15,5 @@ Inspired by:
 To download and install this project, run the following command:
 
     git clone https://github.com/gnugat/dotfiles.git
-    cd dotfiles
-    bash ./bin/installer.sh
+    bash ./dotfiles/bin/installer.sh
+
