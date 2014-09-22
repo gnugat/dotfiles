@@ -27,6 +27,6 @@ alias apache="sudo /etc/init.d/apache2 restart"
 # Symfony
 alias sf='php app/console'
 alias sfc='php app/console cache:clear'
-alias sft='php bin/vendor/phpunit -c app'
-alias sfs='php bin/vendor/phpspec --config=app/phpspec.yml.dist run'
-alias sfd='php bin/vendor/phpspec --config=app/phpspec.yml.dist describe'
+alias sft='php vendor/bin/phpunit -c app'
+alias sfs='php vendor/bin/phpspec --config=app/phpspec.yml.dist run'
+alias sfd='php vendor/bin/phpspec --config=app/phpspec.yml.dist describe'
