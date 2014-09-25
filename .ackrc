@@ -1,2 +1,7 @@
 --type-set
 twig=.twig
+
+--ignore-dir=vendor
+--ignore-dir=app
+
+--ignore-file=is:composer.lock
