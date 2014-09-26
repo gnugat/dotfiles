@@ -12,9 +12,9 @@
     lg              = log --graph --pretty=tformat:'%Cred%h%Creset -%C(cyan)%d %Creset%s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative
     di              = diff
     ds              = diff --cached
-    rbc            = rebase --continue
-    rbt            = rebase --abort
-    rbs            = rebase --skip
+    rbc             = rebase --continue
+    rbt             = rebase --abort
+    rbs             = rebase --skip
     ch              = cherry-pick
     chc             = cherry-pick --continue
     lint            = ! git status --porcelain | /bin/grep -e '^[AUM ][UM ].*\\.php$' | awk '{print $2}' | xargs -L 1 php -l
@@ -44,3 +44,5 @@
     path            = ~/.private-gitconfig
 [init]
     templatedir     = ~/.git-template
+[help]
+    autocorrect     = 1
