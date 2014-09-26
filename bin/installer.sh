@@ -45,7 +45,7 @@ echo 'Install MySQL'
 sudo apt-get install -qqy mysql-server mysql-client mysql-common php5-mysql
 
 echo 'Install MongoDB'
-sudoi apt-get install -qqy mongodb php5-mongo
+sudo apt-get install -qqy mongodb php5-mongo
 
 echo 'Install Apache'
 sudo apt-get install -qqy apache2
