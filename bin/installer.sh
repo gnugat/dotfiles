@@ -51,6 +51,10 @@ echo 'Install Apache'
 sudo apt-get install -qqy apache2
 sudo a2enmod rewrite
 
+echo 'Install syntax highligthing for less'
+sudo apt-get -qqy source-highlight
+
+
 unset DOTFILES
 unset PROFILE
 unset BASHRC
