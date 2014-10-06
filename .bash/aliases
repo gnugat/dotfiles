@@ -30,3 +30,9 @@ alias sfc='php app/console cache:clear'
 alias sft='php vendor/bin/phpunit -c app'
 alias sfs='php vendor/bin/phpspec --config=app/phpspec.yml.dist run'
 alias sfd='php vendor/bin/phpspec --config=app/phpspec.yml.dist describe'
+
+# Libraries
+alias s='vendor/bin/phpspec run'
+alias d='vendor/bin/phpspec describe'
+alias u='vendor/bin/phpunit'
+alias t='u;s'
