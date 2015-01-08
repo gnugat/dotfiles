@@ -52,7 +52,7 @@ sudo apt-get install -qqy apache2
 sudo a2enmod rewrite
 
 echo 'Install syntax highligthing for less'
-sudo apt-get -qqy source-highlight
+sudo apt-get install -qqy source-highlight
 
 
 unset DOTFILES
