@@ -2,7 +2,7 @@
 # Completion
 
 if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
+    . /etc/bash_completion 2> /dev/null
 fi
 
 # Autocomple with sudo
