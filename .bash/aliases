@@ -22,7 +22,10 @@ alias sed="sed --follow-symlinks"
 
 # Services
 alias mysql="mysql --sigint-ignore"
-alias apache="sudo /etc/init.d/apache2 restart"
+
+# Restarting services
+alias restart_mysql="sudo service mysql restart"
+alias restart_apache="sudo service apache2 restart"
 
 # Symfony
 alias sf='php app/console'
