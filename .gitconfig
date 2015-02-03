@@ -4,6 +4,7 @@
 [github]
     user            = gnugat
 [alias]
+    up              = pull --rebase
     st              = status
     ci              = commit -v
     co              = checkout
@@ -12,6 +13,7 @@
     lg              = log --graph --pretty=tformat:'%Cred%h%Creset -%C(cyan)%d %Creset%s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative
     di              = diff
     ds              = diff --cached
+    rb              = rebase --preserve-merges
     rbc             = rebase --continue
     rbt             = rebase --abort
     rbs             = rebase --skip
