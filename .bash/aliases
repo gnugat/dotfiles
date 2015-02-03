@@ -36,7 +36,7 @@ alias sfu='php vendor/bin/phpunit -c app'
 alias sft='sfu;sfs'
 
 # PHP
-alias s='vendor/bin/phpspec run'
+alias s='vendor/bin/phpspec run --fake'
 alias d='vendor/bin/phpspec describe'
 alias u='vendor/bin/phpunit'
 alias t='u;s'
