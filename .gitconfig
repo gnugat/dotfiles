@@ -12,15 +12,16 @@
     bra             = branch -v -a
     lg              = log --graph --pretty=tformat:'%Cred%h%Creset -%C(cyan)%d %Creset%s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative
     di              = diff
-    ds              = diff --cached
+    dc              = diff --cached
     rb              = rebase --preserve-merges
+    rbi             = rebase --interactive --preserve-merges
     rbc             = rebase --continue
-    rbt             = rebase --abort
+    rba             = rebase --abort
     rbs             = rebase --skip
     ch              = cherry-pick
     chc             = cherry-pick --continue
     lint            = ! git status --porcelain | /bin/grep -e '^[AUM ][UM ].*\\.php$' | awk '{print $2}' | xargs -L 1 php -l
-    php-cs-fixer    = ! git status --porcelain | /bin/grep -e '^[AUM ][UM ].*\\.php$' | awk '{print $2}' | xargs -L 1 php-cs-fixer fix
+    cs              = ! git status --porcelain | /bin/grep -e '^[AUM ][UM ].*\\.php$' | awk '{print $2}' | xargs -L 1 php-cs-fixer fix
 [branch]
     autosetupmerge  = true
 [color]
