@@ -15,9 +15,9 @@
     dc              = diff --cached
     rb              = rebase --preserve-merges
     rbi             = rebase --interactive --preserve-merges
-    rbc             = rebase --continue
-    rba             = rebase --abort
-    rbs             = rebase --skip
+    rbc             = rebase --continue --preserve-merges
+    rba             = rebase --abort --preserve-merges
+    rbs             = rebase --skip --preserve-merges
     ch              = cherry-pick
     chc             = cherry-pick --continue
     lint            = ! git status --porcelain | /bin/grep -e '^[AUM ][UM ].*\\.php$' | awk '{print $2}' | xargs -L 1 php -l
