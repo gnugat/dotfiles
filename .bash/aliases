@@ -30,14 +30,14 @@ alias restart_apache="sudo service apache2 restart"
 # Symfony
 alias sf='php app/console'
 alias sfc='php app/console cache:clear'
-alias sfs='php vendor/bin/phpspec --config=app/phpspec.yml.dist run'
-alias sfd='php vendor/bin/phpspec --config=app/phpspec.yml.dist describe'
-alias sfu='php vendor/bin/phpunit -c app'
+alias sfs='phpspec --config=app/phpspec.yml.dist run'
+alias sfd='phpspec --config=app/phpspec.yml.dist describe'
+alias sfu='phpunit -c app'
 alias sft='sfu;sfs'
 
 # PHP
-alias s='vendor/bin/phpspec run --format=dot'
-alias d='vendor/bin/phpspec describe'
-alias u='vendor/bin/phpunit'
+alias s='phpspec run --format=dot'
+alias d='phpspec describe'
+alias u='phpunit'
 alias t='u;s'
 alias cs='php-cs-fixer fix . --config=sf23'
