@@ -13,7 +13,7 @@ export EDITOR=`which vim`
 
 # User binaries
 if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+    PATH="bin;vendor/bin;$HOME/bin:$PATH"
 fi
 
 # Composer binaries
