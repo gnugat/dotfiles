@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+apt_up() {
+    sudo apt-get update
+    sudo rm /etc/php/7.0/fpm/php.ini
+    sudo apt-get upgrade -y
+    sudo apt-get dist-upgrade -y
+    sudo apt-get autoremove
+    sudo apt-get autoclean
+    sudo apt-get clean
+    sudo ln -s /etc/php/7.0/{cli,fpm}/php.ini
+    sudo service php7.0-fpm restart
+    sudo service nginx restart
+}
+alias apt_up=apt_up
