@@ -8,7 +8,8 @@ apt_up() {
     sudo apt-get autoremove
     sudo apt-get autoclean
     sudo apt-get clean
-    sudo ln -s /etc/php/7.0/{cli,fpm}/php.ini
+    sudo ln -s /etc/php/7.0/cli/php.ini /etc/php/7.0/fpm/php.ini
+    sudo rm /etc/php/mods-available/*0*
     sudo service php7.0-fpm restart
     sudo service nginx restart
 }
