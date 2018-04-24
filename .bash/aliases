@@ -20,24 +20,8 @@ alias grep='grep --exclude-dir ".svn" --exclude-dir ".git" --exclude tagsi --col
 alias ack="ack-grep"
 alias sed="sed --follow-symlinks"
 
-# Services
-alias mysql="mysql --sigint-ignore"
-
-# Restarting services
-alias restart_mysql="sudo service mysql restart"
-alias restart_apache="sudo service apache2 restart"
-
-# Symfony
-alias sf='php app/console'
-alias sfc='php app/console cache:clear'
-alias sfs='phpspec --config=app/phpspec.yml.dist run'
-alias sfd='phpspec --config=app/phpspec.yml.dist describe'
-alias sfu='phpunit -c app'
-alias sft='sfu;sfs'
-
 # PHP
 alias s='phpspec run --format=dot'
 alias d='phpspec describe'
 alias u='phpunit'
 alias t='u;s'
-alias cs='php-cs-fixer fix . --config=sf23'

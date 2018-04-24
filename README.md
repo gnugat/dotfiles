@@ -1,10 +1,11 @@
-# Loïc Chardonnet's dotfiles
+# Loïc Faugeron's dotfiles
 
 Helps me to set the configuration of:
 
 * bash
 * php
 * git
+* vim
 
 Inspired by:
 
@@ -16,4 +17,3 @@ To download and install this project, run the following command:
 
     git clone https://github.com/gnugat/dotfiles.git
     bash ./dotfiles/bin/installer.sh
-
