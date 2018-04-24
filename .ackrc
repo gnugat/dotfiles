@@ -2,6 +2,6 @@
 twig=.twig
 
 --ignore-dir=vendor
---ignore-dir=app
+--ignore-dir=var
 
 --ignore-file=is:composer.lock
