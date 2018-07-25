@@ -61,8 +61,8 @@ sudo apt-get remove -qqy apache2
 echo 'Install syntax highligthing for less'
 sudo apt-get install -qqy source-highlight
 
-echo 'Install vim'
-sudo apt-get install -qqy vim
+echo 'Install vim (requires curl and python)'
+sudo apt-get install -qqy vim curl python
 curl -sL https://raw.githubusercontent.com/egalpin/apt-vim/master/install.sh | sh
 source ~/.bashrc 
 apt-vim install -y https://github.com/scrooloose/nerdtree.git
