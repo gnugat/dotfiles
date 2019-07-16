@@ -5,3 +5,4 @@ twig=.twig
 --ignore-dir=var
 
 --ignore-file=is:composer.lock
+--ignore-file=is:.php_cs.cache
