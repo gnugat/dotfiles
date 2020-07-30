@@ -1,0 +1,40 @@
+[user]
+    name            = Loïc Faugeron
+    email           = faugeron.loic@gmail.com
+[github]
+    user            = gnugat
+[alias]
+    up              = pull --rebase=merges
+    st              = status --short
+    ci              = commit --verbose
+    co              = checkout
+    br              = branch
+    bra             = branch -a
+    lg              = log --graph --pretty=tformat:'%Cred%h%Creset -%C(cyan)%d %Creset%s %Cgreen(%an %cr)%Creset' --abbrev-commit --date=relative
+    di              = diff
+    dc              = diff --cached
+    rb              = rebase --rebase-merges
+[branch]
+    autosetupmerge  = true
+    rebase          = true
+[color]
+    ui              = always
+[color "branch"]
+    current         = yellow bold
+    local           = yellow
+[color "diff"]
+    meta            = cyan
+[color "status"]
+    untracked       = cyan
+[core]
+    autocrlf        = input
+    excludesfile    = ~/.gitglobalexclude
+    pager           = less
+[rerere]
+    enabled         = 1
+[push]
+    default         = current
+[init]
+    templatedir     = ~/.gittemplate
+[help]
+    autocorrect     = 1
