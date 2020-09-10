@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Environment variables
+export HISTSIZE=10000
+export HISTFILESIZE=${HISTSIZE}
+export HISTIGNORE="ls:cd:[bf]g:exit"
+export HISTCONTROL="ignoreboth" # ignore duplicate line + line which start by a space
+
+export PAGER=`which less`
+export LESSOPEN="| /usr/share/source-highlight/src-hilite-lesspipe.sh %s"
+export LESS="FRSX"
+
+export EDITOR=`which vim`
+
+# User binaries
+if [ -d "$HOME/bin" ] ; then
+    PATH="$HOME/bin:$PATH"
+fi
+
+# Project binaries
+PATH="bin:vendor/bin:$PATH"
