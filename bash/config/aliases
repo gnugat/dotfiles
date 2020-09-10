@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# Allows to sudo an alias
+alias sudo="sudo "
+
+# System update
+alias apt_up='
+sudo apt-get --allow-releaseinfo-change update;
+sudo apt upgrade -y
+sudo apt full-upgrade -y
+sudo apt autoremove --purge -y
+sudo apt autoclean -y
+sudo apt clean -y
+sudo snap refresh'
+
+# Listing
+alias l="tree -L 1"
+alias la="tree -a -L 1"
+alias ll="tree -hDpug -L 1"
+alias lla="tree -ahDpug -L 1"
+
+# Interractive mode
+alias cp="cp -i"
+alias mv="mv -i"
+
+# Editor
+alias sed="sed --follow-symlinks"
+alias grep='
+grep --exclude "*.lock" \
+     --exclude "*.cache" \
+     --exclude-dir "vendor" \
+     --exclude-dir "var" \
+     --exclude-dir ".git" \
+     --color=always'
+
+# Misc
+alias clean="find . -type f \( -name '*~' -o -name '*.swp' \) -print -delete"
+alias reset='
+source ~/.profile
+/usr/bin/reset
+/usr/bin/clear'
