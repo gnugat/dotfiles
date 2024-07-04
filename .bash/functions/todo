@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-
-add_task() {
-    /usr/bin/touch ~/Desktop/"$*"
-}
-alias todo=add_task
