@@ -1,0 +1,8 @@
+--type=set
+twig=.twig
+
+--ignore-dir=vendor
+--ignore-dir=var
+
+--ignore-file=is:*.lock
+--ignore-file=is:*.cache
