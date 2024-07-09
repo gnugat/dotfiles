@@ -1,8 +1,9 @@
---type=set
+--type-set
 twig=.twig
 
 --ignore-dir=vendor
 --ignore-dir=var
+--ignore-dir=.idea
 
+--ignore-file=ext:cache
 --ignore-file=is:*.lock
---ignore-file=is:*.cache
