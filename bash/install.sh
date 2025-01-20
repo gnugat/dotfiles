@@ -17,6 +17,10 @@ echo "if [ -f $_BASH_DOTFILES/config/envvars ];then" >> ~/.bashrc
 echo "    . $_BASH_DOTFILES/config/envvars" >> ~/.bashrc
 echo 'fi' >> ~/.bashrc
 echo '' >> ~/.bashrc
+echo "if [ -f $_BASH_DOTFILES/config/path ];then" >> ~/.bashrc
+echo "    . $_BASH_DOTFILES/config/path" >> ~/.bashrc
+echo 'fi' >> ~/.bashrc
+echo '' >> ~/.bashrc
 echo "if [ -f $_BASH_DOTFILES/config/prompt ];then" >> ~/.bashrc
 echo "    . $_BASH_DOTFILES/config/prompt" >> ~/.bashrc
 echo 'fi' >> ~/.bashrc

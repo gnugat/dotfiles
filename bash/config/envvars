@@ -11,10 +11,3 @@ export LESS="FRSX"
 
 export EDITOR=`which vim`
 
-# User binaries
-if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
-fi
-
-# Project binaries
-PATH="bin:vendor/bin:$PATH"
