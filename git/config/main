@@ -34,5 +34,27 @@
     templatedir     = ~/.gittemplate
 [help]
     autocorrect     = 1
+
+###
+# Git Identities based on the repository domain
+#
+# "Fake" domains like work.github.com are setup in `~/.ssh/config`.
+#
+# Use "fake" domains that are set up in `~/.ssh/config`, eg:
+#
+# ```console
+# $git clone git@wcbs.github.com:wcbs-ltd/hubincome-api.git
+# ```
+#
+# See:
+# + [How Benji configures git identities](https://www.benji.dog/articles/git-config/)
+# + [SSH keys](https://stackoverflow.com/a/17158985)
+###
+
+# WCBS
+[includeIf "hasconfig:remote.*.url:git@wcbs.github.com:wcbs-ltd/**"]
+    path            = ~/.config/git/user/github-wcbs
+
+# Default
 [includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
     path            = ~/.config/git/user/github-gnugat
