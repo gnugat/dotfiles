@@ -1,8 +1,3 @@
-[user]
-    name            = Loïc Faugeron
-    email           = faugeron.loic@gmail.com
-[github]
-    user            = gnugat
 [alias]
     up              = pull --rebase=merges
     st              = status --short
@@ -39,3 +34,5 @@
     templatedir     = ~/.gittemplate
 [help]
     autocorrect     = 1
+[includeIf "hasconfig:remote.*.url:git@github.com:*/**"]
+    path            = ~/.config/git/user/github-gnugat
