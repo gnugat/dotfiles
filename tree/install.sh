@@ -4,7 +4,7 @@ _TREE_DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 echo '// Installing tree...'
 
-sudo apt install -qqy tree
+sudo apt -qqy install tree
 
 unset _TREE_DOTFILES
 

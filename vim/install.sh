@@ -6,7 +6,7 @@ echo '// Installing vim...'
 
 ln -nsf $_VIM_DOTFILES/config ~/.vimrc
 
-sudo apt install -qqy vim curl
+sudo apt -qqy install vim
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim +PlugInstall +qall
