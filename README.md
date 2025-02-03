@@ -1,7 +1,7 @@
 # dotfiles
 
 This repository contains the configuration files of the CLI tools I use
-(ack, bash, git, PHP, postgres, vim, etc).
+(git, vim, PHP, etc).
 Its purpose is to backup, restore and synchronize them.
 
 ## Installation
