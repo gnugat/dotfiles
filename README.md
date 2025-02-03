@@ -1,14 +1,22 @@
 # dotfiles
 
-This repository contains the configuration files of the CLI tools I use
-(git, vim, PHP, etc).
-Its purpose is to backup, restore and synchronize them.
+My Super Secret configuration files.
+
+This repository helps me to backup, restore and synchronize them
+(and will install my favourite productivity apps).
 
 ## Installation
 
+Requirements:
+
+* `git`: to be able to clone this repository
+* `bash`: to be able to run the installation scripts
+
+To install and setup, clone the repo and run its root `install.sh` script: 
+
 ```
 git clone git@github.com:gnugat/dotfiles.git
-cd dotfiles
+cd ./dotfiles
 bash ./install.sh
 ```
 
@@ -18,29 +26,28 @@ The tree directory follows the following convention:
 
 ```
 .
-├── <tool>
+├── <package>
 │   ├── _apt.sh
-│   ├── <config>
+│   ├── _brew.sh
+│   ├── config/
 │   └── install.sh
 └── install.sh
 ```
 
-At the root, the main `install.sh` script runs:
+The root `install.sh` script calls each `<package>/install.sh` scripts.
 
-1. each tools' `_apt.sh` scripts
-2. each tools' `install.sh` scripts
+Each `<package>/install.sh` script will:
 
-Each tool will have its own folder, which *MIGHT* contain:
+* check which package manager is installed
+  (eg `apt` for Ubuntu, or `brew` for Mac OS)
+* call the respective `_<package-manager>.sh` script to install the package
+  (eg `sudo apt install ackl`)
+* create symlinks for the configuration files located in `<package>/config/`
+  (eg `ln -nsf ./ack/config/dot_ackrc ~/.ackrc`)
 
-* an `_apt.sh` script that registers the APT repository
-* a `<config>` file or folder containing the tool's configuration
-* an `install.sh` script that runs the command to install it and its config
+## Testing - Docker Container
 
-Some of the config files *MIGHT* be aliased as dotfiles in the user's home directory.
-
-## Testing
-
-To try the dotfiles, you might use the configured test Docker container:
+A `Dockerfile` is provided to try the repo:
 
 ```console
 docker build -t gnugat/dotfiles .
@@ -53,6 +60,9 @@ This will provide you with:
 * `bash` and `git ` installed
 * a `ubuntu` user, in their home `/home/ubuntu` directory
 
+> **Note**: It's also possible to try it in your own/project containers,
+> _at your own risk_.
+
 You can then install the dotfiles in the container as follow:
 
 ```console
@@ -62,8 +72,8 @@ cd ./dotfiles
 bash ./install.sh
 ```
 
-When you exit the container, all changes will be lost (running the container
-again will require you to install the dotfiles once more).
+> **Note**: Remember that once you exit the container all change will be lost,
+> and the dotfiles will need to be installed once again.
 
 ## Be kind 
 
