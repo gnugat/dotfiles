@@ -12,6 +12,8 @@ if [[ `which git` ]]; then
     export GIT_PS1_SHOWDIRTYSTATE=true # adds unstaged (*) and staged (+)
     export GIT_PS1_SHOWUNTRACKEDFILES=true # adds untracked (%)
 
+    source /etc/bash_completion.d/git-prompt # loads __git_ps1 bash completion from git
+
     _GIT_INFO=$_CY'$(__git_ps1 ":%s")'$_CN
 fi
 
