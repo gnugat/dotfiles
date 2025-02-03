@@ -38,6 +38,33 @@ Each tool will have its own folder, which *MIGHT* contain:
 
 Some of the config files *MIGHT* be aliased as dotfiles in the user's home directory.
 
+## Testing
+
+To try the dotfiles, you might use the configured test Docker container:
+
+```console
+docker build -t gnugat/dotfiles .
+docker run -rm -it gnugat/dotfiles
+```
+
+This will provide you with:
+
+* an empty/base Ubuntu container
+* `bash` and `git ` installed
+* a `ubuntu` user, in their home `/home/ubuntu` directory
+
+You can then install the dotfiles in the container as follow:
+
+```console
+git config --global http.sslVerify false
+git clone https://github.com/gnugat/dotfiles.git
+cd ./dotfiles
+bash ./install.sh
+```
+
+When you exit the container, all changes will be lost (running the container
+again will require you to install the dotfiles once more).
+
 ## Be kind 
 
 Please note that this project is released with a Contributor Code of Conduct.
