@@ -9,3 +9,4 @@ twig=.twig
 --ignore-file=ext:cache
 --ignore-file=ext:meta
 --ignore-file=ext:lock
+--ignore-file=is:.phpcs-cache
