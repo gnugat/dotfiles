@@ -1,32 +1,60 @@
 #!/usr/bin/env bash
 
-_BASH_DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Super Secret Dotfiles (_SSDF)
 
-echo '//  Configuring bash...'
+echo '// Installing bash...'
+echo ' '
 
+# SSDF Package Manager (_PCKG_MNGR) selection, if it wasn't already set
+if [ -z "$_SSDF_PCKG_MNGR" ]; then
+    if command -v apt >/dev/null 2>&1; then
+        _SSDF_PCKG_MNGR="apt"
+    else
+        echo '  [Error] Current Package Manager not supported.' >&2
+        echo '          Supported ones are: apt.' >&2
+        exit 1
+    fi
+fi
+
+# _SSDF Package (_PCKG) Current Working Directory (_CWD)
+_SSDF_PCKG_CWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Package's Package Manager script
+_SSDF_PCKG_PCKG_MNGR_SCRPT="$_SSDF_PCKG_CWD/_${_SSDF_PCKG_MNGR}.sh"
+
+if [ -f "$_SSDF_PCKG_PCKG_MNGR_SCRPT" ]; then
+    bash "$_SSDF_PCKG_PCKG_MNGR_SCRPT"
+else
+    echo "  [Error] Missing Package Package Manager script '${_SSDF_PCKG_PCKG_MNGR_SCRPT}'" >&2
+    exit 1
+fi
+
+# Symlink config
 echo '' >> ~/.bashrc
-echo "if [ -f $_BASH_DOTFILES/config/main ];then" >> ~/.bashrc
-echo "    . $_BASH_DOTFILES/config/main" >> ~/.bashrc
+echo "if [ -f $_PACKAGE_DOTFILES/config/main ];then" >> ~/.bashrc
+echo "    . $_PACKAGE_DOTFILES/config/main" >> ~/.bashrc
 echo 'fi' >> ~/.bashrc
 echo '' >> ~/.bashrc
-echo "if [ -f $_BASH_DOTFILES/config/aliases ];then" >> ~/.bashrc
-echo "    . $_BASH_DOTFILES/config/aliases" >> ~/.bashrc
+echo "if [ -f $_PACKAGE_DOTFILES/config/aliases ];then" >> ~/.bashrc
+echo "    . $_PACKAGE_DOTFILES/config/aliases" >> ~/.bashrc
 echo 'fi' >> ~/.bashrc
 echo '' >> ~/.bashrc
-echo "if [ -f $_BASH_DOTFILES/config/envvars ];then" >> ~/.bashrc
-echo "    . $_BASH_DOTFILES/config/envvars" >> ~/.bashrc
+echo "if [ -f $_PACKAGE_DOTFILES/config/envvars ];then" >> ~/.bashrc
+echo "    . $_PACKAGE_DOTFILES/config/envvars" >> ~/.bashrc
 echo 'fi' >> ~/.bashrc
 echo '' >> ~/.bashrc
-echo "if [ -f $_BASH_DOTFILES/config/path ];then" >> ~/.bashrc
-echo "    . $_BASH_DOTFILES/config/path" >> ~/.bashrc
+echo "if [ -f $_PACKAGE_DOTFILES/config/path ];then" >> ~/.bashrc
+echo "    . $_PACKAGE_DOTFILES/config/path" >> ~/.bashrc
 echo 'fi' >> ~/.bashrc
 echo '' >> ~/.bashrc
-echo "if [ -f $_BASH_DOTFILES/config/prompt ];then" >> ~/.bashrc
-echo "    . $_BASH_DOTFILES/config/prompt" >> ~/.bashrc
+echo "if [ -f $_PACKAGE_DOTFILES/config/prompt ];then" >> ~/.bashrc
+echo "    . $_PACKAGE_DOTFILES/config/prompt" >> ~/.bashrc
 echo 'fi' >> ~/.bashrc
 
-unset _BASH_DOTFILES
+# Additional installations
+
+unset _SSDF_PCKG_CWD _SSDF_PCKG_PCKG_MNGR_SCRPT
 
 echo ' '
-echo ' [OK] bash configured'
+echo ' [OK] bash installed'
 echo ' '

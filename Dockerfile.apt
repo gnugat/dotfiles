@@ -1,0 +1,31 @@
+FROM ubuntu:24.04
+
+###
+# Container to try dotfiles in an Ubuntu / apt environment.
+#
+# Installing:
+# * `apt-utils` to enable interractive configuration
+# * `bash` to be able to run the installation scripts
+# * `ca-certificates` to be able to download through HTTPS
+# * `curl` to be able to download the repo as an archive
+# * `libreadline-dev` to enable interractive configuration
+# * `sudo` to be able to run `sudo apt install` commands
+# * `tar` to be able to extract the files from the archive
+#
+# Allowing sudoer `ubuntu` to be passwordless
+RUN apt update \
+    && apt install -y --no-install-recommends \
+        apt-utils \
+        bash \
+        ca-certificates \
+        curl \
+        libreadline-dev \
+        sudo \
+        tar \
+    && rm -rf /var/lib/apt/lists \
+    && echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+
+USER ubuntu
+WORKDIR /home/ubuntu
+
+CMD ["bash"]
