@@ -1,17 +1,43 @@
 #!/usr/bin/env bash
 
-_VIM_DOTFILES="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+# Super Secret Dotfiles (_SSDF)
 
 echo '// Installing vim...'
+echo ' '
 
-ln -nsf $_VIM_DOTFILES/config ~/.vimrc
+# SSDF Package Manager (_PCKG_MNGR) selection, if it wasn't already set
+if [ -z "$_SSDF_PCKG_MNGR" ]; then
+    if command -v apt >/dev/null 2>&1; then
+        _SSDF_PCKG_MNGR="apt"
+    else
+        echo '  [Error] Current Package Manager not supported.' >&2
+        echo '          Supported ones are: apt.' >&2
+        exit 1
+    fi
+fi
 
-sudo apt -qqy install vim
+# _SSDF Package (_PCKG) Current Working Directory (_CWD)
+_SSDF_PCKG_CWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Package's Package Manager script
+_SSDF_PCKG_PCKG_MNGR_SCRPT="$_SSDF_PCKG_CWD/_${_SSDF_PCKG_MNGR}.sh"
+
+if [ -f "$_SSDF_PCKG_PCKG_MNGR_SCRPT" ]; then
+    bash "$_SSDF_PCKG_PCKG_MNGR_SCRPT"
+else
+    echo "  [Error] Missing Package Package Manager script '${_SSDF_PCKG_PCKG_MNGR_SCRPT}'" >&2
+    exit 1
+fi
+
+# Symlink config
+ln -nsf $_SSDF_PCKG_CWD/config/vimrc ~/.vimrc
+
+# Additional installations
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 vim +PlugInstall +qall
 
-unset _VIM_DOTFILES
+unset _SSDF_PCKG_CWD _SSDF_PCKG_PCKG_MNGR_SCRPT
 
 echo ' '
 echo ' [OK] vim installed'

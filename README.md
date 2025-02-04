@@ -1,81 +1,115 @@
-# dotfiles
+# 🔵 Super Secret Dotfiles (SSDF)
 
-My Super Secret configuration files.
+This repository helps me to backup, restore and synchronise
+my shell / system preferences and settings.
 
-This repository helps me to backup, restore and synchronize them
-(and will install my favourite productivity apps).
+> ℹ️  _Note_: I'm afraid I'm not using any poncy tools to manage my Dotfiles.
+> No Ansible, chezmoi, stow, whatsoever.
+>
+> Just regular bash scripts and symbolic links,
+> find out more in _Philosophy_ section. 
 
-## Installation
+## ⚙️  Installation
 
-Requirements:
+> _Requirements (most of these should be installed by default)_:
+>
+> * `apt-utils`: to enable interactive configuration
+> * `bash`: to be able to run the installation scripts
+> * `ca-certificates`: to be to downloaded through HTTPS
+> * `curl`: to be able to download the repository as an archive
+> * `libreadline-dev`: to enable interactive configuration
+> * `tar`: to extract the files from the downloaded archive
+> * _optionally `git`: to be able to clone this repository_
 
-* `git`: to be able to clone this repository
-* `bash`: to be able to run the installation scripts
+**🚀 Quick Install:**
 
-To install and setup, clone the repo and run its root `install.sh` script: 
-
+```shell
+curl -fsSL 'https://github.com/gnugat/dotfiles/archive/main.tar.gz' | tar -xz && cd dotfiles-main && bash ./install.sh
 ```
-git clone git@github.com:gnugat/dotfiles.git
-cd ./dotfiles
-bash ./install.sh
-```
 
-## Organizational Approach
+Once the script is done, don't forget to run `source ~/.profile` to reload the config.
 
-The tree directory follows the following convention:
+> ℹ️  _Note_: The **Quick Install** method is perfect for ephemeral environments,
+> like a Docker container for example.
+> 
+> For more permanent environments, and to be able to get updates,
+> clone the repository (aka the **Git Install**):
+> 
+> ```shell
+> git clone git@github.com:gnugat/dotfiles.git && cd dotfiles && bash ./install.sh
+> ```
+
+## 🌳 Philosophy / Structure
+
+The tree directory follows this convention:
 
 ```
 .
 ├── <package>
-│   ├── _apt.sh
-│   ├── _brew.sh
+│   ├── _<package-manager>.sh
 │   ├── config/
 │   └── install.sh
 └── install.sh
 ```
 
-The root `install.sh` script calls each `<package>/install.sh` scripts.
+The root `install.sh` script's responsibility is to:
 
-Each `<package>/install.sh` script will:
+* select a Package Manager
+  * currently supported: `apt`
+* for each Package directory, call its `<package>/install.sh` script
 
-* check which package manager is installed
-  (eg `apt` for Ubuntu, or `brew` for Mac OS)
-* call the respective `_<package-manager>.sh` script to install the package
-  (eg `sudo apt install ackl`)
-* create symlinks for the configuration files located in `<package>/config/`
-  (eg `ln -nsf ./ack/config/dot_ackrc ~/.ackrc`)
+> ℹ️  _Note_: It's possible to manually select the Package Manager as follow:
+>
+> ```shell
+> _SSDF_PCKG_MNGR=apt bash ./install.sh
+> ```
+>
+> If `_SSDF_PCKG_MNGR` isn't provided, then the script will pick one automatically.
 
-## Testing - Docker Container
+As for each `<package>/install.sh` script, their responsibility is to:
 
-A `Dockerfile` is provided to try the repo:
+* create symlinks from files in `<package>/config/` to `~/`
+  * eg `ln -nsf ./git/config/gitconfig ~/.gitconfig`
+* install the package using the selected Package Manager with `<package>/_<package-manager>.sh`
+  * eg `sudo apt -qqy installl git`
 
-```console
-docker build -t gnugat/dotfiles .
-docker run -rm -it gnugat/dotfiles
+> ℹ️  _Notes_:
+> * the `install.sh` scripts can safely be run many times
+>   * this allows for updates
+>   * ⚠️  some artefacts might be left behind, make sure to manually clean
+> * each `<package>/install.sh` can also be run individually directly
+>   * they'll automatically select the Package Manager
+>   * they also accept `_SSDF_PCKG_MNGR` to manually selected the Package Manager
+
+## 🐋 Testing - Docker Container
+
+> _Requirements_:
+>
+> * `docker`: to be able to build and run the container
+
+The `Dockerfile.<package-manager>` files are provided to try the repo, eg:
+
+```shell
+# For Ubuntu, using the `apt` Package Manager
+docker build -t gnugat/dotfiles-apt -f Dockerfile.apt .
+docker run --rm -it gnugat/dotfiles-apt
 ```
 
 This will provide you with:
 
-* an empty/base Ubuntu container
-* `bash` and `git ` installed
-* a `ubuntu` user, in their home `/home/ubuntu` directory
+* a minimal Ubuntu container
+* the specified package manager (eg `apt`)
+* `apt-utils`, `bash`, `ca-certificates`, `curl`, `libreadline-dev` and `tar`
+  bundled with it to be able to install the Dotfiles
+* a `ubuntu` user (with sudo power), in their home `/home/ubuntu` directory
 
-> **Note**: It's also possible to try it in your own/project containers,
-> _at your own risk_.
+You can then install the Dotfiles using the **Quick Install** instructions
+described earlier (`head -n 28 README.md | tail -n 5`).
 
-You can then install the dotfiles in the container as follow:
+> **Note**: Remember that once you exit the container, all changed are lost.
+> If you run the container again, you'll need to install the Dotfiles once more.
 
-```console
-git config --global http.sslVerify false
-git clone https://github.com/gnugat/dotfiles.git
-cd ./dotfiles
-bash ./install.sh
-```
-
-> **Note**: Remember that once you exit the container all change will be lost,
-> and the dotfiles will need to be installed once again.
-
-## Be kind 
+## 🤝 Be kind 
 
 Please note that this project is released with a Contributor Code of Conduct.
 By participating in this project you agree to abide by its terms.
