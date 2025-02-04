@@ -1,56 +1,34 @@
 #!/usr/bin/env bash
 
+_SSDF_ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd )"
+source "${_SSDF_ROOT_DIR}/_ssdf_func.sh"
+
 echo ' '
 echo 'Super Secret Dotfiles (_SSDF)'
 echo '============================'
 echo 'Backup, restore and sync shell / system prefs and settings'
 echo '----------------------------------------------------------'
 
-# _SSDF Package Manager (_PCKG_MNGR) selection
-# It can be manually selected as follow: `_SSDF_PCKG_MNGR=apt bash ./install.sh`
-echo ' '
-echo '// Selecting Package Manager (_SSDF_PCKG_MNGR)...'
-
-# If it wasn't manually selected, then automatically pick one
-if [ -z "$_SSDF_PCKG_MNGR" ]; then
-    if command -v apt >/dev/null 2>&1; then
-        _SSDF_PCKG_MNGR="apt"
-    else
-        echo '  [Error] Current Package Manager not supported.' >&2
-        echo '          Supported ones are: apt.' >&2
-        exit 1
-    fi
-fi
-export _SSDF_PCKG_MNGR
-
-echo ' '
-echo " [OK] Package manager $_SSDF_PCKG_MNGR selected"
+# Checks _SSDF_PACKAGE_MANAGER if it has been passed to the script
+#   eg via `_SSDF_PACKAGE_MANAGER=apt bash install.sh`
+# If it wasn't, then ensure _SSDF_PACKAGE_MANAGER is set with system's Package Manager.
+_ssdf_echo_section_title 'Selecting Package Manager'
+_ssdf_select_package_manager
+_ssdf_echo_success "Package Manager ${_SSDF_PACKAGE_MANAGER} selected"
 
 # Package Manager update
-echo ' '
-echo '// Updating Package Manager...'
-if [ "$_SSDF_PCKG_MNGR" = "apt" ]; then
-    echo ' '
+if [ "$_SSDF_PACKAGE_MANAGER" = "apt" ]; then
+    _ssdf_echo_section_title 'Updating Package Manager...'
     sudo apt-get -qq update
+    _ssdf_echo_success "Package Manager updated"
 fi
 
-echo ' '
-echo " [OK] Package manager updated"
-echo ' '
-
-# _SSDF Current Working Directory (_CWD)
-_SSDF_CWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-
-# For each Package (_PCKG), call its `install.sh` script
-for _SSDF_PCKG_INSTALL in $_SSDF_CWD/*/install.sh; do
-  bash "$_SSDF_PCKG_INSTALL" -H || break
+# For each Package, call its `install.sh` script
+for _SSDF_PACKAGE_INSTALL in $_SSDF_ROOT_DIR/*/install.sh; do
+  bash "${_SSDF_PACKAGE_INSTALL}" -H || break
 done
 
 # Clean local environment variables
-unset _SSDF_PCKG_MNGR _SSDF_CWD _SSDF_PCKG_INSTALL
+unset _SSDF_PACKAGE_NAME _SSDF_ROOT_DIR _SSDF_PACKAGE_INSTALL
 
-echo ' '
-echo ' [OK] Super Secret Dotfiles installed'
-echo '      Run `source ~/.profile` to reload config' 
-echo ' '
-
+_ssdf_echo_success 'Super Secret Dotfiles installed (now please run `source ~/.profile`)'

@@ -32,8 +32,8 @@ Once the script is done, don't forget to run `source ~/.profile` to reload the c
 > ℹ️  _Note_: The **Quick Install** method is perfect for ephemeral environments,
 > like a Docker container for example.
 > 
-> For more permanent environments, and to be able to get updates,
-> clone the repository (aka the **Git Install**):
+> Clone the git repository for more more permanent environments (aka **Git Install**),
+> this will allow yuo to get updates (using `git pull`):
 > 
 > ```shell
 > git clone git@github.com:gnugat/dotfiles.git && cd dotfiles && bash ./install.sh
@@ -61,24 +61,26 @@ The root `install.sh` script's responsibility is to:
 > ℹ️  _Note_: It's possible to manually select the Package Manager as follow:
 >
 > ```shell
-> _SSDF_PCKG_MNGR=apt bash ./install.sh
+> _SSDF_PACKAGE_MANAGER=apt bash ./install.sh
 > ```
 >
-> If `_SSDF_PCKG_MNGR` isn't provided, then the script will pick one automatically.
+> If `_SSDF_PACKAGE_MANAGER` isn't provided, then the script will pick one automatically.
 
 As for each `<package>/install.sh` script, their responsibility is to:
 
-* create symlinks from files in `<package>/config/` to `~/`
-  * eg `ln -nsf ./git/config/gitconfig ~/.gitconfig`
 * install the package using the selected Package Manager with `<package>/_<package-manager>.sh`
   * eg `sudo apt -qqy installl git`
+* create symlinks from files in `<package>/config/` to `~/`
+  * eg `ln -nsf ./git/config/gitconfig ~/.gitconfig`
+* do some extra stuff like installing plugins, themes nd whatnot
 
 > ℹ️  _Notes_:
 > * the `install.sh` scripts can safely be run many times
 >   * this allows for updates
->   * ⚠️  some artefacts might be left behind, make sure to manually clean
+>   * ⚠️  no backups are made, and some artefacts might be left behind,
+         make sure to double check and manually backup/clean
 > * each `<package>/install.sh` can also be run individually directly
->   * they'll automatically select the Package Manager
+>   * they also automatically select the Package Manager
 >   * they also accept `_SSDF_PCKG_MNGR` to manually selected the Package Manager
 
 ## 🐋 Testing - Docker Container
