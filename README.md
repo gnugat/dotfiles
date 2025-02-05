@@ -33,7 +33,7 @@ Once the script is done, don't forget to run `source ~/.profile` to reload the c
 > like a Docker container for example.
 > 
 > Clone the git repository for more more permanent environments (aka **Git Install**),
-> this will allow yuo to get updates (using `git pull`):
+> this will allow you to get updates (using `git pull`):
 > 
 > ```shell
 > git clone git@github.com:gnugat/dotfiles.git && cd dotfiles && bash ./install.sh
@@ -72,7 +72,7 @@ As for each `<package>/install.sh` script, their responsibility is to:
   * eg `sudo apt -qqy installl git`
 * create symlinks from files in `<package>/config/` to `~/`
   * eg `ln -nsf ./git/config/gitconfig ~/.gitconfig`
-* do some extra stuff like installing plugins, themes nd whatnot
+* do some extra stuff like installing plugins, themes and whatnot
 
 > ℹ️  _Notes_:
 > * the `install.sh` scripts can safely be run many times
