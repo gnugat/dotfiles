@@ -55,7 +55,7 @@ The tree directory follows this convention:
 The root `install.sh` script's responsibility is to:
 
 * select a Package Manager
-  * currently supported: `apt`
+  * currently supported: `apt`, `brew`
 * for each Package directory, call its `<package>/install.sh` script
 
 > ℹ️  _Note_: It's possible to manually select the Package Manager as follow:
