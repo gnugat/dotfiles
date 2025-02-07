@@ -1,7 +1,8 @@
-FROM ubuntu:24.04
+FROM homebrew/ubuntu24.04
 
 ###
-# Container to try dotfiles in an Ubuntu / apt environment.
+# Container to try dotfiles in an Mac OS X / homebrew environment.
+# Well. The closest we can get to it: Ubuntu / homebrew. And zsh.
 #
 # Installing:
 # * `apt-utils` to enable interractive configuration
@@ -11,8 +12,10 @@ FROM ubuntu:24.04
 # * `libreadline-dev` to enable interractive configuration
 # * `sudo` to be able to run `sudo apt install` commands
 # * `tar` to be able to extract the files from the archive
+# * `zsh` because that's the default shell on Mac OS X
 #
-# Allowing sudoer `ubuntu` to be passwordless
+# Allowing sudoer `linuxbrew` to be passwordless
+USER root
 RUN apt update \
     && apt install -y --no-install-recommends \
         apt-utils \
@@ -22,10 +25,11 @@ RUN apt update \
         libreadline-dev \
         sudo \
         tar \
+        zsh \
     && rm -rf /var/lib/apt/lists \
-    && echo 'ubuntu ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
+    && echo 'linuxbrew ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
-USER ubuntu
-WORKDIR /home/ubuntu
+USER linuxbrew
+WORKDIR /home/linuxbrew
 
-CMD ["/usr/bin/bash"]
+CMD ["/usr/bin/zsh"]
