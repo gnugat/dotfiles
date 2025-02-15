@@ -40,7 +40,7 @@ fi
 ## ➕ For each Package, call its `install.sh` script
 ## ─────────────────────────────────────────────────────────────────────────────
 
-for _SSDF_PACKAGE_INSTALL in "${_SSDF_ROOT_DIR}/*/install.sh"; do
+for _SSDF_PACKAGE_INSTALL in ${_SSDF_ROOT_DIR}/*/install.sh; do
     bash "${_SSDF_PACKAGE_INSTALL}" -H || break
 done
 
