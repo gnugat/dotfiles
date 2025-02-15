@@ -1,43 +1,43 @@
 # 🔵 Super Secret Dotfiles (SSDF)
 
-This repository helps me to backup, restore and synchronise
+This repository helps me backup, restore, synchronise and share
 my shell / system preferences and settings.
 
-> ℹ️  _Note_: I'm afraid I'm not using any poncy tools to manage my Dotfiles.
-> No Ansible, chezmoi, stow, whatsoever.
->
-> Just regular bash scripts and symbolic links,
-> find out more in _Philosophy_ section. 
+> ℹ️  **Requirements**:
+> - 🍊 Ubuntu (`apt`), or 🍏 Mac OS (`brew`)
+> - 💲 `bash` to run the installation scripts
+> - 🐙 `git` to clone the repo, or 🌐 `curl` and 📦 `tar` to download it
 
-## ⚙️  Installation
+## 🚀 Installation
 
-> _Requirements (most of these should be installed by default)_:
->
-> * `apt-utils`: to enable interactive configuration
-> * `bash`: to be able to run the installation scripts
-> * `ca-certificates`: to be to downloaded through HTTPS
-> * `curl`: to be able to download the repository as an archive
-> * `libreadline-dev`: to enable interactive configuration
-> * `tar`: to extract the files from the downloaded archive
-> * _optionally `git`: to be able to clone this repository_
-
-**🚀 Quick Install:**
+Clone the repository in `~/.config/dotfiles`, then run its root `install.sh` script:
 
 ```shell
-curl -fsSL 'https://github.com/gnugat/dotfiles/archive/main.tar.gz' | tar -xz && cd dotfiles-main && bash ./install.sh
+git clone git@github.com:gnugat/dotfiles.git ~/.dotfiles && cd ~/.dotfiles && bash ./install.sh
 ```
 
 Once the script is done, don't forget to run `source ~/.profile` to reload the config.
 
-> ℹ️  _Note_: The **Quick Install** method is perfect for ephemeral environments,
-> like a Docker container for example.
-> 
-> Clone the git repository for more more permanent environments (aka **Git Install**),
-> this will allow you to get updates (using `git pull`):
-> 
-> ```shell
-> git clone git@github.com:gnugat/dotfiles.git && cd dotfiles && bash ./install.sh
-> ```
+<details>
+<summary>🚢 Alternative Installation Options</summary>
+
+🍒 Instead of installing everything, individual packages can be installed:
+
+```shell
+curl -fsSL 'https://github.com/gnugat/dotfiles/archive/main.tar.gz' \
+    | tar -xz --one-top-level="${HOME}/.dotfiles" --strip-components=1 \
+    && cd ~/.dotfiles \
+    && bash ./shell/install.sh \
+    && bash ./bash/install.sh
+```
+
+⛏️ It's also possible to specify which (supported) package manager to use,
+rather than letting the scripts automatically select one:
+
+```shell
+_SSDF_PACKAGE_MANAGER=brew bash ./install.sh
+```
+</details>
 
 ## 🌳 Philosophy / Structure
 
@@ -48,67 +48,70 @@ The tree directory follows this convention:
 ├── <package>
 │   ├── _<package-manager>.sh
 │   ├── config/
-│   └── install.sh
+│   ├── install.sh
+│   └── README.md
 └── install.sh
 ```
 
-The root `install.sh` script's responsibility is to:
-
-* select a Package Manager
-  * currently supported: `apt`, `brew`
-* for each Package directory, call its `<package>/install.sh` script
-
-> ℹ️  _Note_: It's possible to manually select the Package Manager as follow:
->
-> ```shell
-> _SSDF_PACKAGE_MANAGER=apt bash ./install.sh
-> ```
->
-> If `_SSDF_PACKAGE_MANAGER` isn't provided, then the script will pick one automatically.
+The root `install.sh` script will call all the Package `install.sh` scripts.
 
 As for each `<package>/install.sh` script, their responsibility is to:
 
-* install the package using the selected Package Manager with `<package>/_<package-manager>.sh`
+* 📤 select a Package Manager from one of the supported ones
+  * eg `apt` (or `brew`)
+* 📦 install the package using the selected Package Manager
   * eg `sudo apt -qqy installl git`
-* create symlinks from files in `<package>/config/` to `~/`
-  * eg `ln -nsf ./git/config/gitconfig ~/.gitconfig`
-* do some extra stuff like installing plugins, themes and whatnot
+* 🔗 create symlinks of config files to `~/`
+  * eg `ln -nsf ./config/gitconfig ~/.gitconfig`
+* ➕ do some extra stuff like installing plugins, themes and whatnot
 
 > ℹ️  _Notes_:
 > * the `install.sh` scripts can safely be run many times
 >   * this allows for updates
 >   * ⚠️  no backups are made, and some artefacts might be left behind,
          make sure to double check and manually backup/clean
-> * each `<package>/install.sh` can also be run individually directly
->   * they also automatically select the Package Manager
->   * they also accept `_SSDF_PCKG_MNGR` to manually selected the Package Manager
 
-## 🐋 Testing - Docker Container
+## 🐋 Docker Container and Testing
 
-> _Requirements_:
->
-> * `docker`: to be able to build and run the container
-
-The `Dockerfile.<package-manager>` files are provided to try the repo, eg:
+A "minimal" setup (prompt and aliases) is available,
+for example to spice things up when in a Docker Container:
 
 ```shell
-# For Ubuntu, using the `apt` Package Manager
+BRANCH=main; curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
+    | tar -xz --one-top-level="${HOME}/.dotfiles" --strip-components=1 \
+    && cd ~/.dotfiles \
+    && bash ./shell/install.sh \
+    && bash ./bash/install.sh
+```
+
+Speaking of Docker Containers, Dockerfiles are available to try out the repo:
+
+```shell
 docker build -t gnugat/dotfiles-apt -f Dockerfile.apt .
 docker run --rm -it gnugat/dotfiles-apt
 ```
 
-This will provide you with:
+> _Note_: The container doesn't come with the dotfiles installed,
+> you'll have to run the curl or git command.
 
-* a minimal Ubuntu container
-* the specified package manager (eg `apt`)
-* `apt-utils`, `bash`, `ca-certificates`, `curl`, `libreadline-dev` and `tar`
-  bundled with it to be able to install the Dotfiles
-* a `ubuntu` user (with sudo power), in their home `/home/ubuntu` directory
+<details>
+<summary>🍎 Mac Simulator</summary>
+The `Dockerfile.brew` provides Ubuntu with linuxbrew and zsh,
+to simulate a Mac environment:
 
-You can then install the Dotfiles using the **Quick Install** instructions
-described earlier (`head -n 28 README.md | tail -n 5`).
+```shell
+docker build -t gnugat/dotfiles-apt -f Dockerfile.brew .
+docker run --rm -it gnugat/dotfiles-brew
 
-> **Note**: Remember that once you exit the container, all changed are lost.
+# In the brew container:
+BRANCH=main; curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
+    | tar -xz --one-top-level="${HOME}/.dotfiles" --strip-components=1 \
+    && cd ~/.dotfiles \
+    && _SSDF_PACKAGE_MANAGER=brew bash ./install.sh
+```
+</details>
+
+> **Note**: Remember that once you exit the container, all changes are lost.
 > If you run the container again, you'll need to install the Dotfiles once more.
 
 ## 🤝 Be kind 

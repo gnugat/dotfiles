@@ -1,8 +1,12 @@
 #!/usr/bin/env bash
+# File: /_ssdf_func.sh
+# ──────────────────────────────────────────────────────────────────────────────
+# 🔭 Super Secret Dot Files functions.
+# ──────────────────────────────────────────────────────────────────────────────
 
-###
-# Super Secret Dot Files functions
-###
+## ─────────────────────────────────────────────────────────────────────────────
+## 📰 Display helpers.
+## ─────────────────────────────────────────────────────────────────────────────
 
 ##
 # Display section title.
@@ -46,23 +50,29 @@ _ssdf_echo_success() {
     echo " "
 }
 
+## ─────────────────────────────────────────────────────────────────────────────
+## 📦 Package management.
+## ─────────────────────────────────────────────────────────────────────────────
+
 ##
-# Select Package Manager, ensures `_SSDF_PACKAGE_MANAGER` is set.
+# Selects Package Manager, ensures `_SSDF_PACKAGE_MANAGER` is set.
 #
 # ```bash
 # _ssdf_select_package_manager
 # ```
 ##
 _ssdf_select_package_manager() {
-    if [ -z "${_SSDF_PACKAGE_MANAGER}" ]; then
-        if command -v apt >/dev/null 2>&1; then
-            _SSDF_PACKAGE_MANAGER="apt"
-        elif command -v brew >/dev/null 2>&1; then
-            _SSDF_PACKAGE_MANAGER="brew"
-        else
-            _ssdf_echo_error "Current Package Manager not part of supported ones (apt, brew)."
+    for _ssdf_supported_package_manager in \
+        "apt" \
+        "brew" 
+    do
+        if command -v "${_ssdf_supported_package_manager}" >/dev/null 2>&1; then
+            _SSDF_PACKAGE_MANAGER="${_ssdf_supported_package_manager}"
+            return
         fi
-    fi
+    done
+
+    _ssdf_echo_error "Current Package Manager not part of supported ones (${_ssdf_supported_package_managers})."
 }
 
 ##
@@ -82,4 +92,91 @@ _ssdf_install_with_package_manager() {
     else
         _ssdf_echo_error "Missing Package Manager script '${_ssdf_package_manager_script}'"
     fi
+}
+
+## ─────────────────────────────────────────────────────────────────────────────
+## 📃 File manipulation.
+## ─────────────────────────────────────────────────────────────────────────────
+
+##
+# Attempts to create `file` if it doesn't exist.
+#
+# ```bash
+# _ssdf_ensure_file_is_created "${HOME}/.config/shell/envvars.local.sh"
+# ```
+##
+_ssdf_ensure_file_is_created() {
+    local file="$1"
+    if [ ! -e "${file}" ]; then
+        touch "${file}"
+    fi
+}
+
+_ssdf_append_empty_line() {
+    local file="$1"
+    if [ -s "${file}" ] && [ "$(tail -n 1 "${file}")" != "" ]; then
+        echo '' >> "${file}"
+    fi
+}
+
+## ─────────────────────────────────────────────────────────────────────────────
+## 🐚 Shell (environment variables, paths).
+## ─────────────────────────────────────────────────────────────────────────────
+
+##
+# Appends to `env_file` the `env_variable` with `env_value`.
+#
+# _Notes_:
+# * attempts to create the file if it didn't exist
+# * only appends if the `export` statement wasn't already in the file
+#
+# ```bash
+# _ssdf_append_envvar "${_SSDF_SHELL_ENVVARS}" "ACKRC" "${HOME}/.config/ack/ackrc"
+# ```
+##
+_ssdf_append_envvar() {
+    local env_file="$1"
+    local env_variable="$2"
+    local env_value="$3"
+    _ssdf_ensure_file_is_created "${env_file}"
+    if ! $(grep -q "^export ${env_variable}=" "${env_file}"); then
+        echo "export ${env_variable}=\"${env_value}\"" >> "${env_file}"
+    fi
+}
+
+##
+# Appends to `script_file` the given `source_line`.
+#
+# _Notes_:
+# * attempts to create the file if it didn't exist
+# * only appends if the `source_line` statement wasn't already in the file
+# * appends an empty line before appending the source line
+#
+# ```bash
+# _ssdf_append_source "~/.config/shell/aliases.local.sh" "source ${HOME}/.config/less/envvars.less.sh"
+# ```
+##
+_ssdf_append_source() {
+    local script_file="$1"
+    local source_line="$2"
+    _ssdf_ensure_file_is_created "${script_file}"
+    if ! $(grep -qxF "${source_line}" "${script_file}"); then
+        _ssdf_append_empty_line "${script_file}"
+        echo "${source_line}" >> "${script_file}"
+    fi
+}
+
+##
+# Prepends dir to PATH, if it exists and wasn't already added.
+#
+# ```bash
+# _ssdf_prepend_path "${HOME}/bin" "${HOME}/.local/bin"
+# ```
+##
+_ssdf_prepend_path() {
+    for dir in "$@"; do
+        if [ -d "${dir}" ] && [[ ":${PATH}:" != *":${dir}:"* ]]; then
+            export PATH="${dir}:${PATH}"
+        fi
+    done
 }
