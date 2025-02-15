@@ -6,7 +6,7 @@
 
 _SSDF_PACKAGE_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd -P)"
 _SSDF_ROOT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd -P)"
-source "${_SSDF_ROOT_DIR}/_ssdf_func.sh"
+source "${_SSDF_ROOT_DIR}/00-_ssdf/functions.sh"
 
 _SSDF_PACKAGE_NAME="tree"
 
