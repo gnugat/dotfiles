@@ -32,7 +32,7 @@ ln -nsf "${_SSDF_PACKAGE_DIR}/config/aliases.tree.sh" "${HOME}/.config/tree/alia
 
 _ssdf_append_source \
     "${HOME}/.config/shell/aliases.local.sh" \
-    "source ${HOME}/.config/tree/aliases.tree.sh"
+    "${HOME}/.config/tree/aliases.tree.sh"
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 

@@ -42,7 +42,7 @@ do
     if [ -f "${_SSDF_SUPPORTED_SHELL}" ]; then
         _ssdf_append_source \
             "${_SSDF_SUPPORTED_SHELL}" \
-            "source ${HOME}/.config/shell/common.sh"
+            "${HOME}/.config/shell/common.sh"
     fi
 done
 

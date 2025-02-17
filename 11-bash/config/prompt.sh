@@ -1,45 +1,71 @@
 #!/usr/bin/env bash
-# File: /less/install.sh
+# File: /bash/config/prompt.sh
 # ──────────────────────────────────────────────────────────────────────────────
-# 📄 less - the opposite of more (the pager).
+# 🎤️ Bash minimalist, yet elegant, prompt:
+# 1. current working directory; in blue, truncated when too long 
+# 2. git branch (if any); in yellow, with status
+# 3. prompt; in green if last command was successful, red otherwise
+#
+# ```shell
+# ~/working/path:git-branch *%>
+# ```
 # ──────────────────────────────────────────────────────────────────────────────
 
-_SSDF_PACKAGE_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd -P)"
-_SSDF_ROOT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/.." && pwd -P)"
-source "${_SSDF_ROOT_DIR}/00-_ssdf/functions.sh"
-
-_SSDF_PACKAGE_NAME="less"
-
-_ssdf_echo_section_title "Installing ${_SSDF_PACKAGE_NAME}..."
+## ─────────────────────────────────────────────────────────────────────────────
+## 🎨 Colours (none, red, green, yellow, blue).
+## ─────────────────────────────────────────────────────────────────────────────
+_CN="\[\e[0m\]"
+_CR="\[\e[31m\]"
+_CG="\[\e[32m\]"
+_CY="\[\e[33m\]"
+_CB="\[\e[34m\]"
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## 📦 Call to `./_<package-manager>.sh` script.
+## 📁 Current working directory.
+## Truncates it if it's more than 3rd of the number of COLUMNS.
+## _Note_: If COLUMNS isn't set, default to 20.
 ## ─────────────────────────────────────────────────────────────────────────────
-
-_ssdf_select_package_manager
-_ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${_SSDF_PACKAGE_MANAGER}"
-
-## ─────────────────────────────────────────────────────────────────────────────
-## 🔗 Symbolic links.
-## ─────────────────────────────────────────────────────────────────────────────
-
-mkdir -p "${HOME}/.config/less"
-ln -nsf "${_SSDF_PACKAGE_DIR}/config/envvars.less.sh" "${HOME}/.config/less/envvars.less.sh"
-
-## ─────────────────────────────────────────────────────────────────────────────
-## ➕ Additional config / install
-## ─────────────────────────────────────────────────────────────────────────────
-
-_ssdf_append_source \
-    "${HOME}/.config/shell/envvars.local.sh" \
-    "${HOME}/.config/less/envvars.less.sh"
-
-_ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
+function _set_working_dir() {
+    _WORKING_DIR=$(dirs +0)
+    local pwdmaxlen=$((${COLUMNS:-20}/3))
+    if [ ${#_WORKING_DIR} -gt $pwdmaxlen ] ; then
+        _WORKING_DIR="…${_WORKING_DIR: -$pwdmaxlen}";
+    fi
+    _WORKING_DIR="${_CB}${_WORKING_DIR}${_CN}"
+    unset pwdmaxlen
+}
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## 🧹 Cleaning up local variables
+## 🐙 If in git project, display branch name and status.
 ## ─────────────────────────────────────────────────────────────────────────────
+if command -v git >/dev/null 2>&1; then
+    export GIT_PS1_SHOWDIRTYSTATE=true # adds unstaged (*) and staged (+)
+    export GIT_PS1_SHOWUNTRACKEDFILES=true # adds untracked (%)
 
-unset _SSDF_PACKAGE_DIR \
-    _SSDF_ROOT_DIR \
-    _SSDF_PACKAGE_NAME
+    # Loads __git_ps1 bash completion from git, if its git-prompt script exists
+    if [ -e /etc/bash_completion.d/git-prompt ]; then
+        source /etc/bash_completion.d/git-prompt
+    elif [ -e /usr/share/git/completion/git-prompt.sh ]; then
+        source /usr/share/git/completion/git-prompt.sh
+    elif [ -e /usr/local/etc/bash_completion.d/git-prompt.sh ]; then
+        source /usr/local/etc/bash_completion.d/git-prompt.sh
+    fi
+
+    # Define _GIT_INFO only if __git_ps1 is available
+    if declare -F __git_ps1 >/dev/null; then
+        _GIT_INFO=$_CY'$(__git_ps1 ":%s")'$_CN
+    fi
+fi
+
+## ─────────────────────────────────────────────────────────────────────────────
+## 🚦 Depending on last command success, colours > in green or red.
+## ─────────────────────────────────────────────────────────────────────────────
+function _set_exit_info() {
+    if [[ $? != "0" ]]; then
+        _EXIT_INFO=$_CR\>$_CN;
+    else
+        _EXIT_INFO=$_CG\>$_CN;
+    fi
+}
+
+PROMPT_COMMAND='_set_exit_info;_set_working_dir;PS1="$_WORKING_DIR$_GIT_INFO$_EXIT_INFO "'
