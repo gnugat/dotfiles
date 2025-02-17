@@ -23,23 +23,29 @@ _ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${_SSDF_PACKAGE_MANAG
 ## 🔗 Symbolic links.
 ## ─────────────────────────────────────────────────────────────────────────────
 
-## N/A
+mkdir -p "${HOME}/.config/bash"
+cp -i "${_SSDF_PACKAGE_DIR}/config/bashrc" "${HOME}/.bashrc"
+ln -nsf "${_SSDF_PACKAGE_DIR}/config/prompt.sh" "${HOME}/.config/bash/prompt.sh"
+ln -nsf "${_SSDF_PACKAGE_DIR}/config/shopt.sh" "${HOME}/.config/bash/shopt.sh"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
-## @TODO Do something better than just continously adding more and more to .bashrc
-echo '' >> ~/.bashrc
-echo "if [ -f "${_SSDF_PACKAGE_DIR}/config/main" ];then" >> ~/.bashrc
-echo "    . ${_SSDF_PACKAGE_DIR}/config/main" >> ~/.bashrc
-echo 'fi' >> ~/.bashrc
-
-## Super Secret Prompt
-echo '' >> ~/.bashrc
-echo "if [ -f "${_SSDF_PACKAGE_DIR}/config/prompt" ];then" >> ~/.bashrc
-echo "    . ${_SSDF_PACKAGE_DIR}/config/prompt" >> ~/.bashrc
-echo 'fi' >> ~/.bashrc
+if [ -e "${HOME}/.bashrc" ]; then
+    _ssdf_append_source \
+        "${HOME}/.bashrc" \
+        "${HOME}/.config/shell/common.sh"
+    _ssdf_append_source \
+        "${HOME}/.bashrc" \
+        "${HOME}/.config/bash/prompt.sh"
+    _ssdf_append_source \
+        "${HOME}/.bashrc" \
+        "${HOME}/.config/bash/shopt.sh"
+    _ssdf_append_source \
+        "${HOME}/.bashrc" \
+        "${HOME}/.config/bash/shopt.local.sh"
+fi
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 

@@ -17,15 +17,17 @@
 # * appends an empty line before appending the source line
 #
 # ```bash
-# _ssdf_append_source "~/.config/shell/aliases.local.sh" "source ${HOME}/.config/less/envvars.less.sh"
+# _ssdf_append_source "~/.config/shell/aliases.local.sh" "${HOME}/.config/less/envvars.less.sh"
 # ```
 ##
 _ssdf_append_source() {
     local script_file="$1"
-    local source_line="$2"
+    local source_file="$2"
     _ssdf_ensure_file_is_created "${script_file}"
-    if ! $(grep -qxF "${source_line}" "${script_file}"); then
+    if ! $(grep -qE "^\s*source ${source_file}" "${script_file}"); then
         _ssdf_append_empty_line "${script_file}"
-        echo "${source_line}" >> "${script_file}"
+        echo "if [ -e \"${source_file}\" ]; then" >> "${script_file}"
+        echo "    source ${source_file}" >> "${script_file}"
+        echo "fi" >> "${script_file}"
     fi
 }

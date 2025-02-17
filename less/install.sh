@@ -32,7 +32,7 @@ ln -nsf "${_SSDF_PACKAGE_DIR}/config/envvars.less.sh" "${HOME}/.config/less/envv
 
 _ssdf_append_source \
     "${HOME}/.config/shell/envvars.local.sh" \
-    "source ${HOME}/.config/less/envvars.less.sh"
+    "${HOME}/.config/less/envvars.less.sh"
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
