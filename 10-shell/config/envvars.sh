@@ -28,3 +28,7 @@ export HISTCONTROL="ignoreboth"
 export PAGER=$(which less)
 export EDITOR=$(which vim)
 
+## ─────────────────────────────────────────────────────────────────────────────
+## 🏠 Sets user config directory in `~/.config`.
+## ─────────────────────────────────────────────────────────────────────────────
+export XDG_CONFIG_HOME="${HOME}/.config"
