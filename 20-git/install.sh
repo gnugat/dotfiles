@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# File: /git/install.sh
+# File: /20-git/install.sh
 # ──────────────────────────────────────────────────────────────────────────────
 # 🐙 git - the stupid content tracker
 # ──────────────────────────────────────────────────────────────────────────────
@@ -25,9 +25,9 @@ _ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${_SSDF_PACKAGE_MANAG
 
 mkdir -p ~/.config/git
 ln -nsf "${_SSDF_PACKAGE_DIR}/config/user" ~/.config/git/user
-ln -nsf "${_SSDF_PACKAGE_DIR}/config/gitconfig" ~/.gitconfig
-ln -nsf "${_SSDF_PACKAGE_DIR}/config/gitglobalexclude" ~/.gitglobalexclude
-ln -nsf "${_SSDF_PACKAGE_DIR}/config/gittemplate" ~/.gittemplate
+ln -nsf "${_SSDF_PACKAGE_DIR}/config/config" ~/.config/git/config
+ln -nsf "${_SSDF_PACKAGE_DIR}/config/ignore" ~/.config/git/ignore
+ln -nsf "${_SSDF_PACKAGE_DIR}/config/template" ~/.config/git/template
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install
