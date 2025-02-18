@@ -10,7 +10,7 @@ my shell / system preferences and settings.
 
 ## 🚀 Installation
 
-Clone the repository in `~/.config/dotfiles`, then run its root `install.sh` script:
+Clone the repository in `~/.dotfiles`, then run its root `install.sh` script:
 
 ```shell
 git clone git@github.com:gnugat/dotfiles.git ~/.dotfiles && cd ~/.dotfiles && bash ./install.sh
@@ -27,8 +27,8 @@ Once the script is done, don't forget to run `source ~/.profile` to reload the c
 curl -fsSL 'https://github.com/gnugat/dotfiles/archive/main.tar.gz' \
     | tar -xz --one-top-level="${HOME}/.dotfiles" --strip-components=1 \
     && cd ~/.dotfiles \
-    && bash ./shell/install.sh \
-    && bash ./bash/install.sh
+    && bash ./10-shell/install.sh \
+    && bash ./11-bash/install.sh
 ```
 
 ⛏️ It's also possible to specify which (supported) package manager to use,
@@ -45,7 +45,7 @@ The tree directory follows this convention:
 
 ```
 .
-├── <package>
+├── <xy>-<package>
 │   ├── _<package-manager>.sh
 │   ├── config/
 │   ├── install.sh
@@ -54,6 +54,14 @@ The tree directory follows this convention:
 ```
 
 The root `install.sh` script will call all the Package `install.sh` scripts.
+
+The `<xy>` prefix digit indicates the package's:
+
+* `x`: category
+    * `0`: internal SSDF functions
+    * `1`: bare minimum (ideal for ssh servers, or Docker Containers)
+    * `2`: base (common set up)
+* `y`: priority
 
 As for each `<package>/install.sh` script, their responsibility is to:
 
@@ -80,8 +88,8 @@ for example to spice things up when in a Docker Container:
 BRANCH=main; curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
     | tar -xz --one-top-level="${HOME}/.dotfiles" --strip-components=1 \
     && cd ~/.dotfiles \
-    && bash ./shell/install.sh \
-    && bash ./bash/install.sh
+    && bash ./10-shell/install.sh \
+    && bash ./11-bash/install.sh
 ```
 
 Speaking of Docker Containers, Dockerfiles are available to try out the repo:
