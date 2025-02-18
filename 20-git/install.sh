@@ -24,6 +24,7 @@ _ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${_SSDF_PACKAGE_MANAG
 ## ─────────────────────────────────────────────────────────────────────────────
 
 mkdir -p ~/.config/git
+mkdir -p "${_SSDF_PACKAGE_DIR}/config/user"
 ln -nsf "${_SSDF_PACKAGE_DIR}/config/user" ~/.config/git/user
 ln -nsf "${_SSDF_PACKAGE_DIR}/config/config" ~/.config/git/config
 ln -nsf "${_SSDF_PACKAGE_DIR}/config/ignore" ~/.config/git/ignore
