@@ -113,6 +113,6 @@
 [github]
     user  = gnugat
 
-# WCBS
-[includeIf "hasconfig:remote.*.url:git@wcbs.github.com:wcbs-ltd/**"]
-    path = ~/.config/git/user/github-wcbs
+# <work>
+#[includeIf "hasconfig:remote.*.url:git@<work>.github.com:<group>/**"]
+#    path = ~/.config/git/user/<provider-work>
