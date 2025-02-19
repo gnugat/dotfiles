@@ -26,6 +26,32 @@ _ssdf_echo_section_title 'Selecting Package Manager'
 _ssdf_select_package_manager
 _ssdf_echo_success "Package Manager ${_SSDF_PACKAGE_MANAGER} selected"
 
+
+## ─────────────────────────────────────────────────────────────────────────────
+## 🏷️ Selects the tags, by setting `_SSDF_TAGS`.
+## _Note_: The tags can be manually selected as follow:
+##
+## ```
+## _SSDF_TAGS='0 1' bash install.sh
+## ```
+##
+## Package folders follow this naming convention: `<xy>-<package-name>`.
+## The `<xy>` prefix digit indicates the package's:
+## * `x`: tag (category)
+##     * 0: 🏭 internal SSDF functions
+##     * 1: 🫗 bare minimum (ideal for ssh servers, or Docker Containers)
+##     * 2: 🧱 base (common set up)
+## * `y`: execution priority (in numeric-alphabetical order)
+## ─────────────────────────────────────────────────────────────────────────────
+
+_ssdf_echo_section_title 'Selecting Tags'
+
+if [ -z "${_SSDF_TAGS}" ]; then
+    _SSDF_TAGS='0 1 2'
+fi
+
+_ssdf_echo_success "Tags ${_SSDF_TAGS} selected"
+
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 📰 System update.
 ## ─────────────────────────────────────────────────────────────────────────────
@@ -37,20 +63,38 @@ if [ "${_SSDF_PACKAGE_MANAGER}" == "apt" ]; then
 fi
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## ➕ For each Package, call its `install.sh` script
+## ➕ For each package matching the selected tags, call its `install.sh` script.
 ## ─────────────────────────────────────────────────────────────────────────────
 
-for _SSDF_PACKAGE_INSTALL in ${_SSDF_ROOT_DIR}/*/install.sh; do
-    bash "${_SSDF_PACKAGE_INSTALL}" -H || break
+for _SSDF_PACKAGE_DIR in "${_SSDF_ROOT_DIR}"/*/; do
+    _SSDF_PACKAGE_TAGGED_NAME="$(basename "${_SSDF_PACKAGE_DIR}")"
+
+    # Extract the tag (first digit of the folder name)
+    _SSDF_PACKAGE_TAG="${_SSDF_PACKAGE_TAGGED_NAME:0:1}"
+
+    # Check if the tag is in the allowed list
+    if [[ " ${_SSDF_TAGS} " == *" ${_SSDF_PACKAGE_TAG} "* ]]; then
+        _SSDF_PACKAGE_INSTALL="${_SSDF_PACKAGE_DIR}install.sh"
+        if [ -f "${_SSDF_PACKAGE_INSTALL}" ]; then
+            bash "${_SSDF_PACKAGE_INSTALL}" -H || break
+        fi
+    fi
 done
 
-_ssdf_echo_success 'Super Secret Dotfiles installed (now please run `source ~/.profile`)'
+_ssdf_echo_success 'Super Secret Dotfiles installed'
+
+echo ' Now please run `source ~/.profile` to apply'
+echo ' ' 
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 🧹 Cleaning up local variables
 ## ─────────────────────────────────────────────────────────────────────────────
 
-unset _SSDF_PACKAGE_NAME \
-    _SSDF_ROOT_DIR \
+unset _SSDF_ROOT_DIR \
+    _SSDF_PACKAGE_MANAGER \
+    _SSDF_TAGS \
+    _SSDF_PACKAGE_DIR \
+    _SSDF_PACKAGE_TAGGED_NAME \
+    _SSDF_PACKAGE_TAG \
     _SSDF_PACKAGE_INSTALL
 
