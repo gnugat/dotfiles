@@ -21,7 +21,29 @@ Once the script is done, don't forget to run `source ~/.profile` to reload the c
 <details>
 <summary>🚢 Alternative Installation Options</summary>
 
-🍒 Instead of installing everything, individual packages can be installed:
+🍏 To install on Mac OS (will install homebrew 🍺):
+
+```shell
+curl -fsSL 'https://github.com/gnugat/dotfiles/archive/main.tar.gz' \
+    | tar -xz --one-top-level="${HOME}/.dotfiles" --strip-components=1 \
+    && cd ~/.dotfiles \
+    && bash ./install.mac.sh
+```
+
+---
+
+🏷️ Instead of installing everything, a list of tags can be specified by setting `_SSDF_TAGS`:
+
+```shell
+curl -fsSL 'https://github.com/gnugat/dotfiles/archive/main.tar.gz' \
+    | tar -xz --one-top-level="${HOME}/.dotfiles" --strip-components=1 \
+    && cd ~/.dotfiles \
+    && _SSDF_TAGS='0 1' bash ./install.sh
+```
+
+---
+
+🍒 To only install one or more **specific** packages:
 
 ```shell
 curl -fsSL 'https://github.com/gnugat/dotfiles/archive/main.tar.gz' \
@@ -31,11 +53,16 @@ curl -fsSL 'https://github.com/gnugat/dotfiles/archive/main.tar.gz' \
     && bash ./11-bash/install.sh
 ```
 
+---
+
 ⛏️ It's also possible to specify which (supported) package manager to use,
-rather than letting the scripts automatically select one:
+rather than letting the scripts automatically select one by setting `_SSDF_PACKAGE_MANAGER`:
 
 ```shell
-_SSDF_PACKAGE_MANAGER=brew bash ./install.sh
+curl -fsSL 'https://github.com/gnugat/dotfiles/archive/main.tar.gz' \
+    | tar -xz --one-top-level="${HOME}/.dotfiles" --strip-components=1 \
+    && cd ~/.dotfiles \
+    && _SSDF_PACKAGE_MANAGER=brew bash ./install.sh
 ```
 </details>
 
@@ -57,10 +84,10 @@ The root `install.sh` script will call all the Package `install.sh` scripts.
 
 The `<xy>` prefix digit indicates the package's:
 
-* `x`: category
-    * `0`: internal SSDF functions
-    * `1`: bare minimum (ideal for ssh servers, or Docker Containers)
-    * `2`: base (common set up)
+* `x`: tag
+    * `0`: 🏭 internal SSDF functions
+    * `1`: 🫗 bare minimum (ideal for ssh servers, or Docker Containers)
+    * `2`: 🧱 base (common set up)
 * `y`: priority
 
 As for each `<package>/install.sh` script, their responsibility is to:
@@ -88,8 +115,7 @@ for example to spice things up when in a Docker Container:
 BRANCH=main; curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
     | tar -xz --one-top-level="${HOME}/.dotfiles" --strip-components=1 \
     && cd ~/.dotfiles \
-    && bash ./10-shell/install.sh \
-    && bash ./11-bash/install.sh
+    && _SSDF_TAGS='0 1' bash ./install.sh
 ```
 
 Speaking of Docker Containers, Dockerfiles are available to try out the repo:
@@ -115,8 +141,12 @@ docker run --rm -it gnugat/dotfiles-brew
 BRANCH=main; curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
     | tar -xz --one-top-level="${HOME}/.dotfiles" --strip-components=1 \
     && cd ~/.dotfiles \
-    && _SSDF_PACKAGE_MANAGER=brew bash ./install.sh
+    && _SSDF_PACKAGE_MANAGER=brew _SSDF_TAGS='0 1 2' bash ./install.sh
 ```
+
+> _Note_: The `install.mac.sh` script will not work as the container is
+> running Linux and not Darwin.
+> For the same reason, avoid selecting Ubuntu or Mac specific tags.
 </details>
 
 > **Note**: Remember that once you exit the container, all changes are lost.
