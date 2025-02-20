@@ -24,9 +24,11 @@ Once the script is done, don't forget to run `source ~/.profile` to reload the c
 🍏 To install on Mac OS (will install homebrew 🍺):
 
 ```shell
-curl -fsSL 'https://github.com/gnugat/dotfiles/archive/main.tar.gz' \
-    | tar -xz --one-top-level="${HOME}/.dotfiles" --strip-components=1 \
-    && cd ~/.dotfiles \
+BRANCH="main" \
+    ; mkdir -p "${HOME}/.dotfiles" \
+    && curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
+    | tar -xz -C "${HOME}/.dotfiles" --strip-components=1 \
+    && cd "${HOME}/.dotfiles" \
     && bash ./install.mac.sh
 ```
 
@@ -35,10 +37,12 @@ curl -fsSL 'https://github.com/gnugat/dotfiles/archive/main.tar.gz' \
 🏷️ Instead of installing everything, a list of tags can be specified by setting `_SSDF_TAGS`:
 
 ```shell
-curl -fsSL 'https://github.com/gnugat/dotfiles/archive/main.tar.gz' \
-    | tar -xz --one-top-level="${HOME}/.dotfiles" --strip-components=1 \
-    && cd ~/.dotfiles \
-    && _SSDF_TAGS='0 1' bash ./install.sh
+BRANCH="main" \
+    ; mkdir -p "${HOME}/.dotfiles" \
+    && curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
+    | tar -xz -C "${HOME}/.dotfiles" --strip-components=1 \
+    && cd "${HOME}/.dotfiles" \
+    && _SSDF_TAGS="0 1" bash ./install.sh
 ```
 
 ---
@@ -46,9 +50,11 @@ curl -fsSL 'https://github.com/gnugat/dotfiles/archive/main.tar.gz' \
 🍒 To only install one or more **specific** packages:
 
 ```shell
-curl -fsSL 'https://github.com/gnugat/dotfiles/archive/main.tar.gz' \
-    | tar -xz --one-top-level="${HOME}/.dotfiles" --strip-components=1 \
-    && cd ~/.dotfiles \
+BRANCH="main" \
+    ; mkdir -p "${HOME}/.dotfiles" \
+    && curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
+    | tar -xz -C "${HOME}/.dotfiles" --strip-components=1 \
+    && cd "${HOME}/.dotfiles" \
     && bash ./10-shell/install.sh \
     && bash ./11-bash/install.sh
 ```
@@ -59,10 +65,12 @@ curl -fsSL 'https://github.com/gnugat/dotfiles/archive/main.tar.gz' \
 rather than letting the scripts automatically select one by setting `_SSDF_PACKAGE_MANAGER`:
 
 ```shell
-curl -fsSL 'https://github.com/gnugat/dotfiles/archive/main.tar.gz' \
-    | tar -xz --one-top-level="${HOME}/.dotfiles" --strip-components=1 \
-    && cd ~/.dotfiles \
-    && _SSDF_PACKAGE_MANAGER=brew bash ./install.sh
+BRANCH="main" \
+    ; mkdir -p "${HOME}/.dotfiles" \
+    && curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
+    | tar -xz -C "${HOME}/.dotfiles" --strip-components=1 \
+    && cd "${HOME}/.dotfiles" \
+    && _SSDF_PACKAGE_MANAGER="brew" bash ./install.sh
 ```
 </details>
 
@@ -112,10 +120,12 @@ A "minimal" setup (prompt and aliases) is available,
 for example to spice things up when in a Docker Container:
 
 ```shell
-BRANCH=main; curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
-    | tar -xz --one-top-level="${HOME}/.dotfiles" --strip-components=1 \
-    && cd ~/.dotfiles \
-    && _SSDF_TAGS='0 1' bash ./install.sh
+BRANCH="main" \
+    ; mkdir -p "${HOME}/.dotfiles" \
+    && curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
+    | tar -xz -C "${HOME}/.dotfiles" --strip-components=1 \
+    && cd "${HOME}/.dotfiles" \
+    && _SSDF_TAGS="0 1" bash ./install.sh
 ```
 
 Speaking of Docker Containers, Dockerfiles are available to try out the repo:
@@ -138,10 +148,12 @@ docker build -t gnugat/dotfiles-apt -f Dockerfile.brew .
 docker run --rm -it gnugat/dotfiles-brew
 
 # In the brew container:
-BRANCH=main; curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
-    | tar -xz --one-top-level="${HOME}/.dotfiles" --strip-components=1 \
-    && cd ~/.dotfiles \
-    && _SSDF_PACKAGE_MANAGER=brew _SSDF_TAGS='0 1 2' bash ./install.sh
+BRANCH=main \
+    ; mkdir -p "${HOME}/.dotfiles" \
+    && curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
+    | tar -xz -C "${HOME}/.dotfiles" --strip-components=1 \
+    && cd "${HOME}/.dotfiles \
+    && _SSDF_PACKAGE_MANAGER="brew" _SSDF_TAGS="0 1 2" bash ./install.sh
 ```
 
 > _Note_: The `install.mac.sh` script will not work as the container is
