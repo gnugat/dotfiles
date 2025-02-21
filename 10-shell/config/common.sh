@@ -10,8 +10,9 @@
 # * the `*.local.sh` scripts are meant for user overrides
 # ──────────────────────────────────────────────────────────────────────────────
 
-_SSDF_PACKAGE_CONFIG_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd -P)"
-_SSDF_ROOT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/../.." && pwd -P)"
+_SSDF_PACKAGE_CONFIG_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
+_SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_CONFIG_DIR}/../..")"
+source "${_SSDF_ROOT_DIR}/00-_ssdf/functions/_ssdf_echo_error.sh"
 source "${_SSDF_ROOT_DIR}/00-_ssdf/functions/_ssdf_select_package_manager.sh"
 
 _ssdf_select_package_manager

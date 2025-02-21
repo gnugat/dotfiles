@@ -8,7 +8,8 @@
 # * path is only added if it wasn't already included
 # ──────────────────────────────────────────────────────────────────────────────
 
-_SSDF_ROOT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")/../.." && pwd -P)"
+_SSDF_PATH_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
+_SSDF_ROOT_DIR="$(realpath "${_SSDF_PATH_DIR}/../..")"
 source "${_SSDF_ROOT_DIR}/00-_ssdf/functions/_ssdf_prepend_path.sh"
 
 ## ─────────────────────────────────────────────────────────────────────────────
