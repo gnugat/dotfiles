@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# File: /tmp/profile
+
+source /tmp/config/link.sh
