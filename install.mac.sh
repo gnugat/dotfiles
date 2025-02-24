@@ -8,7 +8,7 @@
 # - 🌐 curl (for downloading homebrew)
 # ──────────────────────────────────────────────────────────────────────────────
 
-_SSDF_ROOT_DIR="$(cd "$(dirname "$(readlink -f "${BASH_SOURCE[0]}")")" && pwd -P)"
+_SSDF_ROOT_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
 source "${_SSDF_ROOT_DIR}/00-_ssdf/functions.sh"
 
 _SSDF_PACKAGE_NAME="homebrew"
@@ -29,21 +29,15 @@ fi
 _SSDF_PACKAGE_MANAGER='brew'
 if ! command -v "${_SSDF_PACKAGE_MANAGER}" >/dev/null 2>&1; then
     _ssdf_echo_section_title "Installing ${_SSDF_PACKAGE_NAME}..."
-    _ssdf_echo_section_title ''
+    echo ''
 
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+    echo "Adding /opt/homebrew/bin to PATH"
+    export PATH="/opt/homebrew/bin:${PATH}"
+
     _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 fi
-
-
-## ─────────────────────────────────────────────────────────────────────────────
-## 🧹 Cleaning up local variables
-## ─────────────────────────────────────────────────────────────────────────────
-
-unset _SSDF_ROOT_DIR \
-    _SSDF_PACKAGE_NAME \
-    _SSDF_SYSTEM
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Call generic / common root `install.sh` script
