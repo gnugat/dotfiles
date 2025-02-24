@@ -12,15 +12,27 @@
 
 _SSDF_PACKAGE_CONFIG_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
 _SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_CONFIG_DIR}/../..")"
+
+## ─────────────────────────────────────────────────────────────────────────────
+## 🧭 PATH management.
+## ❗ Needs to be sourced first, otherwise brew might not be detected.
+## ─────────────────────────────────────────────────────────────────────────────
+source "${_SSDF_PACKAGE_CONFIG_DIR}/path.sh"
+
+if [ -f "${HOME}/.config/shell/path.local.sh" ]; then
+    source "${HOME}/.config/shell/path.local.sh"
+fi
+
+## ─────────────────────────────────────────────────────────────────────────────
+## 😎 ALIAS management.
+## ℹ️  Some aliases are targeted at the Package Manager.
+## ─────────────────────────────────────────────────────────────────────────────
+source "${_SSDF_PACKAGE_CONFIG_DIR}/aliases.sh"
+
 source "${_SSDF_ROOT_DIR}/00-_ssdf/functions/_ssdf_echo_error.sh"
 source "${_SSDF_ROOT_DIR}/00-_ssdf/functions/_ssdf_select_package_manager.sh"
 
 _ssdf_select_package_manager
-
-## ─────────────────────────────────────────────────────────────────────────────
-## 😎 ALIAS management.
-## ─────────────────────────────────────────────────────────────────────────────
-source "${_SSDF_PACKAGE_CONFIG_DIR}/aliases.sh"
 
 if [ "${_SSDF_PACKAGE_MANAGER}" == "apt" ]; then
     source "${_SSDF_PACKAGE_CONFIG_DIR}/aliases.apt.sh"
@@ -37,15 +49,6 @@ source "${_SSDF_PACKAGE_CONFIG_DIR}/envvars.sh"
 
 if [ -f "${HOME}/.config/shell/envvars.local.sh" ]; then
     source "${HOME}/.config/shell/envvars.local.sh"
-fi
-
-## ─────────────────────────────────────────────────────────────────────────────
-## 🧭 PATH management.
-## ─────────────────────────────────────────────────────────────────────────────
-source "${_SSDF_PACKAGE_CONFIG_DIR}/path.sh"
-
-if [ -f "${HOME}/.config/shell/path.local.sh" ]; then
-    source "${HOME}/.config/shell/path.local.sh"
 fi
 
 ## ─────────────────────────────────────────────────────────────────────────────
