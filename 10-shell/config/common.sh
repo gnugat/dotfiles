@@ -34,7 +34,7 @@ source "${_SSDF_ROOT_DIR}/00-_ssdf/functions/_ssdf_select_package_manager.sh"
 
 _ssdf_select_package_manager
 
-if [ "${_SSDF_PACKAGE_MANAGER}" == "apt" ]; then
+if [ "apt" = "${_SSDF_PACKAGE_MANAGER}" ]; then
     source "${_SSDF_PACKAGE_CONFIG_DIR}/aliases.apt.sh"
 fi
 
