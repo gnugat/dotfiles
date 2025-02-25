@@ -36,7 +36,7 @@
     lg  = log --graph --pretty=tformat:'%Cred%h%Creset -%C(cyan)%d %Creset%s (%C(yellow)%an%Creset %Cgreen%aD%Creset)' --abbrev-commit
 
     # Displays commit details, including commiter name and date.
-#    sh  = show --pretty=format:\"%C(yellow)commit %H%d%C(reset)%nAuthor: %an <%ae>%nDate: %ad%nCommitter: %cn <%ce>%nDate: %cd%n%n%s%n%n%b\"
+    sh  = show --pretty=format:\"%C(yellow)commit %H%d%C(reset)%nAuthor: %an <%ae>%nDate: %ad%nCommitter: %cn <%ce>%nDate: %cd%n%n%s%n%n%b\"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 🎨🐙 Git colours.
