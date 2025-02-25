@@ -19,7 +19,10 @@
 ##
 _ssdf_append_empty_line() {
     local file="$1"
+
     if [ -s "${file}" ] && [ "$(tail -n 1 "${file}")" != "" ]; then
         echo '' >> "${file}"
     fi
+
+    unset file
 }

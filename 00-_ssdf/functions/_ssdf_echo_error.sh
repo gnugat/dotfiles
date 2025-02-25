@@ -17,8 +17,11 @@
 ##
 _ssdf_echo_error() {
     local _ssdf_message="$1"
+
     echo " "
     echo " [ERROR] ${_ssdf_message}" >&2
     echo " "
     exit 1
+    
+    unset _ssdf_message
 }

@@ -21,4 +21,6 @@ _ssdf_prepend_path() {
             export PATH="${dir}:${PATH}"
         fi
     done
+    
+    unset dir
 }

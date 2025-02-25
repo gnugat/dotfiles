@@ -27,4 +27,6 @@ _ssdf_select_package_manager() {
     done
 
     _ssdf_echo_error "Current Package Manager not part of supported ones (${_ssdf_supported_package_managers})."
+    
+    unset _ssdf_supported_package_managers
 }

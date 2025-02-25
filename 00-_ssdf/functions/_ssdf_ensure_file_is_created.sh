@@ -17,7 +17,10 @@
 ##
 _ssdf_ensure_file_is_created() {
     local file="$1"
+
     if [ ! -e "${file}" ]; then
         touch "${file}"
     fi
+
+    unset file
 }

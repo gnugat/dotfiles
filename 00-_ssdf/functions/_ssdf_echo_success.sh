@@ -17,7 +17,10 @@
 ##
 _ssdf_echo_success() {
     local _ssdf_message="$1"
+
     echo " "
     echo " [OK] ${_ssdf_message}"
     echo " "
+
+    unset _ssdf_message
 }
