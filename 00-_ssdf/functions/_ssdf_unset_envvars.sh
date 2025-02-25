@@ -15,8 +15,11 @@
 # Garbage Collector:
 #
 # * _SSDF_PACKAGE_MANAGER
+# * _SSDF_PHP_VERSION
 # * _SSDF_ROOT_DIR
 # * _SSDF_TAGS
+#
+# These are kept as they usually are "input" values valid for all scripts.
 #
 # Since SSDF scripts tend to source other SSDF scripts,
 # to avoid accidental reuse or unexpected values, it's best to:
@@ -32,6 +35,7 @@
 ##
 _ssdf_unset_envvars() {
     local ssdf_variables_to_keep="_SSDF_PACKAGE_MANAGER
+        _SSDF_PHP_VERSION
         _SSDF_ROOT_DIR
         _SSDF_TAGS
     "

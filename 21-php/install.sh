@@ -13,6 +13,23 @@ _SSDF_PACKAGE_NAME="php"
 _ssdf_echo_section_title "Installing ${_SSDF_PACKAGE_NAME}..."
 
 ## ─────────────────────────────────────────────────────────────────────────────
+## ⬅️  Initialisation steps.
+## ─────────────────────────────────────────────────────────────────────────────
+
+## If not provided, setting PHP version to defaults
+export _SSDF_PHP_VERSION="${_SSDF_PHP_VERSION:-8.3}"
+
+## Saving PHP version preference
+mkdir -p "${HOME}/.config/php"
+_ssdf_append_envvar \
+    "${HOME}/.config/php/envvars.php.sh" \
+    "_SSDF_PHP_VERSION" \
+    "${_SSDF_PHP_VERSION}"
+_ssdf_append_source \
+    "${HOME}/.config/shell/envvars.local.sh" \
+    "${HOME}/.config/php/envvars.php.sh"
+
+## ─────────────────────────────────────────────────────────────────────────────
 ## 📦 Call to `./_<package-manager>.sh` script.
 ## ─────────────────────────────────────────────────────────────────────────────
 
@@ -24,21 +41,35 @@ _ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${_SSDF_PACKAGE_MANAG
 ## ─────────────────────────────────────────────────────────────────────────────
 
 ## Homebrew uses different location depending on the system / architecture
-_SSDF_BREW_MAC_ARM64="/opt/homebrew/etc/php/8.3"
-_SSDF_BREW_MAC_X86_64="/usr/local/etc/php/8.3"
-_SSDF_BREW_LINUX="${HOME}/.linuxbrew/etc/php/8.3"
-_SSDF_APT_UBUNTU="/etc/php/8.3"
+_SSDF_BREW_MAC_ARM64="/opt/homebrew/etc/php/${_SSDF_PHP_VERSION}"
+_SSDF_BREW_MAC_X86_64="/usr/local/etc/php/${_SSDF_PHP_VERSION}"
+_SSDF_BREW_LINUX="${HOME}/.linuxbrew/etc/php/${_SSDF_PHP_VERSION}"
+_SSDF_APT_UBUNTU="/etc/php/${_SSDF_PHP_VERSION}"
 if [[ "${_SSDF_PACKAGE_MANAGER}" == "brew" && -d "${_SSDF_BREW_MAC_ARM64}" ]]; then
-    sudo ln -nsf "${_SSDF_PACKAGE_DIR}/config/42-user.ini" "${_SSDF_BREW_MAC_ARM64}/conf.d/42-user.ini"
+    sudo ln -nsf \
+        "${_SSDF_PACKAGE_DIR}/config/42-user.ini" \
+        "${_SSDF_BREW_MAC_ARM64}/conf.d/42-user.ini"
+
 elif [[ "${_SSDF_PACKAGE_MANAGER}" == "brew" && -d "${_SSDF_BREW_MAC_X86_64}" ]]; then
-    sudo ln -nsf "${_SSDF_PACKAGE_DIR}/config/42-user.ini" "${_SSDF_BREW_MAC_X86_64}/conf.d/42-user.ini"
+    sudo ln -nsf \
+        "${_SSDF_PACKAGE_DIR}/config/42-user.ini" \
+        "${_SSDF_BREW_MAC_X86_64}/conf.d/42-user.ini"
+
 elif [[ "${_SSDF_PACKAGE_MANAGER}" == "brew" && -d "${_SSDF_BREW_LINUX}" ]]; then
     # No need for `sudo` in `~/.linuxbrew`
-    ln -nsf "${_SSDF_PACKAGE_DIR}/config/42-user.ini" "${_SSDF_BREW_LINUX}/conf.d/42-user.ini"
+    ln -nsf \
+        "${_SSDF_PACKAGE_DIR}/config/42-user.ini" \
+        "${_SSDF_BREW_LINUX}/conf.d/42-user.ini"
+    
 elif [[ "${_SSDF_PACKAGE_MANAGER}" == "apt" && -d "${_SSDF_APT_UBUNTU}" ]]; then
-    ## Ubuntu uses multiple locations depending on PHP's "flavour" (cli, fpm, or -- god forbid -- apache)
-    sudo ln -nsf "${_SSDF_PACKAGE_DIR}/config/42-user.ini" "${_SSDF_APT_UBUNTU}/cli/conf.d/42-user.ini"
-    sudo ln -nsf "${_SSDF_PACKAGE_DIR}/config/42-user.ini" "${_SSDF_APT_UBUNTU}/fpm/conf.d/42-user.ini"
+    ## Ubuntu uses multiple locations depending on PHP's "flavour"
+    ## (cli, fpm, or -- god forbid -- apache)
+    sudo ln -nsf \
+        "${_SSDF_PACKAGE_DIR}/config/42-user.ini" \
+        "${_SSDF_APT_UBUNTU}/cli/conf.d/42-user.ini"
+    sudo ln -nsf \
+        "${_SSDF_PACKAGE_DIR}/config/42-user.ini" \
+        "${_SSDF_APT_UBUNTU}/fpm/conf.d/42-user.ini"
 else
     _ssdf_echo_error "Could not find a valid PHP config directory for ${_SSDF_PACKAGE_MANAGER}."
     exit 1
