@@ -90,11 +90,8 @@ echo ' '
 ## 🧹 Cleaning up local variables
 ## ─────────────────────────────────────────────────────────────────────────────
 
+_ssdf_unset_envvars
+
 unset _SSDF_ROOT_DIR \
     _SSDF_PACKAGE_MANAGER \
-    _SSDF_TAGS \
-    _SSDF_PACKAGE_DIR \
-    _SSDF_PACKAGE_TAGGED_NAME \
-    _SSDF_PACKAGE_TAG \
-    _SSDF_PACKAGE_INSTALL
-
+    _SSDF_TAGS

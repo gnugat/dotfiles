@@ -17,6 +17,9 @@
 ##
 _ssdf_echo_section_title() {
     local _ssdf_message="$1"
+
     echo "// ${_ssdf_message}"
     echo " "
+
+    unset _ssdf_message
 }

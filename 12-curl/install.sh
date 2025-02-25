@@ -37,7 +37,4 @@ _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 ## 🧹 Cleaning up local variables
 ## ─────────────────────────────────────────────────────────────────────────────
 
-unset _SSDF_PACKAGE_DIR \
-    _SSDF_ROOT_DIR \
-    _SSDF_PACKAGE_NAME
-
+_ssdf_unset_envvars

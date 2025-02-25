@@ -23,6 +23,7 @@
 _ssdf_append_source() {
     local script_file="$1"
     local source_file="$2"
+
     _ssdf_ensure_file_is_created "${script_file}"
     if ! $(grep -qE "^\s*source ${source_file}" "${script_file}"); then
         _ssdf_append_empty_line "${script_file}"
@@ -30,4 +31,6 @@ _ssdf_append_source() {
         echo "    source ${source_file}" >> "${script_file}"
         echo "fi" >> "${script_file}"
     fi
+
+    unset script_file source_file
 }

@@ -23,8 +23,11 @@ _ssdf_append_envvar() {
     local env_file="$1"
     local env_variable="$2"
     local env_value="$3"
+
     _ssdf_ensure_file_is_created "${env_file}"
     if ! $(grep -q "^export ${env_variable}=" "${env_file}"); then
         echo "export ${env_variable}=\"${env_value}\"" >> "${env_file}"
     fi
+
+    unset env_file env_variable env_value
 }
