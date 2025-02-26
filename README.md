@@ -94,7 +94,7 @@ The `<xy>` prefix digit indicates the package's:
 
 * `x`: tag
     * `0`: 🏭 internal SSDF functions
-    * `1`: 🫗 bare minimum (ideal for ssh servers, or Docker Containers)
+    * `1`: 🧸 bare minimum (ideal for ssh servers, or Docker Containers)
     * `2`: 🧱 base (common set up)
 * `y`: priority
 
