@@ -1,50 +1,51 @@
 #!/usr/bin/env bash
-# File: /10-shell/install.sh
+# File: /12-bash/install.sh
 # ──────────────────────────────────────────────────────────────────────────────
-# 🐚 Generic shell stuff that can apply to bash, zsh, etc.
+# 💲 bash - GNU Bourne-Again SHell
 # ──────────────────────────────────────────────────────────────────────────────
 
 _SSDF_PACKAGE_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
 _SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_DIR}/..")"
 source "${_SSDF_ROOT_DIR}/00-_ssdf/functions.sh"
 
-_SSDF_PACKAGE_NAME="shell"
+_SSDF_PACKAGE_NAME="bash"
 
-_ssdf_echo_section_title "Installing ${_SSDF_PACKAGE_NAME} stuff (generic)..."
+_ssdf_echo_section_title "Installing ${_SSDF_PACKAGE_NAME}..."
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 📦 Call to `./_<package-manager>.sh` script.
 ## ─────────────────────────────────────────────────────────────────────────────
 
-# N/A
+_ssdf_select_package_manager
+_ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${_SSDF_PACKAGE_MANAGER}"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 🔗 Symbolic links.
 ## ─────────────────────────────────────────────────────────────────────────────
 
-mkdir -p "${HOME}/.config/shell"
-ln -nsf "${_SSDF_PACKAGE_DIR}/config/common.sh" "${HOME}/.config/shell/common.sh"
-ln -nsf "${_SSDF_PACKAGE_DIR}/config/aliases.sh" "${HOME}/.config/shell/aliases.sh"
-ln -nsf "${_SSDF_PACKAGE_DIR}/config/aliases.apt.sh" "${HOME}/.config/shell/aliases.apt.sh"
-ln -nsf "${_SSDF_PACKAGE_DIR}/config/envvars.sh" "${HOME}/.config/shell/envvars.sh"
-ln -nsf "${_SSDF_PACKAGE_DIR}/config/path.sh" "${HOME}/.config/shell/path.sh"
+mkdir -p "${HOME}/.config/bash"
+cp -i "${_SSDF_PACKAGE_DIR}/config/bashrc" "${HOME}/.bashrc"
+ln -nsf "${_SSDF_PACKAGE_DIR}/config/prompt.sh" "${HOME}/.config/bash/prompt.sh"
+ln -nsf "${_SSDF_PACKAGE_DIR}/config/shopt.sh" "${HOME}/.config/bash/shopt.sh"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
-# Ensure supported shells source the main generic shell config
-for _SSDF_SUPPORTED_SHELL in \
-    "${HOME}/.bashrc" \
-    "${HOME}/.zshrc" \
-    "${HOME}/.profile"
-do
-    if [ -f "${_SSDF_SUPPORTED_SHELL}" ]; then
-        _ssdf_append_source \
-            "${_SSDF_SUPPORTED_SHELL}" \
-            "${HOME}/.config/shell/common.sh"
-    fi
-done
+if [ -e "${HOME}/.bashrc" ]; then
+    _ssdf_append_source \
+        "${HOME}/.bashrc" \
+        "${HOME}/.config/shell/common.sh"
+    _ssdf_append_source \
+        "${HOME}/.bashrc" \
+        "${HOME}/.config/bash/prompt.sh"
+    _ssdf_append_source \
+        "${HOME}/.bashrc" \
+        "${HOME}/.config/bash/shopt.sh"
+    _ssdf_append_source \
+        "${HOME}/.bashrc" \
+        "${HOME}/.config/bash/shopt.local.sh"
+fi
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 

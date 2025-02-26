@@ -1,56 +1,58 @@
 #!/usr/bin/env bash
-# File: /11-bash/install.sh
+# File: /11-shell/config/common.sh
 # ──────────────────────────────────────────────────────────────────────────────
-# 💲 bash - GNU Bourne-Again SHell
+# 🐚 Generic shell configuration (aliases, environment variables, paths).
+#
+# _Notes_:
+# * this script should be symbolic linked in `~/.config/shell/common.sh`
+# * this script should be sourced by specific shells (bash, zsh, etc)
+# * the `*.local.sh` scripts are not part of the repo
+# * the `*.local.sh` scripts are meant for user overrides
 # ──────────────────────────────────────────────────────────────────────────────
 
-_SSDF_PACKAGE_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
-_SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_DIR}/..")"
-source "${_SSDF_ROOT_DIR}/00-_ssdf/functions.sh"
-
-_SSDF_PACKAGE_NAME="bash"
-
-_ssdf_echo_section_title "Installing ${_SSDF_PACKAGE_NAME}..."
+_SSDF_PACKAGE_CONFIG_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
+_SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_CONFIG_DIR}/../..")"
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## 📦 Call to `./_<package-manager>.sh` script.
+## 🧭 PATH management.
+## ❗ Needs to be sourced first, otherwise brew might not be detected.
 ## ─────────────────────────────────────────────────────────────────────────────
+source "${_SSDF_PACKAGE_CONFIG_DIR}/path.sh"
 
-_ssdf_select_package_manager
-_ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${_SSDF_PACKAGE_MANAGER}"
-
-## ─────────────────────────────────────────────────────────────────────────────
-## 🔗 Symbolic links.
-## ─────────────────────────────────────────────────────────────────────────────
-
-mkdir -p "${HOME}/.config/bash"
-cp -i "${_SSDF_PACKAGE_DIR}/config/bashrc" "${HOME}/.bashrc"
-ln -nsf "${_SSDF_PACKAGE_DIR}/config/prompt.sh" "${HOME}/.config/bash/prompt.sh"
-ln -nsf "${_SSDF_PACKAGE_DIR}/config/shopt.sh" "${HOME}/.config/bash/shopt.sh"
-
-## ─────────────────────────────────────────────────────────────────────────────
-## ➕ Additional config / install
-## ─────────────────────────────────────────────────────────────────────────────
-
-if [ -e "${HOME}/.bashrc" ]; then
-    _ssdf_append_source \
-        "${HOME}/.bashrc" \
-        "${HOME}/.config/shell/common.sh"
-    _ssdf_append_source \
-        "${HOME}/.bashrc" \
-        "${HOME}/.config/bash/prompt.sh"
-    _ssdf_append_source \
-        "${HOME}/.bashrc" \
-        "${HOME}/.config/bash/shopt.sh"
-    _ssdf_append_source \
-        "${HOME}/.bashrc" \
-        "${HOME}/.config/bash/shopt.local.sh"
+if [ -f "${HOME}/.config/shell/path.local.sh" ]; then
+    source "${HOME}/.config/shell/path.local.sh"
 fi
 
-_ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
+## ─────────────────────────────────────────────────────────────────────────────
+## 😎 ALIAS management.
+## ℹ️  Some aliases are targeted at the Package Manager.
+## ─────────────────────────────────────────────────────────────────────────────
+source "${_SSDF_PACKAGE_CONFIG_DIR}/aliases.sh"
+source "${_SSDF_ROOT_DIR}/00-_ssdf/functions/_ssdf_echo_error.sh"
+source "${_SSDF_ROOT_DIR}/00-_ssdf/functions/_ssdf_select_package_manager.sh"
+
+_ssdf_select_package_manager
+
+if [ "apt" = "${_SSDF_PACKAGE_MANAGER}" ]; then
+    source "${_SSDF_PACKAGE_CONFIG_DIR}/aliases.apt.sh"
+fi
+
+if [ -f "${HOME}/.config/shell/aliases.local.sh" ]; then
+    source "${HOME}/.config/shell/aliases.local.sh"
+fi
+
+## ─────────────────────────────────────────────────────────────────────────────
+## ♻️  ENVVAR management.
+## ─────────────────────────────────────────────────────────────────────────────
+source "${_SSDF_PACKAGE_CONFIG_DIR}/envvars.sh"
+
+if [ -f "${HOME}/.config/shell/envvars.local.sh" ]; then
+    source "${HOME}/.config/shell/envvars.local.sh"
+fi
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 🧹 Cleaning up local variables
 ## ─────────────────────────────────────────────────────────────────────────────
+source "${_SSDF_ROOT_DIR}/00-_ssdf/functions/_ssdf_unset_envvars.sh"
 
 _ssdf_unset_envvars

@@ -55,8 +55,8 @@ BRANCH="main" \
     && curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
     | tar -xz -C "${HOME}/.dotfiles" --strip-components=1 \
     && cd "${HOME}/.dotfiles" \
-    && bash ./10-shell/install.sh \
-    && bash ./11-bash/install.sh
+    && bash ./11-shell/install.sh \
+    && bash ./12-bash/install.sh
 ```
 
 ---
@@ -94,7 +94,7 @@ The `<xy>` prefix digit indicates the package's:
 
 * `x`: tag
     * `0`: 🏭 internal SSDF functions
-    * `1`: 🫗 bare minimum (ideal for ssh servers, or Docker Containers)
+    * `1`: 🧸 bare minimum (ideal for ssh servers, or Docker Containers)
     * `2`: 🧱 base (common set up)
 * `y`: priority
 
