@@ -1,13 +1,8 @@
 #!/usr/bin/env bash
-# File: /21-php/_apt.sh
+# File: /22-php/_brew.sh
 # ─────────────────────────────────────────────────────────────────────────────
-# 📰🍊🐘 Installing php, on Ubuntu (apt).
+# 📰🍏🐘 Installing php, on Mac OS (brew).
 # ─────────────────────────────────────────────────────────────────────────────
 
-echo "php${_SSDF_PHP_VERSION}"
-sudo apt-get install "php${_SSDF_PHP_VERSION}" \
-    "php${_SSDF_PHP_VERSION}-curl" \
-    "php${_SSDF_PHP_VERSION}-intl" \
-    "php${_SSDF_PHP_VERSION}-mbstring" \
-    "php${_SSDF_PHP_VERSION}-zip" \
-    "php${_SSDF_PHP_VERSION}-xml"
+HOMEBREW_NO_ENV_HINTS=1 brew install -q "php@${_SSDF_PHP_VERSION}"
+brew link -q "php@${_SSDF_PHP_VERSION}"
