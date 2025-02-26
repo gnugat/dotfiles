@@ -55,7 +55,7 @@ BRANCH="main" \
     && curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
     | tar -xz -C "${HOME}/.dotfiles" --strip-components=1 \
     && cd "${HOME}/.dotfiles" \
-    && bash ./10-shell/install.sh \
+    && bash ./11-shell/install.sh \
     && bash ./12-bash/install.sh
 ```
 
