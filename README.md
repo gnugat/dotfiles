@@ -56,7 +56,7 @@ BRANCH="main" \
     | tar -xz -C "${HOME}/.dotfiles" --strip-components=1 \
     && cd "${HOME}/.dotfiles" \
     && bash ./10-shell/install.sh \
-    && bash ./11-bash/install.sh
+    && bash ./12-bash/install.sh
 ```
 
 ---

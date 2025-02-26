@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# File: /11-bash/config/prompt.sh
+# File: /12-bash/config/prompt.sh
 # ──────────────────────────────────────────────────────────────────────────────
 # 🎤️ Bash minimalist, yet elegant, prompt:
 # 1. current working directory; in blue, truncated when too long 
