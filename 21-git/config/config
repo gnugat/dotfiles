@@ -1,0 +1,118 @@
+# File: /21-git/config/config
+# ──────────────────────────────────────────────────────────────────────────────
+# 🐙 git - the stupid content tracker
+# ──────────────────────────────────────────────────────────────────────────────
+
+## ─────────────────────────────────────────────────────────────────────────────
+## 😎🐙 alias management, for git.
+## ─────────────────────────────────────────────────────────────────────────────
+
+[alias]
+    # Shows local branches
+    br  = branch
+    # Shows local and remote branches
+    bra = branch -a
+    # Shows diff at the bottom of the commit message
+    ci  = commit --verbose
+    # Switches to branch
+    co  = checkout
+    # Shows staged changes (via `git add`)
+    dc  = diff --cached
+    # Shows unstaged changes
+    di  = diff
+    # Rebases while preserving merge commits
+    rb  = rebase --rebase-merges
+    # Shows status without helper commands
+    st  = status --short
+    # Pulls upstream changes, and rebases while preserving merge commits
+    up  = pull --rebase=merges
+
+    # Logs history in a graph format with colours:
+    # * abbreviated commit hash in red
+    # * branch and tag names in cyan
+    # * commit title in white
+    # * author name in yellow
+    # * author date in green (format: `Mon, 02 Jan 2006 15:04:05 +0000`)
+    lg  = log --graph --pretty=tformat:'%Cred%h%Creset -%C(cyan)%d %Creset%s (%C(yellow)%an%Creset %Cgreen%aD%Creset)' --abbrev-commit
+
+    # Displays commit details, including commiter name and date.
+    sh  = show --pretty=format:\"%C(yellow)commit %H%d%C(reset)%nAuthor: %an <%ae>%nDate: %ad%nCommitter: %cn <%ce>%nDate: %cd%n%n%s%n%n%b\"
+
+## ─────────────────────────────────────────────────────────────────────────────
+## 🎨🐙 Git colours.
+## ─────────────────────────────────────────────────────────────────────────────
+
+[color]
+    # Uses colours, even when output is piped
+    ui = always
+[color "branch"]
+    # Current local branch in yellow bold, instead of green
+    current = yellow bold
+    # Local branches in yellow, instead of white
+    local = yellow
+[color "diff"]
+    # Diff metadata (eg `index`, `--- a/file`) in cyan, instead of yellow
+    meta = cyan
+[color "status"]
+    # Status untracked files in cyan, instead of red
+    untracked = cyan
+
+## ─────────────────────────────────────────────────────────────────────────────
+## 🌿🐙 Git branches management.
+## ─────────────────────────────────────────────────────────────────────────────
+
+[branch]
+    # Automatically tracks upstream branch
+    # (equivalent to `git branch --set-upstream-to=origin/<branch>`)
+    autosetupmerge = true
+    # Pulls upstream changes by rebasing, instead of merging
+    # (equivalent to `git pull --rebase`)
+    rebase = true
+[push]
+    # Pushes to remote branch of the same name
+    default = current
+
+## ─────────────────────────────────────────────────────────────────────────────
+## ⚙️ 🐙 Misc git settings.
+## ─────────────────────────────────────────────────────────────────────────────
+
+[core]
+    # On commit, converts Windows-style `CRLF` line endings to UNIX-style `LF`
+    # On checkout, does NOT convert back to `CRLF`
+    autocrlf = input
+    # Files to globally ignore
+    excludesfile = ~/.config/git/ignore
+[help]
+    # Executes closest match after 0.1s pause, when command is mistyped.
+    autocorrect = 1
+[init]
+    # Templates for new repositories (on `git init`)
+    templatedir = ~/.config/git/template
+[rerere]
+    # Enables Reuse Recorded Resolution, for automatic conflict resolutions.
+    enabled = 1
+
+## ─────────────────────────────────────────────────────────────────────────────
+## 🪪🐙 Git Identities (based on repository domain).
+##
+## Use "fake" domains (eg work.github.com) set up in `~/.ssh/config`, eg:
+##
+## ```console
+## $ git clone git@work.github.com:work/repo.git
+## ```
+##
+## See:
+## + [How Benji configures git identities](https://www.benji.dog/articles/git-config/)
+## + [SSH keys](https://stackoverflow.com/a/17158985)
+## ─────────────────────────────────────────────────────────────────────────────
+
+# Default - github-gnugat
+[user]
+    name  = Loïc Faugeron
+    email = faugeron.loic@gmail.com
+[github]
+    user  = gnugat
+
+# <work>
+#[includeIf "hasconfig:remote.*.url:git@<work>.github.com:<group>/**"]
+#    path = ~/.config/git/user/<provider-work>

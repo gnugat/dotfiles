@@ -40,7 +40,7 @@ _ssdf_echo_success "Package Manager ${_SSDF_PACKAGE_MANAGER} selected"
 ## * `x`: tag (category)
 ##     * 0: 🏭 internal SSDF functions
 ##     * 1: 🫗 bare minimum (ideal for ssh servers, or Docker Containers)
-##     * 2: 🧱 base (common set up)
+##     * 2: 🧱 base minimal (common set up)
 ## * `y`: execution priority (in numeric-alphabetical order)
 ## ─────────────────────────────────────────────────────────────────────────────
 
