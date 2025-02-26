@@ -9,17 +9,19 @@
 ## ─────────────────────────────────────────────────────────────────────────────
 
 ##
-# Unsets ALL `_SSDF_*` environment variables.
+# Unsets ALL "private" `_SSDF_*` environment variables.
 #
 # All? No! One small set of indomitable ENVVARS still holds out against the
-# Garbage Collector:
+# Garbage Collector!
 #
-# * _SSDF_PACKAGE_MANAGER
-# * _SSDF_PHP_VERSION
-# * _SSDF_ROOT_DIR
-# * _SSDF_TAGS
+# The "public" `SSDF_*` (note the lack of leading `_`) sill be kept, such as:
 #
-# These are kept as they usually are "input" values valid for all scripts.
+# * SSDF_PACKAGE_MANAGER
+# * SSDF_PHP_VERSION
+# * SSDF_ROOT_DIR
+# * SSDF_TAGS
+#
+# These are "input" values valid for all scripts.
 #
 # Since SSDF scripts tend to source other SSDF scripts,
 # to avoid accidental reuse or unexpected values, it's best to:
@@ -34,24 +36,22 @@
 # ```
 ##
 _ssdf_unset_envvars() {
-    local ssdf_variables_to_keep="_SSDF_PACKAGE_MANAGER
-        _SSDF_PHP_VERSION
-        _SSDF_ROOT_DIR
-        _SSDF_TAGS
-    "
+    # Set Internal Field Separator to `set`'s (new line).
+    local old_IFS="${IFS}"
+    IFS=$'\n'
 
-    # Lists all variables names that start with _SSDF
-    # * while read -r: makes sure each line is processed separately
-    # * using temporary file due to bash 3 having issues with multiline strings
-    # * set: lists all envvars in `<NAME>=<VALUE>` format, even not exported ones
-    # * grep --color=never: make sure we don't get weird color characters
-    # * cut: take only the name of the envvar
-    while read -r ssdf_variable; do
-        printf '%s\n' "${ssdf_variables_to_keep}" > /tmp/ssdf_keep_list.txt
-        if ! grep -q "^${ssdf_variable}$" /tmp/ssdf_keep_list.txt; then
-            unset "${ssdf_variable}"
+    for line in $(set); do
+        # If line is an ENVVAR which name starts with `_SSDF_*`
+        if [[ "$line" =~ ^_SSDF_[^=]*= ]]; then
+            # Extract ENVVAR name discard remains (`=` and value)
+            local private_ssdf_variable_name=$(echo "${line}" | cut -d= -f1)
+
+            unset "${private_ssdf_variable_name}"
         fi
-    done <<< "$(set | grep --color=never '^_SSDF_' | cut -d= -f1)"
+    done
+
+    # Restore original IFS
+    IFS="$oldIFS"
     
-    unset ssdf_variables_to_keep ssdf_variable
+    unset private_ssdf_variables private_ssdf_variable private_ssdf_variable_name
 }

@@ -4,5 +4,5 @@
 # 📰🍏🐘 Installing php, on Mac OS (brew).
 # ─────────────────────────────────────────────────────────────────────────────
 
-HOMEBREW_NO_ENV_HINTS=1 brew install -q "php@${_SSDF_PHP_VERSION}"
-brew link -q "php@${_SSDF_PHP_VERSION}"
+HOMEBREW_NO_ENV_HINTS=1 brew install -q "php@${SSDF_PHP_VERSION}"
+brew link -q "php@${SSDF_PHP_VERSION}"

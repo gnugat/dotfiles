@@ -8,8 +8,8 @@
 # - 🌐 curl (for downloading homebrew)
 # ──────────────────────────────────────────────────────────────────────────────
 
-_SSDF_ROOT_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
-source "${_SSDF_ROOT_DIR}/00-_ssdf/functions.sh"
+SSDF_ROOT_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
+source "${SSDF_ROOT_DIR}/00-_ssdf/functions.sh"
 
 _SSDF_PACKAGE_NAME="homebrew"
 
@@ -26,8 +26,8 @@ fi
 ## 🍺 Installing Homebrew, if it wasn't already.
 ## ─────────────────────────────────────────────────────────────────────────────
 
-_SSDF_PACKAGE_MANAGER='brew'
-if ! command -v "${_SSDF_PACKAGE_MANAGER}" >/dev/null 2>&1; then
+SSDF_PACKAGE_MANAGER='brew'
+if ! command -v "${SSDF_PACKAGE_MANAGER}" >/dev/null 2>&1; then
     _ssdf_echo_section_title "Installing ${_SSDF_PACKAGE_NAME}..."
     echo ''
 
@@ -48,6 +48,6 @@ fi
 ## * 2: 🧱 base (common set up)
 ## ─────────────────────────────────────────────────────────────────────────────
 
-_SSDF_TAGS='0 1 2'
-bash "${_SSDF_ROOT_DIR}/install.sh"
+SSDF_TAGS='0 1 2'
+bash "${SSDF_ROOT_DIR}/install.sh"
 

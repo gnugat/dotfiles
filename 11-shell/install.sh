@@ -5,8 +5,8 @@
 # ──────────────────────────────────────────────────────────────────────────────
 
 _SSDF_PACKAGE_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
-_SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_DIR}/..")"
-source "${_SSDF_ROOT_DIR}/00-_ssdf/functions.sh"
+SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_DIR}/..")"
+source "${SSDF_ROOT_DIR}/00-_ssdf/functions.sh"
 
 _SSDF_PACKAGE_NAME="shell"
 

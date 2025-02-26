@@ -198,6 +198,6 @@ Which is why, in most SSDF scripts we'll find at the top the following lines:
 #!/usr/bin/env bash
 
 _SSDF_PACKAGE_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
-_SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_CONFIG_DIR}/..")"
-source "${_SSDF_ROOT_DIR}/00-_ssdf/functions.sh"
+SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_CONFIG_DIR}/..")"
+source "${SSDF_ROOT_DIR}/00-_ssdf/functions.sh"
 ```

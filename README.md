@@ -34,7 +34,7 @@ BRANCH="main" \
 
 ---
 
-🏷️ Instead of installing everything, a list of tags can be specified by setting `_SSDF_TAGS`:
+🏷️ Instead of installing everything, a list of tags can be specified by setting `SSDF_TAGS`:
 
 ```shell
 BRANCH="main" \
@@ -42,7 +42,7 @@ BRANCH="main" \
     && curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
     | tar -xz -C "${HOME}/.dotfiles" --strip-components=1 \
     && cd "${HOME}/.dotfiles" \
-    && _SSDF_TAGS="0 1" bash ./install.sh
+    && SSDF_TAGS="0 1" bash ./install.sh
 ```
 
 ---
@@ -62,7 +62,7 @@ BRANCH="main" \
 ---
 
 ⛏️ It's also possible to specify which (supported) package manager to use,
-rather than letting the scripts automatically select one by setting `_SSDF_PACKAGE_MANAGER`:
+rather than letting the scripts automatically select one by setting `SSDF_PACKAGE_MANAGER`:
 
 ```shell
 BRANCH="main" \
@@ -70,7 +70,7 @@ BRANCH="main" \
     && curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
     | tar -xz -C "${HOME}/.dotfiles" --strip-components=1 \
     && cd "${HOME}/.dotfiles" \
-    && _SSDF_PACKAGE_MANAGER="brew" bash ./install.sh
+    && SSDF_PACKAGE_MANAGER="brew" bash ./install.sh
 ```
 </details>
 
@@ -125,7 +125,7 @@ BRANCH="main" \
     && curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
     | tar -xz -C "${HOME}/.dotfiles" --strip-components=1 \
     && cd "${HOME}/.dotfiles" \
-    && _SSDF_TAGS="0 1" bash ./install.sh
+    && SSDF_TAGS="0 1" bash ./install.sh
 ```
 
 Speaking of Docker Containers, Dockerfiles are available to try out the repo:
@@ -153,7 +153,7 @@ BRANCH=main \
     && curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
     | tar -xz -C "${HOME}/.dotfiles" --strip-components=1 \
     && cd "${HOME}/.dotfiles \
-    && _SSDF_PACKAGE_MANAGER="brew" _SSDF_TAGS="0 1 2" bash ./install.sh
+    && SSDF_PACKAGE_MANAGER="brew" SSDF_TAGS="0 1 2" bash ./install.sh
 ```
 
 > _Note_: The `install.mac.sh` script will not work as the container is
