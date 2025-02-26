@@ -11,7 +11,7 @@
 # ──────────────────────────────────────────────────────────────────────────────
 
 _SSDF_PACKAGE_CONFIG_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
-_SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_CONFIG_DIR}/../..")"
+SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_CONFIG_DIR}/../..")"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 🧭 PATH management.
@@ -28,12 +28,12 @@ fi
 ## ℹ️  Some aliases are targeted at the Package Manager.
 ## ─────────────────────────────────────────────────────────────────────────────
 source "${_SSDF_PACKAGE_CONFIG_DIR}/aliases.sh"
-source "${_SSDF_ROOT_DIR}/00-_ssdf/functions/_ssdf_echo_error.sh"
-source "${_SSDF_ROOT_DIR}/00-_ssdf/functions/_ssdf_select_package_manager.sh"
+source "${SSDF_ROOT_DIR}/00-_ssdf/functions/_ssdf_echo_error.sh"
+source "${SSDF_ROOT_DIR}/00-_ssdf/functions/_ssdf_select_package_manager.sh"
 
 _ssdf_select_package_manager
 
-if [ "apt" = "${_SSDF_PACKAGE_MANAGER}" ]; then
+if [ "apt" = "${SSDF_PACKAGE_MANAGER}" ]; then
     source "${_SSDF_PACKAGE_CONFIG_DIR}/aliases.apt.sh"
 fi
 
@@ -53,6 +53,6 @@ fi
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 🧹 Cleaning up local variables
 ## ─────────────────────────────────────────────────────────────────────────────
-source "${_SSDF_ROOT_DIR}/00-_ssdf/functions/_ssdf_unset_envvars.sh"
+source "${SSDF_ROOT_DIR}/00-_ssdf/functions/_ssdf_unset_envvars.sh"
 
 _ssdf_unset_envvars

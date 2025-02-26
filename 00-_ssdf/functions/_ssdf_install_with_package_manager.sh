@@ -12,7 +12,7 @@
 # Runs Package Manager script (eg `./_apt.sh`).
 #
 # ```bash
-# _ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${_SSDF_PACKAGE_MANAGER}"
+# _ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${SSDF_PACKAGE_MANAGER}"
 # ```
 ##
 _ssdf_install_with_package_manager() {

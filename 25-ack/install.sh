@@ -5,8 +5,8 @@
 # ──────────────────────────────────────────────────────────────────────────────
 
 _SSDF_PACKAGE_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
-_SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_DIR}/..")"
-source "${_SSDF_ROOT_DIR}/00-_ssdf/functions.sh"
+SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_DIR}/..")"
+source "${SSDF_ROOT_DIR}/00-_ssdf/functions.sh"
 
 _SSDF_PACKAGE_NAME="ack"
 
@@ -17,7 +17,7 @@ _ssdf_echo_section_title "Installing ${_SSDF_PACKAGE_NAME}..."
 ## ─────────────────────────────────────────────────────────────────────────────
 
 _ssdf_select_package_manager
-_ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${_SSDF_PACKAGE_MANAGER}"
+_ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${SSDF_PACKAGE_MANAGER}"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 🔗 Symbolic links.

@@ -4,10 +4,9 @@
 # 📰🍊🐘 Installing php, on Ubuntu (apt).
 # ─────────────────────────────────────────────────────────────────────────────
 
-echo "php${_SSDF_PHP_VERSION}"
-sudo apt-get install "php${_SSDF_PHP_VERSION}" \
-    "php${_SSDF_PHP_VERSION}-curl" \
-    "php${_SSDF_PHP_VERSION}-intl" \
-    "php${_SSDF_PHP_VERSION}-mbstring" \
-    "php${_SSDF_PHP_VERSION}-zip" \
-    "php${_SSDF_PHP_VERSION}-xml"
+sudo apt-get install "php${SSDF_PHP_VERSION}" \
+    "php${SSDF_PHP_VERSION}-curl" \
+    "php${SSDF_PHP_VERSION}-intl" \
+    "php${SSDF_PHP_VERSION}-mbstring" \
+    "php${SSDF_PHP_VERSION}-zip" \
+    "php${SSDF_PHP_VERSION}-xml"

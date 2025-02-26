@@ -9,7 +9,7 @@
 ## ─────────────────────────────────────────────────────────────────────────────
 
 ##
-# Selects Package Manager, ensures `_SSDF_PACKAGE_MANAGER` is set.
+# Selects Package Manager, ensures `SSDF_PACKAGE_MANAGER` is set.
 #
 # ```bash
 # _ssdf_select_package_manager
@@ -21,7 +21,7 @@ _ssdf_select_package_manager() {
         "brew" 
     do
         if command -v "${_ssdf_supported_package_manager}" >/dev/null 2>&1; then
-            _SSDF_PACKAGE_MANAGER="${_ssdf_supported_package_manager}"
+            export SSDF_PACKAGE_MANAGER="${_ssdf_supported_package_manager}"
             return
         fi
     done
