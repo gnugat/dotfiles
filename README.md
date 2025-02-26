@@ -96,6 +96,7 @@ The `<xy>` prefix digit indicates the package's:
     * `0`: 🏭 internal SSDF functions
     * `1`: 🧸 bare minimum (ideal for ssh servers, or Docker Containers)
     * `2`: 🧱 base (common set up)
+    * `3`: 💥 Bang (productivity, common)
 * `y`: priority
 
 As for each `<package>/install.sh` script, their responsibility is to:
