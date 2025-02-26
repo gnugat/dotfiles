@@ -41,13 +41,17 @@ _ssdf_unset_envvars() {
     "
 
     # Lists all variables names that start with _SSDF
-    # * grep --color=never: make sure we don't get weird color characters
     # * while read -r: makes sure each line is processed separately
-    compgen -v | grep --color=never '^_SSDF_' | while read -r ssdf_variable; do
-        if ! echo "${ssdf_variables_to_keep}" | grep -q "${ssdf_variable}"; then
+    # * using temporary file due to bash 3 having issues with multiline strings
+    # * set: lists all envvars in `<NAME>=<VALUE>` format, even not exported ones
+    # * grep --color=never: make sure we don't get weird color characters
+    # * cut: take only the name of the envvar
+    while read -r ssdf_variable; do
+        printf '%s\n' "${ssdf_variables_to_keep}" > /tmp/ssdf_keep_list.txt
+        if ! grep -q "^${ssdf_variable}$" /tmp/ssdf_keep_list.txt; then
             unset "${ssdf_variable}"
-        fi 
-    done
+        fi
+    done <<< "$(set | grep --color=never '^_SSDF_' | cut -d= -f1)"
     
     unset ssdf_variables_to_keep ssdf_variable
 }
