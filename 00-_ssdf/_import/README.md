@@ -1,4 +1,4 @@
-# Import
+# 📲 Import
 
 Most SSDF scripts (and some configs) require importing other scripts,
 for this **they need to know their own location** (or SSDF's root location).
