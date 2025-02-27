@@ -1,0 +1,4 @@
+# File: /{{ _SSDF_INPUT_PACKAGE_ID }}-{{ _SSDF_INPUT_PACKAGE_NAME }}/config/{{ _SSDF_INPUT_PACKAGE_NAME }}rc
+# ──────────────────────────────────────────────────────────────────────────────
+# {{ _SSDF_INPUT_PACKAGE_EMOJI }} {{_SSDF_INPUT_PACKAGE_TITLE }}
+# ──────────────────────────────────────────────────────────────────────────────
