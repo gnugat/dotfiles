@@ -51,7 +51,10 @@ _ssdf_unset_envvars() {
     done
 
     # Restore original IFS
-    IFS="$oldIFS"
+    IFS="$old_IFS"
     
-    unset private_ssdf_variables private_ssdf_variable private_ssdf_variable_name
+    unset old_IFS \
+        private_ssdf_variables \
+        private_ssdf_variable \
+        private_ssdf_variable_name
 }
