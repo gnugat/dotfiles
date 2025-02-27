@@ -1,1 +1,0 @@
-/Users/loic.faugeron/.dotfiles/31-nerd-fonts/bin/test-nerd-fonts.sh

@@ -46,8 +46,9 @@ fi
 ## * 0: 🏭 internal SSDF functions
 ## * 1: 🫗 bare minimum (ideal for ssh servers, or Docker Containers)
 ## * 2: 🧱 base (common set up)
+#  * 3: 💥 Bang (productivity, common)
 ## ─────────────────────────────────────────────────────────────────────────────
 
-SSDF_TAGS='0 1 2'
+SSDF_TAGS='0 1 2 3'
 bash "${SSDF_ROOT_DIR}/install.sh"
 
