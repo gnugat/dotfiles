@@ -97,6 +97,7 @@ The `<xy>` prefix digit indicates the package's:
     * `1`: 🧸 Bare minimum (ideal for ssh servers, or Docker Containers)
     * `2`: 🧱 Base minimal (common set up)
     * `3`: 💥 Bang (productivity, common)
+    * `4`: 🍊 Ubuntu (OS specific)
 * `y`: priority
 
 As for each `<package>/install.sh` script, their responsibility is to:
