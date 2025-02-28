@@ -37,14 +37,11 @@ if [ -e "${HOME}/.bashrc" ]; then
         "${HOME}/.bashrc" \
         "${HOME}/.config/shell/common.sh"
     _ssdf_append_source \
-        "${HOME}/.bashrc" \
+        "${HOME}/.config/shell/prompt.local.sh" \
         "${HOME}/.config/bash/prompt.sh"
     _ssdf_append_source \
-        "${HOME}/.bashrc" \
+        "${HOME}/.config/shell/opt.local.sh" \
         "${HOME}/.config/bash/shopt.sh"
-    _ssdf_append_source \
-        "${HOME}/.bashrc" \
-        "${HOME}/.config/bash/shopt.local.sh"
 fi
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
