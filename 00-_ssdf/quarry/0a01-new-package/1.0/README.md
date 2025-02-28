@@ -25,7 +25,7 @@ So for example it'll create the following:
 
 ```
 .
-├── 30-bang/
+├── 30-_bang/
 └── 31-nerd-fonts/
     ├── config/
     │   ├── aliases.package.sh

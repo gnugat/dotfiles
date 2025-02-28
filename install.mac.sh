@@ -40,15 +40,34 @@ if ! command -v "${SSDF_PACKAGE_MANAGER}" >/dev/null 2>&1; then
 fi
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## ➕ Call generic / common root `install.sh` script
+## 🏷️ Selects the Mac OS specific tags, by setting `SSDF_TAGS`.
+## _Note_: The tags can be manually selected as follow:
 ##
-## Setting tags to:
-## * 0: 🏭 internal SSDF functions
-## * 1: 🫗 bare minimum (ideal for ssh servers, or Docker Containers)
-## * 2: 🧱 base (common set up)
-#  * 3: 💥 Bang (productivity, common)
+## ```
+## SSDF_TAGS='0 1' bash install.mac.sh
+## ```
+##
+## Package folders follow this naming convention: `<xy>-<package-name>`.
+## The `<xy>` prefix digit indicates the package's:
+## * `x`: tag (category)
+##     * `0`: 🏭 Internal SSDF functions
+##     * `1`: 🧸 Bare minimum (ideal for ssh servers, or Docker Containers)
+##     * `2`: 🧱 Base minimal (common set up)
+##     * `3`: 💥 Bang (productivity, common)
+## * `y`: execution priority (in numeric-alphabetical order)
 ## ─────────────────────────────────────────────────────────────────────────────
 
-SSDF_TAGS='0 1 2 3'
+_ssdf_echo_section_title 'Selecting Tags'
+
+if [ -z "${SSDF_TAGS}" ]; then
+    SSDF_TAGS='0 1 2 3'
+fi
+
+_ssdf_echo_success "Tags ${SSDF_TAGS} selected"
+
+## ─────────────────────────────────────────────────────────────────────────────
+## ➕ Call generic / common root `install.sh` script
+## ─────────────────────────────────────────────────────────────────────────────
+
 bash "${SSDF_ROOT_DIR}/install.sh"
 

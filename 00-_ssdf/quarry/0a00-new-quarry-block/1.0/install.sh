@@ -54,8 +54,11 @@ for _SSDF_INPUT_NAME in $_SSDF_INPUT_NAMES; do
     # Indirect expansion to get the referenced ENVVAR's value
     _SSDF_INPUT_VALUE="${!_SSDF_INPUT_NAME}"
 
-    grep -r -l "{{ ${_SSDF_INPUT_NAME} }}" "${_SSDF_BLOCK_DESTINATION}" \
-        | xargs sed "${_SSDF_SED_IN_PLACE[@]}" -e "s/{{ ${_SSDF_INPUT_NAME} }}/${_SSDF_INPUT_VALUE}/g"
+    _SSDF_MATCHED_FILES=$(grep -r -l "{{ ${_SSDF_INPUT_NAME} }}" "${_SSDF_BLOCK_DESTINATION}")
+    if [ ! -z "${_SSDF_MATCHED_FILES}" ]; then 
+        echo "${_SSDF_MATCHED_FILES}" \
+            | xargs sed "${_SSDF_SED_IN_PLACE[@]}" -e "s/{{ ${_SSDF_INPUT_NAME} }}/${_SSDF_INPUT_VALUE}/g"
+    fi
 done
 
 ## ─────────────────────────────────────────────────────────────────────────────

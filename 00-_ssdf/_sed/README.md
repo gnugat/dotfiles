@@ -38,8 +38,11 @@ else
     _SSDF_SED_IN_PLACE=(-i) # GNU sed (eg Ubuntu)
 fi
 
-grep -r -l '<PATTERN>' . \
-    | xargs sed "${_SSDF_SED_IN_PLACE[@]}" -e "s/<PATTERN>/<REPLACE>/g"
+_SSDF_MATCHED_FILES=$(grep -r -l '<PATTERN>' .)
+if [ ! -z "${_SSDF_MATCHED_FILES}" ]; then 
+    echo "${_SSDF_MATCHED_FILES}" \
+        | xargs sed "${_SSDF_SED_IN_PLACE[@]}" -e "s/<PATTERN>/<REPLACE>/g"
+fi
 ```
 
 > ℹ️  _grep options used_:

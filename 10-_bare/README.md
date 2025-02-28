@@ -1,4 +1,4 @@
-# 🧸 Bare (minimum)
+# 🧸 Bare minimum (ideal for ssh servers, or Docker Containers)
 
 The 1x-bare tag is used for the strict minimum, ideal for ssh servers
 or Docker Containers.
