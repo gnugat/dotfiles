@@ -93,9 +93,9 @@ The root `install.sh` script will call all the Package `install.sh` scripts.
 The `<xy>` prefix digit indicates the package's:
 
 * `x`: tag
-    * `0`: 🏭 internal SSDF functions
-    * `1`: 🧸 bare minimum (ideal for ssh servers, or Docker Containers)
-    * `2`: 🧱 base (common set up)
+    * `0`: 🏭 Internal SSDF functions
+    * `1`: 🧸 Bare minimum (ideal for ssh servers, or Docker Containers)
+    * `2`: 🧱 Base minimal (common set up)
     * `3`: 💥 Bang (productivity, common)
 * `y`: priority
 

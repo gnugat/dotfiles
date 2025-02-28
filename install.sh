@@ -38,10 +38,10 @@ _ssdf_echo_success "Package Manager ${SSDF_PACKAGE_MANAGER} selected"
 ## Package folders follow this naming convention: `<xy>-<package-name>`.
 ## The `<xy>` prefix digit indicates the package's:
 ## * `x`: tag (category)
-##     * 0: 🏭 internal SSDF functions
-##     * 1: 🫗 bare minimum (ideal for ssh servers, or Docker Containers)
-##     * 2: 🧱 base minimal (common set up)
-##     * 3: 💥 Bang (productivity, common)
+##     * `0`: 🏭 Internal SSDF functions
+##     * `1`: 🧸 Bare minimum (ideal for ssh servers, or Docker Containers)
+##     * `2`: 🧱 Base minimal (common set up)
+##     * `3`: 💥 Bang (productivity, common)
 ## * `y`: execution priority (in numeric-alphabetical order)
 ## ─────────────────────────────────────────────────────────────────────────────
 
