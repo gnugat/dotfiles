@@ -46,7 +46,7 @@ _ssdf_unset_envvars() {
             # Extract ENVVAR name, discard remains (`=` and value)
             # Using LC_ALL=C, for cut to process input as a stream of bytes,
             # without paying attention to encoding (to allow UTF-8 support)
-            local private_ssdf_variable_name=$(echo "${line}" | L_ALL=C cut -d= -f1)
+            local private_ssdf_variable_name=$(echo "${line}" | LC_ALL=C cut -d= -f1)
 
             unset "${private_ssdf_variable_name}"
         fi
