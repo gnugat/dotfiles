@@ -42,13 +42,14 @@ _ssdf_echo_success "Package Manager ${SSDF_PACKAGE_MANAGER} selected"
 ##     * `1`: 🧸 Bare minimum (ideal for ssh servers, or Docker Containers)
 ##     * `2`: 🧱 Base minimal (common set up)
 ##     * `3`: 💥 Bang (productivity, common)
+##     * `4`: 🍊 Ubuntu (OS specific)
 ## * `y`: execution priority (in numeric-alphabetical order)
 ## ─────────────────────────────────────────────────────────────────────────────
 
 _ssdf_echo_section_title 'Selecting Tags'
 
 if [ -z "${SSDF_TAGS}" ]; then
-    SSDF_TAGS='0 1 2 3'
+    SSDF_TAGS='0 1 2 3 4'
 fi
 
 _ssdf_echo_success "Tags ${SSDF_TAGS} selected"
