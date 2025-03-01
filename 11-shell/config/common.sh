@@ -59,10 +59,10 @@ if [ -f "${HOME}/.config/shell/prompt.local.sh" ]; then
 fi
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## ⚙️ SHELL OPTIONS management (shopt for bash, setopt for zsh).
+## ⚙️  SHELL OPTIONS management (shopt for bash, setopt for zsh).
 ## ─────────────────────────────────────────────────────────────────────────────
 
-if [ -f "${HOME}/.config/shell/opt.local.sh" ]; then
+if [[ bash* == $0 && -f "${HOME}/.config/shell/opt.local.sh" ]]; then
     source "${HOME}/.config/shell/opt.local.sh"
 fi
 
