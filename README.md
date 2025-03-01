@@ -99,6 +99,7 @@ The `<xy>` prefix digit indicates the package's:
     * `3`: 💥 Bang (productivity, common)
     * `4`: 🍊 Ubuntu (OS specific)
     * `5`: 🍏 Mac OS (OS specific)
+    * `6`: 🐝 Nui-Rama (laptop specific)
 * `y`: priority
 
 As for each `<package>/install.sh` script, their responsibility is to:
