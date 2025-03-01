@@ -98,6 +98,7 @@ The `<xy>` prefix digit indicates the package's:
     * `2`: 🧱 Base minimal (common set up)
     * `3`: 💥 Bang (productivity, common)
     * `4`: 🍊 Ubuntu (OS specific)
+    * `5`: 🍏 Mac OS (OS specific)
 * `y`: priority
 
 As for each `<package>/install.sh` script, their responsibility is to:
