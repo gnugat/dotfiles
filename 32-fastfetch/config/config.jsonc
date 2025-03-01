@@ -1,35 +1,123 @@
 // File: /32-fastfetch/config/config.jsonc
 // ─────────────────────────────────────────────────────────────────────────────
 // 📊 FastFetch
+// Settings inspired by:
+// - https://github.com/harilvfs/fastfetch/blob/old-days/fastfetch/config.jsonc
 // ─────────────────────────────────────────────────────────────────────────────
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "modules": [
     "title",
-    "separator",
-    "os",
-    "host",
-    "kernel",
-    "packages",
-    "shell",
-    "display",
-    "de",
-    "wm",
-    "wmtheme",
-    "theme",
-    "icons",
-    "font",
-    "cursor",
-    "terminal",
-    "terminalfont",
-    "cpu",
-    "gpu",
-    "memory",
-    "swap",
-    "disk",
-    "battery",
-    "poweradapter",
-    "locale",
+    {
+      "type": "custom",
+      "format": "\u001b[90m┌──────────────────────Hardware──────────────────────┐"
+    },
+    {
+      "type": "host",
+      "key": "\uf109 Host",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "display",
+      "key": "│ ├\udb80\udf79 Display",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "cpu",
+      "key": "│ ├\uec19 CPU",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "gpu",
+      "key": "│ ├\ue266 GPU",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "memory",
+      "key": "│ ├\uefc5 Memory",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "swap",
+      "key": "│ ├\udb80\udf5b Swap",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "disk",
+      "key": "└ └\udb85\udedf Disk",
+      "keyColor": "cyan"
+    },
+    {
+      "type": "custom",
+      "format": "\u001b[90m├──────────────────────Software──────────────────────┤"
+    },
+    {
+      "type": "os",
+      "key": "\uee9a OS",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "kernel",
+      "key": "│ ├\ueda7 Kernel",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "packages",
+      "key": "│ ├\ueb29 Packages",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "de",
+      "key": "│ ├\udb84\ude39 Desktop Environment",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "wm",
+      "key": "│ ├\ueb23 Window Manager",
+      "keyColor": "yellow"
+    },
+    {
+      "type": "font",
+      "key": "│ ├\ue659 Font",
+      "keyColor": "yellow",
+      "format": "JetBrains Mono Nerd Fonts"
+    },
+    {
+      "type": "terminaltheme",
+      "key": "│ ├\uefcc Theme",
+      "keyColor": "yellow",
+      "format": "Catpuccin - Macchiato "
+    },
+    {
+      "type": "command",
+      "key": "└ └\ueb29 Terminal",
+      "keyColor": "yellow",
+      "text": "echo $(alacritty --version)"
+    },
+    {
+      "type": "custom",
+      "format": "\u001b[90m├────────────────────────Shell───────────────────────┤"
+    },
+    {
+      "type": "shell",
+      "key": "\ue691 Shell",
+      "keyColor": "blue"
+    },
+    {
+      "type": "command",
+      "key": "│ ├\uebc8 Multiplexer",
+      "keyColor": "blue",
+      "text": "echo $(tmux --version)"
+    },
+    {
+      "type": "editor",
+      "key": "└ └\ue7c5 Editor",
+      "keyColor": "blue"
+    },
+    {
+      "type": "custom",
+      "format": "\u001b[90m└────────────────────────────────────────────────────┘"
+    },
     "break",
     "colors"
   ]
