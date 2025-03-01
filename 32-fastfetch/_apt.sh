@@ -6,4 +6,4 @@
 
 sudo add-apt-repository -y ppa:zhangsongcui3371/fastfetch
 sudo apt-get -qq update
-sudo apt-get -qqy install
+sudo apt-get -qqy install fastfetch
