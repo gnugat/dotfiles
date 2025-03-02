@@ -35,7 +35,20 @@ ln -nsf \
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
-## N/A
+## Adding catpuccin theme
+mkdir -p "${HOME}/.config/alacritty/themes"
+curl -sfLo \
+    "${HOME}/.config/alacritty/themes/catpuccin-latte.toml" \
+    https://raw.githubusercontent.com/catppuccin/alacritty/main/catppuccin-latte.toml
+curl -sfLo \
+    "${HOME}/.config/alacritty/themes/catpuccin-frappe.toml" \
+    https://raw.githubusercontent.com/catppuccin/alacritty/main/catppuccin-frappe.toml
+curl -sfLo \
+    "${HOME}/.config/alacritty/themes/catpuccin-macchiato.toml" \
+    https://raw.githubusercontent.com/catppuccin/alacritty/main/catppuccin-macchiato.toml
+curl -sfLo \
+    "${HOME}/.config/alacritty/themes/catpuccin-mocha.toml" \
+    https://raw.githubusercontent.com/catppuccin/alacritty/main/catppuccin-mocha.toml
 
 _ssdf_append_source \
     "${HOME}/.config/shell/envvars.local.sh" \
