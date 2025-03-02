@@ -25,12 +25,22 @@ _ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${SSDF_PACKAGE_MANAGE
 
 mkdir -p "${HOME}/.config/zsh"
 cp -i "${_SSDF_PACKAGE_DIR}/config/zshrc" "${HOME}/.zshrc"
+ln -nsf "${_SSDF_PACKAGE_DIR}/config/setopt.sh" "${HOME}/.config/zsh/setopt.sh"
+ln -nsf "${_SSDF_PACKAGE_DIR}/config/envvars.zsh.sh" "${HOME}/.config/zsh/envvars.zsh.sh"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
-## N/A
+if [ -e "${HOME}/.zshrc" ]; then
+    _ssdf_append_source \
+        "${HOME}/.zshrc" \
+        "${HOME}/.config/shell/common.sh"
+fi
+
+_ssdf_append_source \
+    "${HOME}/.config/shell/envvars.local.sh" \
+    "${HOME}/.config/zsh/envvars.zsh.sh"
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 

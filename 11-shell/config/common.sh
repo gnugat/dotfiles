@@ -62,8 +62,10 @@ fi
 ## ⚙️  SHELL OPTIONS management (shopt for bash, setopt for zsh).
 ## ─────────────────────────────────────────────────────────────────────────────
 
-if [[ bash* == $0 && -f "${HOME}/.config/shell/opt.local.sh" ]]; then
-    source "${HOME}/.config/shell/opt.local.sh"
+if ps -p $$ | grep -q "bash" && [ -f "${HOME}/.config/bash/shopt.sh" ]; then
+    source "${HOME}/.config/bash/shopt.sh"
+elif ps -p $$ | grep -q "zsh" && [ "${HOME}/.config/zsh/setopt.sh" ]; then
+    source "${HOME}/.config/zsh/setopt.sh"
 fi
 
 ## ─────────────────────────────────────────────────────────────────────────────
