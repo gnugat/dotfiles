@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# File: /12-bash/install.sh
+# File: /36-zsh/install.sh
 # ──────────────────────────────────────────────────────────────────────────────
-# 💲 bash - GNU Bourne-Again SHell
+# % Z shell
 # ──────────────────────────────────────────────────────────────────────────────
 
 _SSDF_PACKAGE_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
 SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_DIR}/..")"
 source "${SSDF_ROOT_DIR}/00-_ssdf/functions.sh"
 
-_SSDF_PACKAGE_NAME="bash"
+_SSDF_PACKAGE_NAME="zsh"
 
 _ssdf_echo_section_title "Installing ${_SSDF_PACKAGE_NAME}..."
 
@@ -23,23 +23,24 @@ _ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${SSDF_PACKAGE_MANAGE
 ## 🔗 Symbolic links.
 ## ─────────────────────────────────────────────────────────────────────────────
 
-mkdir -p "${HOME}/.config/bash"
-cp -i "${_SSDF_PACKAGE_DIR}/config/bashrc" "${HOME}/.bashrc"
-ln -nsf "${_SSDF_PACKAGE_DIR}/config/prompt.sh" "${HOME}/.config/bash/prompt.sh"
-ln -nsf "${_SSDF_PACKAGE_DIR}/config/shopt.sh" "${HOME}/.config/bash/shopt.sh"
+mkdir -p "${HOME}/.config/zsh"
+cp -i "${_SSDF_PACKAGE_DIR}/config/zshrc" "${HOME}/.zshrc"
+ln -nsf "${_SSDF_PACKAGE_DIR}/config/setopt.sh" "${HOME}/.config/zsh/setopt.sh"
+ln -nsf "${_SSDF_PACKAGE_DIR}/config/envvars.zsh.sh" "${HOME}/.config/zsh/envvars.zsh.sh"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
-if [ -e "${HOME}/.bashrc" ]; then
+if [ -e "${HOME}/.zshrc" ]; then
     _ssdf_append_source \
-        "${HOME}/.bashrc" \
+        "${HOME}/.zshrc" \
         "${HOME}/.config/shell/common.sh"
-    _ssdf_append_source \
-        "${HOME}/.config/shell/prompt.local.sh" \
-        "${HOME}/.config/bash/prompt.sh"
 fi
+
+_ssdf_append_source \
+    "${HOME}/.config/shell/envvars.local.sh" \
+    "${HOME}/.config/zsh/envvars.zsh.sh"
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
