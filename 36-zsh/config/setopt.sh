@@ -5,35 +5,38 @@
 # ──────────────────────────────────────────────────────────────────────────────
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## 🏺 Share history between terms by:
-## - writing command to history as soon as it's entered
-## - reading history before displaying prompt (as opposed to before starting)
+## 🏺 Unified history:
+## + share history between shells/terms/sessions, by:
+##     + writing command to history as soon as it's entered
+##     + reading history before displaying prompt (as opposed to before starting)
+##
+## 🏺ℹ️ Notes:
+##  - SHARE_HISTORY supersedes (and is mutually exclusive to):
+##     - APPEND_HISTORY (*sessions* append to history, instead of replacing it)
+##     - INC_APPEND_HISTORY (like APPEND_HISTORY, but incrementally,
+##       on each command, instead on shell termination)
+##     - INC_APPEND_HISTORY_TIME (like INC_APPEND_HISTORY,
+##       but in EXTENDED_HISTORY format)
+## See: https://zsh.sourceforge.io/Doc/Release/Options.html#History
 ## ─────────────────────────────────────────────────────────────────────────────
-setopt share_history
+setopt SHARE_HISTORY
 
 ### ─────────────────────────────────────────────────────────────────────────────
-### 🏺➕ Appends immediately to history, instead of overwritting.
+### 🏺🙈 Duplicates (and space) management:
+### - remove duplicates from history first, when history is full.
+### - do not display duplicates when searching history
+### - do not add to history duplicates
+### - do not add to history lines starting with space (use cases: test, privacy)
 ### ─────────────────────────────────────────────────────────────────────────────
-setopt appendhistory
-setopt incappendhistory
-
-### ─────────────────────────────────────────────────────────────────────────────
-### 🏺👴 Remove duplicates from history first, when HISTFILESIZE is exceeded.
-### ─────────────────────────────────────────────────────────────────────────────
-setopt hist_expire_dups_first
-
-### ────────────────────────────────────────────────────────────────────────────
-### 🏺🙈 Ignores:
-### - lines starting with a space (to allow privacy)
-### - duplicates
-### ────────────────────────────────────────────────────────────────────────────
-setopt hist_ignore_space
-setopt hist_ignore_dups
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
 
 ### ─────────────────────────────────────────────────────────────────────────────
 ### 🏺🔎 Show command with history expansion to use before running it.
 ### ─────────────────────────────────────────────────────────────────────────────
-setopt hist_verify
+setopt HIST_VERIFY
 
 ### ─────────────────────────────────────────────────────────────────────────────
 ### 🏺⬆️ When typing a command, use up/down arrows to go through their specific history

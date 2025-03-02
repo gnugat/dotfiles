@@ -5,5 +5,5 @@
 # ──────────────────────────────────────────────────────────────────────────────
 
 HOMEBREW_NO_ENV_HINTS=1 brew install -q zsh \
-    zsh zsh-syntax-highlighting \
+    zsh-syntax-highlighting \
     zsh-autosuggestions
