@@ -5,4 +5,5 @@
 # ──────────────────────────────────────────────────────────────────────────────
 
 sudo apt-get -qqy install zsh \
+    zsh-syntax-highlighting \
     zsh-autosuggestions
