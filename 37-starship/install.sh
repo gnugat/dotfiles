@@ -27,6 +27,9 @@ mkdir -p "${HOME}/.config/starship"
 ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/boot.starship.sh" \
     "${HOME}/.config/starship/boot.starship.sh"
+ln -nsf \
+    "${_SSDF_PACKAGE_DIR}/config/starship.toml" \
+    "${HOME}/.config/starship/starship.toml"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install
