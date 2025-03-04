@@ -25,6 +25,9 @@ _ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${SSDF_PACKAGE_MANAGE
 
 mkdir -p "${HOME}/.config/fzf"
 ln -nsf \
+    "${_SSDF_PACKAGE_DIR}/config/boot.fzf.sh" \
+    "${HOME}/.config/fzf/boot.fzf.sh"
+ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/envvars.fzf.sh" \
     "${HOME}/.config/fzf/envvars.fzf.sh"
 
@@ -32,6 +35,9 @@ ln -nsf \
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
+_ssdf_append_source \
+    "${HOME}/.config/shell/boot.local.sh" \
+    "${HOME}/.config/fzf/boot.fzf.sh"
 _ssdf_append_source \
     "${HOME}/.config/shell/envvars.local.sh" \
     "${HOME}/.config/fzf/envvars.fzf.sh"
