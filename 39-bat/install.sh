@@ -27,26 +27,33 @@ mkdir -p "${HOME}/.config/bat"
 ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/config" \
     "${HOME}/.config/bat/config"
+ln -nsf \
+    "${_SSDF_PACKAGE_DIR}/config/envvars.bat.sh" \
+    "${HOME}/.config/bat/envvars.bat.sh"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
-## Adding catpuccin theme
+## Adding catppuccin theme
 mkdir -p "${HOME}/.config/bat/themes"
 curl -sfLo \
-    "${HOME}/.config/bat/themes/catpuccin-latte.tmTheme" \
+    "${HOME}/.config/bat/themes/catppuccin-latte.tmTheme" \
     https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Latte.tmTheme
 curl -sfLo \
-    "${HOME}/.config/bat/themes/catpuccin-frappe.tmTheme" \
+    "${HOME}/.config/bat/themes/catppuccin-frappe.tmTheme" \
     https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Frappe.tmTheme
 curl -sfLo \
-    "${HOME}/.config/bat/themes/catpuccin-macchiato.tmTheme" \
+    "${HOME}/.config/bat/themes/catppuccin-macchiato.tmTheme" \
     https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Macchiato.tmTheme
 curl -sfLo \
-    "${HOME}/.config/bat/themes/catpuccin-mocha.tmTheme" \
+    "${HOME}/.config/bat/themes/catppuccin-mocha.tmTheme" \
     https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Mocha.tmTheme
 bat cache --build
+
+_ssdf_append_source \
+    "${HOME}/.config/shell/envvars.local.sh" \
+    "${HOME}/.config/bat/envvars.bat.sh"
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
