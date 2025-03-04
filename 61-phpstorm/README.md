@@ -6,8 +6,5 @@ Configuration and Settings for PhpStorm on the Nui-Rama laptop.
 
 ## IdeaVim
 
-To apply configuration changes:
-
-```
-: source ~/.ideavimrc
-```
+* `:edit ~/.ideavimrc`: opens configuration file
+* `:source ~/.ideavimrc`: applies configuration changes
