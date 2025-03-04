@@ -32,7 +32,21 @@ ln -nsf \
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
-## N/A
+## Adding catpuccin theme
+mkdir -p "${HOME}/.config/bat/themes"
+curl -sfLo \
+    "${HOME}/.config/bat/themes/catpuccin-latte.tmTheme" \
+    https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Latte.tmTheme
+curl -sfLo \
+    "${HOME}/.config/bat/themes/catpuccin-frappe.tmTheme" \
+    https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Frappe.tmTheme
+curl -sfLo \
+    "${HOME}/.config/bat/themes/catpuccin-macchiato.tmTheme" \
+    https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Macchiato.tmTheme
+curl -sfLo \
+    "${HOME}/.config/bat/themes/catpuccin-mocha.tmTheme" \
+    https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Mocha.tmTheme
+bat cache --build
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
