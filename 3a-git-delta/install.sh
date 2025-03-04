@@ -32,7 +32,11 @@ ln -nsf \
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
-## N/A
+## Adding catpuccin theme
+mkdir -p "${HOME}/.config/delta/themes"
+curl -sfLo \
+    "${HOME}/.config/delta/themes/catpuccin.gitconfig" \
+    https://raw.githubusercontent.com/catppuccin/delta/main/catppuccin.gitconfig
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
