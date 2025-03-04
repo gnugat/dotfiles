@@ -1,6 +1,11 @@
 # File: /37-starship/config/starship.toml
 # ──────────────────────────────────────────────────────────────────────────────
 # 🚀 Starship
+#
+# Using "cartouche" style for the background of modules:
+# * using unicode characters  
+# * using style inverted to the module's content
+# * between two modules, using `\b` to go back one character and replace it
 # ──────────────────────────────────────────────────────────────────────────────
 
 ## Get editor completions based on the config schema
@@ -15,12 +20,9 @@ format = """
 $os\
 $username\
 $hostname\
-[](fg:teal bg:base)\
 $directory\
-[](fg:blue bg:base)\
 $git_branch\
 $git_status\
-[](fg:yellow bg:base)\
 $character
 """
 
@@ -30,7 +32,7 @@ $character
 ## Using `\\uf179` (nf-fa-apple) icon.
 ## ─────────────────────────────────────────────────────────────────────────────
 [os]
-format = "[ $symbol]($style)"
+format = "[](fg:green bg:base)[$symbol]($style)[](fg:green bg:base)"
 style = "fg:black bg:green"
 disabled = false
 
@@ -43,11 +45,11 @@ Macos = ' '
 ## ─────────────────────────────────────────────────────────────────────────────
 [username]
 # Only shows if user is: root or different than logged in user or connected to ssh
-format = "[ $username]($style)"
+format = "[\b](fg:green bg:teal)[ $username]($style)"
 style = "fg:black bg:teal"
 
 [hostname]
-format = "[@$hostname ]($style)"
+format = "[@$hostname ]($style)[](fg:teal bg:base)"
 style = "fg:black bg:teal"
 
 ssh_only = true # only show when connected to an SSH session
@@ -58,7 +60,7 @@ ssh_only = true # only show when connected to an SSH session
 ## ─────────────────────────────────────────────────────────────────────────────
 
 [directory]
-format = "[  $path ]($style)"
+format = "[\b](fg:green bg:blue)[  $path ]($style)[](fg:blue bg:base)"
 style = "fg:black bg:blue"
 
 truncation_symbol = '…/'
@@ -71,11 +73,11 @@ truncate_to_repo = true # truncate to git repo's root
 ## ─────────────────────────────────────────────────────────────────────────────
 
 [git_branch]
-format = '[  $branch ]($style)'
+format = "[\b](fg:blue bg:yellow)[  $branch ]($style)"
 style = "fg:black bg:yellow"
 
 [git_status]
-format = '[$modified$staged$untracked]($style)'
+format = "[$modified$staged$untracked]($style)[](fg:yellow bg:base)"
 modified = '[*](fg:black bg:yellow)'
 staged = '[+](fg:black bg:yellow)'
 untracked = '[%](fg:black bg:yellow)'
