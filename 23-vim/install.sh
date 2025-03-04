@@ -25,8 +25,6 @@ _ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${SSDF_PACKAGE_MANAGE
 
 ln -nsf "${_SSDF_PACKAGE_DIR}/config/vimrc" ~/.vimrc
 
-# Additional config/install
-
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
