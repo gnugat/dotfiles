@@ -27,6 +27,9 @@ mkdir -p "${HOME}/.config/bat"
 ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/config" \
     "${HOME}/.config/bat/config"
+ln -nsf \
+    "${_SSDF_PACKAGE_DIR}/config/envvars.bat.sh" \
+    "${HOME}/.config/bat/envvars.bat.sh"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install
@@ -47,6 +50,10 @@ curl -sfLo \
     "${HOME}/.config/bat/themes/catpuccin-mocha.tmTheme" \
     https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Mocha.tmTheme
 bat cache --build
+
+_ssdf_append_source \
+    "${HOME}/.config/shell/envvars.local.sh" \
+    "${HOME}/.config/bat/envvars.bat.sh"
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
