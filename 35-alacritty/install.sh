@@ -21,11 +21,24 @@ _ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${SSDF_PACKAGE_MANAGE
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 🔗 Symbolic links.
+##
+## Backward compatibility break in v0.14:
+## * `import` config got moved to `general` new section
+## Use `alacritty.old.toml` for older versions (eg Ubuntu < 25.04 Plucky Puffin)
 ## ─────────────────────────────────────────────────────────────────────────────
+
+_SSDF_ALACRITTY_VERSION=$(alacritty --version | grep -o '[0-9]\+\.[0-9]\+')
+_SSDF_ALACRITTY_VERSION_MAJOR=$(echo "$_SSDF_ALACRITTY_VERSION" | cut -d. -f1)
+_SSDF_ALACRITTY_VERSION_MINOR=$(echo "$_SSDF_ALACRITTY_VERSION" | cut -d. -f2)
+
+_SSDF_ALACRITTY_CONFIG_FILE='alacritty.toml'
+if [ "${_SSDF_ALACRITTY_VERSION_MAJOR}" -eq 0 ] && [ "${_SSDF_ALACRITTY_VERSION_MINOR}" -lt 14 ]; then
+    _SSDF_ALACRITTY_CONFIG_FILE='alacritty.old.toml'
+fi
 
 mkdir -p "${HOME}/.config/alacritty"
 ln -nsf \
-    "${_SSDF_PACKAGE_DIR}/config/alacritty.toml" \
+    "${_SSDF_PACKAGE_DIR}/config/${_SSDF_ALACRITTY_CONFIG_FILE}" \
     "${HOME}/.config/alacritty/alacritty.toml"
 ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/envvars.alacritty.sh" \
