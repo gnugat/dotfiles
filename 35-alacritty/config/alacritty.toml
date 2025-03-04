@@ -8,7 +8,7 @@
 ## ─────────────────────────────────────────────────────────────────────────────
 
 general.import = [
-    "~/.config/alacritty/themes/catpuccin-macchiato.toml"
+    "~/.config/alacritty/themes/catppuccin-macchiato.toml"
 ]
 
 ## ─────────────────────────────────────────────────────────────────────────────

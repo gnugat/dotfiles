@@ -10,5 +10,5 @@ The theme comes in one light and three dark variants:
 - Macchiato: Medium contrast with gentle colors creating a soothing atmosphere
 - Mocha: The Original — Our darkest variant offering a cozy feeling with color-rich accents
 
-> _Note_: the `34-catpuccin` SSDF package does **nothing**,
+> _Note_: the `34-catppuccin` SSDF package does **nothing**,
 > this is more of a placeholder to give information on the theme used.

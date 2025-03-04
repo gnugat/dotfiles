@@ -35,19 +35,19 @@ ln -nsf \
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
-## Adding catpuccin theme
+## Adding catppuccin theme
 mkdir -p "${HOME}/.config/bat/themes"
 curl -sfLo \
-    "${HOME}/.config/bat/themes/catpuccin-latte.tmTheme" \
+    "${HOME}/.config/bat/themes/catppuccin-latte.tmTheme" \
     https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Latte.tmTheme
 curl -sfLo \
-    "${HOME}/.config/bat/themes/catpuccin-frappe.tmTheme" \
+    "${HOME}/.config/bat/themes/catppuccin-frappe.tmTheme" \
     https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Frappe.tmTheme
 curl -sfLo \
-    "${HOME}/.config/bat/themes/catpuccin-macchiato.tmTheme" \
+    "${HOME}/.config/bat/themes/catppuccin-macchiato.tmTheme" \
     https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Macchiato.tmTheme
 curl -sfLo \
-    "${HOME}/.config/bat/themes/catpuccin-mocha.tmTheme" \
+    "${HOME}/.config/bat/themes/catppuccin-mocha.tmTheme" \
     https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Mocha.tmTheme
 bat cache --build
 
