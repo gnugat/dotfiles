@@ -8,7 +8,7 @@ filekinds:
   normal: {foreground: "#B8C0E0"}
   directory: {foreground: "#8AADF4"}
   symlink: {foreground: "#91D7E3"}
-  pipe: {foreground: "##8087A2"}
+  pipe: {foreground: "#8087A2"}
   block_device: {foreground: "#EE99A0"}
   char_device: {foreground: "#EE99A0"}
   socket: {foreground: "#5B6078"}
@@ -50,7 +50,7 @@ users:
   user_root: {foreground: "#ED8796"}
   user_other: {foreground: "#C6A0F6"}
   group_yours: {foreground: "#B8C0E0"}
-  group_other: {foreground: "##8087A2"}
+  group_other: {foreground: "#8087A2"}
   group_root: {foreground: "#ED8796"}
 
 links:
@@ -63,7 +63,7 @@ git:
   deleted: {foreground: "#ED8796"}
   renamed: {foreground: "#8BD5CA"}
   typechange: {foreground: "#F5BDE6"}
-  ignored: {foreground: "##8087A2"}
+  ignored: {foreground: "#8087A2"}
   conflicted: {foreground: "#EE99A0"}
 
 git_repo:
@@ -73,7 +73,7 @@ git_repo:
   git_dirty: {foreground: "#ED8796"}
 
 security_context:
-  colon: {foreground: "##8087A2"}
+  colon: {foreground: "#8087A2"}
   user: {foreground: "#B8C0E0"}
   role: {foreground: "#C6A0F6"}
   typ: {foreground: "#5B6078"}
@@ -92,7 +92,7 @@ file_type:
   build: {foreground: "#5B6078"}
   source: {foreground: "#8AADF4"}
 
-punctuation: {foreground: "##8087A2"}
+punctuation: {foreground: "#8087A2"}
 date: {foreground: "#EED49F"}
 inode: {foreground: "#A5ADCB"}
 blocks: {foreground: "#939AB7"}
