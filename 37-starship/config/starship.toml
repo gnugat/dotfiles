@@ -29,6 +29,10 @@ $character
 format = "[  $path ]($style)"
 style = "fg:black bg:blue"
 
+truncation_symbol = '…/'
+truncation_length = 3 # number of parent folders to keep
+truncate_to_repo = true # truncate to git repo's root
+
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 🐙 Git
 ## Using `\ue702` (nf-dev-git) icon.
