@@ -45,12 +45,12 @@ Macos = ' '
 ## ─────────────────────────────────────────────────────────────────────────────
 [username]
 # Only shows if user is: root or different than logged in user or connected to ssh
-format = "[\b](fg:green bg:teal)[ $username]($style)"
-style = "fg:black bg:teal"
+format = "[\b](fg:green bg:teal)[ $user](fg:black bg:teal)"
 
 [hostname]
 format = "[@$hostname ]($style)[](fg:teal bg:base)"
 style = "fg:black bg:teal"
+aliases = { "KFH7X7T56W" = "nui-rama" }
 
 ssh_only = true # only show when connected to an SSH session
 
