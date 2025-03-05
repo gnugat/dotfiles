@@ -2,9 +2,12 @@
 
 The 🍏 BSD sed (Mac OS) and 🐧 GNU sed (Ubuntu) implementations differ slightly.
 
-The `_ssdf_sed` provides a cross-platform solution.
+The following functions provide a cross-platform solution:
 
-## In place `-i`
+* `_ssdf_sed` (for standalone `sed`)
+* `ssdf_grep_sed` (for `grep | xargs sed`)
+
+## In place `sed -i SCRIPT`
 
 * 🍏 BSD sed (Mac OS): requires an explicit backup extension
   (with `-i ''` for in place editing without backup)
@@ -67,7 +70,7 @@ sed -i '' \
     /tmp/list.txt
 ```
 
-## Recursively replace text in a pattern of files
+## Replace all in path `grep PATTERN PATH | xargs sed -i SCRIPT`
 
 To find recursively the files that contain text matching a given pattern,
 and replace those matches in place:
