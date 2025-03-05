@@ -2,6 +2,10 @@
 
 Internal stuff, to help develop and maintain SSDF.
 
+## 💻 Bin
+
+Helper scripts.
+
 ## 🧩 Functions
 
 Helper functions to make the Super Secret Dot Files installation easier.
