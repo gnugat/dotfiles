@@ -1,29 +1,71 @@
 # 🔍✒️  sed
 
-GNU and BSD `sed` differ in the way they implement the `--in-place` / `-i` parameter:
+The 🍏 BSD sed (Mac OS) and 🐧 GNU sed (Ubuntu) implementations differ slightly.
 
-* 🍏 BSD (and Mac OS): it requires an explicit backup extension
-  (with `-i ''` for in-place editing without backup)
-* 🐧 GNU: it works fine without any argument
+The `_ssdf_sed` provides a cross-platform solution.
 
-For cross platform compatibility, use (this works for bash v3+):
+## In place `-i`
+
+* 🍏 BSD sed (Mac OS): requires an explicit backup extension
+  (with `-i ''` for in place editing without backup)
+* 🐧 GNU sed (Ubuntu): does NOT accept backup extension
+
+To make it work across both platforms:
 
 ```shell
-# Make GNU and BSD sed cross platform
 if [ "$(uname)" = "Darwin" ]; then
-    _SSDF_SED_IN_PLACE=(-i "") # BSD sed (eg Mac OS)
+    _SSDF_SED_IN_PLACE=(-i "") # 🍏 BSD sed (Mac OS)
 else
-    _SSDF_SED_IN_PLACE=(-i) # GNU sed (eg Ubuntu)
+    _SSDF_SED_IN_PLACE=(-i) # 🐧 GNU sed (Ubuntu)
 fi
 
-sed "${_SSDF_SED_IN_PLACE[@]}" -e "s/SEARCH/REPLACE/g"
+sed "${_SSDF_SED_IN_PLACE[@]}" -e "s/<SEARCH>/<REPLACE>/g"
 ```
 
-> ℹ️  _sed options used_:
-> * `-e script` / `--expression=script`
->    add the script to the commands to be executed
-> * `-i[SUFFIX]` / `--in-place[=SUFFIX]`
->    edit files in place (makes backup if SUFFIX supplied)
+## Append after `/<PATTERN>/a<ADDITION>`
+## Insert before `/<PATTERN>/i<ADDITION>`
+
+* 🍏 BSD sed (Mac OS): requires the command `a` / `i` to be followed by:
+    1. `\` -- which is ignored by 🐧 GNU sed (Ubuntu)
+    2. a new line
+    3. the text to append/insert
+* 🐧 GNU sed (Ubuntu): none of this nonsense
+
+To achieve this in a way that works for both 🍏 BSD (Mac OS) and
+🐧 GNU sed (Ubuntu), split the text to insert/append in a second `-e`:
+
+```shell
+sed "${_SSDF_SED_IN_PLACE[@]}" \
+    -e '/* first line in list/a\' \
+    -e '* second line in list' \
+    /tmp/list.txt
+```
+
+> 💯 The above approach is our Super Secret recommended way.
+
+Another cross-platform compatible way would be to store the command in a file
+and use the `-f <script>` syntax.
+
+### 🍏 BSD sed (Mac OS) specific alternatives
+
+> 🚫 These will NOT work with 🐧 GNU sed (Ubuntu).
+
+An actual new line can be used:
+
+```shell
+sed -i '' \
+    -e '/* first line in list/a\\
+* second line in list' \
+    /tmp/list.txt
+```
+
+It's also possible, to use `'$'\n`:
+
+```shell
+sed -i '' \
+    -e '/* first line in list/a\'$'\n* second line in list' \
+    /tmp/list.txt
+```
 
 ## Recursively replace text in a pattern of files
 
@@ -31,13 +73,6 @@ To find recursively the files that contain text matching a given pattern,
 and replace those matches in place:
 
 ```shell
-# Make GNU and BSD sed cross platform
-if [ "$(uname)" = "Darwin" ]; then
-    _SSDF_SED_IN_PLACE=(-i "") # BSD sed (eg Mac OS)
-else
-    _SSDF_SED_IN_PLACE=(-i) # GNU sed (eg Ubuntu)
-fi
-
 _SSDF_MATCHED_FILES=$(grep -r -l '<PATTERN>' .)
 if [ ! -z "${_SSDF_MATCHED_FILES}" ]; then 
     echo "${_SSDF_MATCHED_FILES}" \
