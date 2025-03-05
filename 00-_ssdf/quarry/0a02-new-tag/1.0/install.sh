@@ -84,34 +84,27 @@ done
 ### List item to add, for example: `3`: 💥 Bang (productivity, common)
 _SSDF_TAG_ITEM="\`${_SSDF_INPUT_TAG_ID:0:1}\`: ${_SSDF_INPUT_TAG_EMOJI} ${_SSDF_INPUT_TAG_TITLE}"
 
-### Create temporary sed script files for the insert operations
- _SSDF_TMP_DIR=$(mktemp -d)
- _SSDF_README_SED="${_SSDF_TMP_DIR}/readme.sed"
- _SSDF_INSTALL_SED="${_SSDF_TMP_DIR}/install.sed"
-
-### Add sed scripts to temp files.
-### _Note_: BSD sed (MAc OS) requires a newline after `i\`.
-echo "/\* \`y\`: priority/i\\
-    * ${_SSDF_TAG_ITEM}" > "${_SSDF_README_SED}"
-
-echo "/## \* \`y\`: execution priority/i\\
-##     * ${_SSDF_TAG_ITEM}" > "${_SSDF_INSTALL_SED}"
-
-### Apply sed scripts
-sed "${_SSDF_SED_IN_PLACE[@]}" -f "${_SSDF_README_SED}" "${SSDF_ROOT_DIR}/README.md"
-sed "${_SSDF_SED_IN_PLACE[@]}" -f "${_SSDF_INSTALL_SED}" "${SSDF_ROOT_DIR}/install.sh"
-sed "${_SSDF_SED_IN_PLACE[@]}" -f "${_SSDF_INSTALL_SED}" "${SSDF_ROOT_DIR}/install.mac.sh"
-
-### Add new tag to `/install.sh` and `/install.mac.sh`, in `SSDF_TAGS='<tags>'`
-sed "${_SSDF_SED_IN_PLACE[@]}" \
-    -E "s/^(    SSDF_TAGS='[^']*)'/\1 ${_SSDF_INPUT_TAG_ID:0:1}'/" \
+### Add new tag to lists in `/README.md`, `/install.sh` and `/install.mac.sh`
+_ssdf_sed \
+    -e "/\* \`y\`: priority/i\\" \
+    -e "    * ${_SSDF_TAG_ITEM}" \
+    "${SSDF_ROOT_DIR}/README.md"
+_ssdf_sed \
+    -e "/## \* \`y\`: execution priority/i\\" \
+    -e "##     * ${_SSDF_TAG_ITEM}" \
     "${SSDF_ROOT_DIR}/install.sh"
-sed "${_SSDF_SED_IN_PLACE[@]}" \
-    -E "s/^(    SSDF_TAGS='[^']*)'/\1 ${_SSDF_INPUT_TAG_ID:0:1}'/" \
+_ssdf_sed \
+    -e "/## \* \`y\`: execution priority/i\\" \
+    -e "##     * ${_SSDF_TAG_ITEM}" \
     "${SSDF_ROOT_DIR}/install.mac.sh"
 
-### Clean up temporary sed script files
-rm -rf "${_SSDF_TMP_DIR}"
+### Add new tag to `/install.sh` and `/install.mac.sh`, in `SSDF_TAGS='<tags>'`
+_ssdf_sed \
+    -E "s/^(    SSDF_TAGS='[^']*)'/\1 ${_SSDF_INPUT_TAG_ID:0:1}'/" \
+    "${SSDF_ROOT_DIR}/install.sh"
+_ssdf_sed \
+    -E "s/^(    SSDF_TAGS='[^']*)'/\1 ${_SSDF_INPUT_TAG_ID:0:1}'/" \
+    "${SSDF_ROOT_DIR}/install.mac.sh"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 🧹 Cleaning up local variables.

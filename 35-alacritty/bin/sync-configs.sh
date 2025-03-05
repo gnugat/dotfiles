@@ -24,14 +24,7 @@ cp -i \
     "${_SSDF_PACKAGE_CONFIG_DIR}/alacritty.toml" \
     "${_SSDF_PACKAGE_CONFIG_DIR}/alacritty.old.toml"
 
-## Make GNU and BSD sed cross platform
-if [ "$(uname)" = "Darwin" ]; then
-    _SSDF_SED_IN_PLACE=(-i "") # BSD sed (eg Mac OS)
-else
-    _SSDF_SED_IN_PLACE=(-i) # GNU sed (eg Ubuntu)
-fi
-
-sed "${_SSDF_SED_IN_PLACE[@]}" \
+_ssdf_sed \
     -e "/^\[general\]$/d" \
     "${_SSDF_PACKAGE_CONFIG_DIR}/alacritty.old.toml"
 
