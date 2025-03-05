@@ -9,6 +9,13 @@
 let mapleader = ' '
 
 "" ─────────────────────────────────────────────────────────────────────────────
+"" Highlight search results. Press `Esc` to remove highlights.
+"" ─────────────────────────────────────────────────────────────────────────────
+set hlsearch
+set incsearch
+noremap <Esc> :nohlsearch<cr>
+
+"" ─────────────────────────────────────────────────────────────────────────────
 "" `Shift + j`: joins lines together from a selected block.
 "" 
 "" For comments:
