@@ -41,23 +41,15 @@ cp -ri \
     "${_SSDF_BLOCK_DIR}/templates" \
     "${_SSDF_BLOCK_DESTINATION}"
 
-# Make GNU and BSD sed cross platform
-if [ "$(uname)" = "Darwin" ]; then
-    _SSDF_SED_IN_PLACE=(-i "") # BSD sed (eg Mac OS)
-else
-    _SSDF_SED_IN_PLACE=(-i) # GNU sed (eg Ubuntu)
-fi
-
 # Replace placeholders in copied templates
 for _SSDF_INPUT_NAME in $_SSDF_INPUT_NAMES; do
     # Indirect expansion to get the referenced ENVVAR's value
     _SSDF_INPUT_VALUE="${!_SSDF_INPUT_NAME}"
 
-    _SSDF_MATCHED_FILES=$(grep -r -l "{{ ${_SSDF_INPUT_NAME} }}" "${_SSDF_BLOCK_DESTINATION}")
-    if [ ! -z "${_SSDF_MATCHED_FILES}" ]; then 
-        echo "${_SSDF_MATCHED_FILES}" \
-            | xargs sed "${_SSDF_SED_IN_PLACE[@]}" -e "s/{{ ${_SSDF_INPUT_NAME} }}/${_SSDF_INPUT_VALUE}/g"
-    fi
+    _ssdf_grep_sed \
+        "{{ ${_SSDF_INPUT_NAME} }}" \
+        "${_SSDF_BLOCK_DESTINATION}" \
+        -e "s/{{ ${_SSDF_INPUT_NAME} }}/${_SSDF_INPUT_VALUE}/g"
 done
 
 ## ─────────────────────────────────────────────────────────────────────────────
