@@ -16,6 +16,15 @@ set incsearch
 noremap <Esc> :nohlsearch<cr>
 
 "" ─────────────────────────────────────────────────────────────────────────────
+"" Fuzzy finding (Telescope like keybindings).
+"" ─────────────────────────────────────────────────────────────────────────────
+map <leader>ff <Action>(GotoFile)
+map <leader>fc <Action>(GotoClass)
+map <leader>fs <Action>(GotoSymbol)
+map <leader>fa <Action>(GotoAction)
+map <leader>fg <Action>(GotoText)
+
+"" ─────────────────────────────────────────────────────────────────────────────
 "" `Shift + j`: joins lines together from a selected block.
 "" 
 "" For comments:

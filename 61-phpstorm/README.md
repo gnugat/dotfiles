@@ -9,6 +9,14 @@ Configuration and Settings for PhpStorm on the Nui-Rama laptop.
 * `:edit ~/.ideavimrc`: opens configuration file
 * `:source ~/.ideavimrc`: applies configuration changes
 
+### Fuzzy Finding (Telescope like)
+
+* `Leader + f + f` find file
+* `Leader + f + c` find class
+* `Leader + f + s` find symbol
+* `Leader + f + a` find action
+* `Leader + f + g` find text (grep live)
+
 ### Window Splits
 
 * `Ctrl + w + v`: creates vertical split (left and right)
