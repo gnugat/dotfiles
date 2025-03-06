@@ -47,7 +47,7 @@ for _SSDF_INPUT_NAME in $_SSDF_INPUT_NAMES; do
     _SSDF_INPUT_VALUE="${!_SSDF_INPUT_NAME}"
 
     _ssdf_grep_sed \
-        "{{ ${_SSDF_INPUT_NAME} }}" \
+        "\{\{ ${_SSDF_INPUT_NAME} \}\}" \
         "${_SSDF_BLOCK_DESTINATION}" \
         -e "s/{{ ${_SSDF_INPUT_NAME} }}/${_SSDF_INPUT_VALUE}/g"
 done
