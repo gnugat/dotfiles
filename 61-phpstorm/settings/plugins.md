@@ -39,6 +39,22 @@
     * in `Variant` dropdown, select `Catppuccin Macchiato`
     * click `Restart IDE`
 
+## Relative Line Numbers
+
+* go to `Settings...` (`Command + ,`)
+* click `Plugins`
+* search for `Relative Line Numbers`
+* click `Install` (for `Relative Line Numbers`)
+* click `Ok`
+
+### Enable Relative and Absolute side by side
+
+* go to `Settings...` (`Command + ,`)
+* click `Editor`
+* click `Line Numbers`
+* tick `Absolute values` checkbox
+* click `Ok`
+
 ## IdeaVim
 
 * go to `Settings...` (`Command + ,`)
