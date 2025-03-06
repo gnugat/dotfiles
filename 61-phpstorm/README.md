@@ -8,6 +8,7 @@ Configuration and Settings for PhpStorm on the Nui-Rama laptop.
 
 * `:edit ~/.ideavimrc`: opens configuration file
 * `:source ~/.ideavimrc`: applies configuration changes
+* `Ctrl + z`: Distraction Free Mode (hides UI stuff)
 
 ### Fuzzy Finding (Telescope like)
 
