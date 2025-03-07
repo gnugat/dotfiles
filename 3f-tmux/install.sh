@@ -32,7 +32,8 @@ ln -nsf \
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
-## N/A
+mkdir -p "${HOME}/.config/tmux/plugins"
+git clone https://github.com/tmux-plugins/tpm "${HOME}/.config/tmux/plugins/tpm"
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
