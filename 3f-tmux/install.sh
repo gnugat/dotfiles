@@ -33,7 +33,9 @@ ln -nsf \
 ## ─────────────────────────────────────────────────────────────────────────────
 
 mkdir -p "${HOME}/.config/tmux/plugins"
-git clone https://github.com/tmux-plugins/tpm "${HOME}/.config/tmux/plugins/tpm"
+if [ ! -e "${HOME}/.config/tmux/plugins/tpm" ]; then
+    git clone https://github.com/tmux-plugins/tpm "${HOME}/.config/tmux/plugins/tpm"
+fi
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
