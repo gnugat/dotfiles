@@ -37,6 +37,8 @@
 
     # Displays commit details, including commiter name and date.
     sh  = show --pretty=format:\"%C(yellow)commit %H%d%C(reset)%nAuthor: %an <%ae>%nDate: %ad%nCommitter: %cn <%ce>%nDate: %cd%n%n%s%n%n%b\"
+    # Displays files added/changed/deleted from commit
+    shls  = show --pretty="" --name-only
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 🎨🐙 Git colours.
