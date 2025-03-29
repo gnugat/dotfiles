@@ -55,7 +55,7 @@ start-at-login = true
     ### ────────────────────────────────────────────────────────────────────────
     alt-1 = 'workspace 1' # Terminal
     alt-2 = 'workspace 2' # Browser
-    alt-3 = 'workspace 3' # Messaging
+    alt-3 = 'workspace 3' # Communication
     alt-4 = 'workspace 4' # Music
 
     ### ────────────────────────────────────────────────────────────────────────
