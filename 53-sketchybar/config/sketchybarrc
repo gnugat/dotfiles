@@ -44,6 +44,7 @@ source "${CONFIG_DIR}/items/hostname.sh"
 
 source "${CONFIG_DIR}/items/datetime.sh"
 source "${CONFIG_DIR}/items/battery.sh"
+source "${CONFIG_DIR}/items/keyboard.sh"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## Run scripts, on initial launch.
