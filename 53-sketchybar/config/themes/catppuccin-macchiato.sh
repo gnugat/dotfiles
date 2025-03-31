@@ -18,13 +18,10 @@
 ## * tertiary module (eg other windows):
 ##     * foreground: subtext 0
 ##     * background: surface 0
-## * `username@hostname` foreground: green
-## * Date and Time foreground: teal
-## * path: blue
-## * git: yellow
 ## ────────────────────────────────────────────────────────────────────────────
 
 export _SSDF_CM_MAUVE=0xffc6a0f6
+export _SSDF_CM_RED=0xfff38ba8
 export _SSDF_CM_YELLOW=0xffeed49f
 export _SSDF_CM_GREEN=0xffa6da95
 export _SSDF_CM_TEAL=0xff8bd5ca
