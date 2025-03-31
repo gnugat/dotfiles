@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
-# File: /53-sketchybar/config/items/hostname.sh
+# File: /53-sketchybar/config/plugins/hostname.sh
 # ──────────────────────────────────────────────────────────────────────────────
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## Displays hostname.
-##
-## Using `\\uf179` (nf-fa-apple) icon.
+## Displays the hostname.
 ## ─────────────────────────────────────────────────────────────────────────────
+_SSDF_SB_HOSTNAME=$(hostname)
+if [ "KFH7X7T56W" = "${_SSDF_SB_HOSTNAME}" ]; then
+    _SSDF_SB_HOSTNAME="nui-rama"
+fi
 
-sketchybar --add item hostname left
-sketchybar --set hostname icon="" script="${CONFIG_DIR}/plugins/hostname.sh"
-
+sketchybar --set "$NAME" label="${_SSDF_SB_HOSTNAME}"
