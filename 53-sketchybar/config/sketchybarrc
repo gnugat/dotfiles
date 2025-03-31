@@ -18,3 +18,22 @@ sketchybar --bar position=top \
                 height=35 \
                 color=$_SSDF_CM_MANTLE
 
+## ─────────────────────────────────────────────────────────────────────────────
+## Item Properties. 
+##
+## See: https://felixkratz.github.io/SketchyBar/config/items
+## ─────────────────────────────────────────────────────────────────────────────
+default=(
+  padding_left=5
+  padding_right=5
+  icon.font="JetBrainsMono Nerd Font:Bold:17.0"
+  label.font="JetBrainsMono Nerd Font:Bold:14.0"
+  icon.color=$_SSDF_CM_SUBTEXT_1
+  label.color=$_SSDF_CM_SUBTEXT_1
+  icon.padding_left=4
+  icon.padding_right=4
+  label.padding_left=4
+  label.padding_right=4
+)
+sketchybar --default "${default[@]}"
+
