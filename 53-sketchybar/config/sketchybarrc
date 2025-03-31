@@ -9,3 +9,12 @@
 ## ─────────────────────────────────────────────────────────────────────────────
 source "${CONFIG_DIR}/themes/catppuccin-macchiato.sh"
 
+## ─────────────────────────────────────────────────────────────────────────────
+## Bar Properties. 
+##
+## See: https://felixkratz.github.io/SketchyBar/config/bar
+## ─────────────────────────────────────────────────────────────────────────────
+sketchybar --bar position=top \
+                height=35 \
+                color=$_SSDF_CM_MANTLE
+
