@@ -34,8 +34,13 @@ ln -nsf \
 
 mkdir -p "${HOME}/.config/sketchybar/themes"
 ln -nsf \
-    "${_SSDF_PACKAGE_DIR}/config/themes/catppuccin-macchiato.sh" \
-    "${HOME}/.config/sketchybar/themes/catppuccin-macchiato.sh"
+    "${_SSDF_PACKAGE_DIR}/config/themes" \
+    "${HOME}/.config/sketchybar/themes"
+
+mkdir -p "${HOME}/.config/sketchybar/items"
+ln -nsf \
+    "${_SSDF_PACKAGE_DIR}/config/items" \
+    "${HOME}/.config/sketchybar/items"
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 

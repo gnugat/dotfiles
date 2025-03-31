@@ -15,8 +15,8 @@ source "${CONFIG_DIR}/themes/catppuccin-macchiato.sh"
 ## See: https://felixkratz.github.io/SketchyBar/config/bar
 ## ─────────────────────────────────────────────────────────────────────────────
 sketchybar --bar position=top \
-                height=35 \
-                color=$_SSDF_CM_MANTLE
+                 height=35 \
+                 color=$_SSDF_CM_MANTLE
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## Item Properties. 
@@ -37,3 +37,12 @@ default=(
 )
 sketchybar --default "${default[@]}"
 
+### ────────────────────────────────────────────────────────────────────────────
+### Items
+### ────────────────────────────────────────────────────────────────────────────
+source "${CONFIG_DIR}/items/hostname.sh"
+
+## ─────────────────────────────────────────────────────────────────────────────
+## Run scripts, on initial launch.
+## ─────────────────────────────────────────────────────────────────────────────
+sketchybar --update
