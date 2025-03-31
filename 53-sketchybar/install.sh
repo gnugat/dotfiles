@@ -42,6 +42,11 @@ ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/items" \
     "${HOME}/.config/sketchybar/items"
 
+mkdir -p "${HOME}/.config/sketchybar/plugins"
+ln -nsf \
+    "${_SSDF_PACKAGE_DIR}/config/plugins" \
+    "${HOME}/.config/sketchybar/plugins"
+
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
 ## ─────────────────────────────────────────────────────────────────────────────
