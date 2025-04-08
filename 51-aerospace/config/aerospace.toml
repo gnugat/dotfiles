@@ -9,7 +9,29 @@
 start-at-login = true
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## Gaps between windows (inner-*) and between monitor edges (outer-*).
+## Commands to run after AeroSpace started.
+## ─────────────────────────────────────────────────────────────────────────────
+after-startup-command = [
+    ## SketchyBar
+    'exec-and-forget sketchybar --reload ~/.config/sketchybar/sketchybarrc',
+    ## Skhd
+    'exec-and-forget skhd --start-service',
+]
+
+## ─────────────────────────────────────────────────────────────────────────────
+## Workspace change notifications.
+## ─────────────────────────────────────────────────────────────────────────────
+exec-on-workspace-change = [
+    ## SketchyBar
+    '/bin/bash',
+    '-c',
+    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+]
+
+## ─────────────────────────────────────────────────────────────────────────────
+## Gaps between:
+## - `inner-*`: windows
+## - `outer-*`: monitor edges
 ## ─────────────────────────────────────────────────────────────────────────────
 [gaps]
     inner.horizontal = 10
@@ -22,12 +44,60 @@ start-at-login = true
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 'main' binding mode declaration
 ##
+## All possible keys:
+## - letters: a, b, c, ..., z
+## - numbers: 0, 1, 2, ..., 9
+## - F-keys: f1, f2, ..., f20
+## - punctuations: comma, period, slash, semicolon, quote, backslash,
+##                 leftSquareBracket, rightSquareBracket, minus, equal, backtick
+## - special keys: space, enter, backspace, tab, esc
+## - arrows: left, down, up, right
+##
+## All possible modifiers: cmd, alt, ctrl, shift
+##
+## Conventions used:
+## - vim-like: hjkl for Left, Down, Up, Right (LDUR)
+## - modifiers:
+##     - alt: main modifier
+##     - alt-shift: secondary modifier
+## - keys:
+##     - number: workspace
+##     - letter: N/A (reserved for skhd)
+##     - punctuation: AeroSpace command
+##
 ## See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
 ## ─────────────────────────────────────────────────────────────────────────────
 [mode.main.binding]
     ### ────────────────────────────────────────────────────────────────────────
+    ### Change the layout of the focused window.
+    ###
+    ### Toggle orientation - horizontal / vertical:
+    ### - `Option ⌥` + `,`
+    ### Toggle tiling layout - tiles / accordion:
+    ### - `Option ⌥` + `.`
+    ### Toggle mode - tiling / floating:
+    ### - `Option ⌥` + `/`
+    ###
+    ### See: https://nikitabobko.github.io/AeroSpace/commands#layout
+    ### ────────────────────────────────────────────────────────────────────────
+    alt-comma = 'layout horizontal vertical'
+    alt-period= 'layout tiles accordion'
+    alt-slash = 'layout tiling floating'
+
+    ### ────────────────────────────────────────────────────────────────────────
+    ### Resize tile.
+    ###
+    ### - `Option ⌥` + `-`: decrease size
+    ### - `Option ⌥` + `Shift ⇧` + `=`: increase size
+    ###
+    ### See: https://nikitabobko.github.io/AeroSpace/commands#resize
+    ### ────────────────────────────────────────────────────────────────────────
+    alt-minus = 'resize smart -50'
+    alt-shift-equal = 'resize smart +50'
+
+    ### ────────────────────────────────────────────────────────────────────────
     ### Switch to Tile (focus to):
-    ### * `Option ⌥` + `h`, `j`, `k`, `l` (LDUR)
+    ### - `Option ⌥` + `h`, `j`, `k`, `l` (LDUR)
     ###
     ### See: https://nikitabobko.github.io/AeroSpace/commands#focus
     ### ────────────────────────────────────────────────────────────────────────
@@ -38,7 +108,7 @@ start-at-login = true
 
     ### ────────────────────────────────────────────────────────────────────────
     ### Move Tile:
-    ### * `Option ⌥` + `Shift ⇧` + `h`, `j`, `k`, `l` (LDUR)
+    ### - `Option ⌥` + `Shift ⇧` + `h`, `j`, `k`, `l` (LDUR)
     ###
     ### See: https://nikitabobko.github.io/AeroSpace/commands#move
     ### ────────────────────────────────────────────────────────────────────────
@@ -49,39 +119,77 @@ start-at-login = true
 
     ### ────────────────────────────────────────────────────────────────────────
     ### Switch to Workspace:
-    ### * `Option ⌥` + `1`, `2`, `3`, `4`
+    ### - `Option ⌥` + `1`, `2`, `4`, `5`, ...
     ###
     ### See: https://nikitabobko.github.io/AeroSpace/commands#workspace
     ### ────────────────────────────────────────────────────────────────────────
     alt-1 = 'workspace 1' # Terminal
-    alt-2 = 'workspace 2' # Browser
-    alt-3 = 'workspace 3' # Communication
-    alt-4 = 'workspace 4' # Music
+    alt-2 = 'workspace 2' # IDE
+    # alt-3 is used for... typing the `#` character.
+    alt-4 = 'workspace 4' # Testing
+    alt-5 = 'workspace 5' # Browser
+    alt-6 = 'workspace 6' # Communication
+    alt-7 = 'workspace 7' # Music
 
     ### ────────────────────────────────────────────────────────────────────────
     ### Move Tile to Workspace:
-    ### * `Option ⌥` + `Shift ⇧` + `1`, `2`, `3`, `4`
+    ### - `Option ⌥` + `Shift ⇧` + `1`, `2`, `4`, `5`, ...
     ###
     ### See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     ### ────────────────────────────────────────────────────────────────────────
     alt-shift-1 = 'move-node-to-workspace 1'
     alt-shift-2 = 'move-node-to-workspace 2'
-    alt-shift-3 = 'move-node-to-workspace 3'
+    # alt-3 is used for... typing the `#` character.
     alt-shift-4 = 'move-node-to-workspace 4'
+    alt-shift-5 = 'move-node-to-workspace 5'
+    alt-shift-6 = 'move-node-to-workspace 6'
+    alt-shift-7 = 'move-node-to-workspace 7'
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## On open, move an application tile to its workspace:
-## 1. Terminal (Alacritty)
-## 2. Browser (Chrome)
-## 3. Messaging (Slack)
-## 4. Music (Spotify)
+## 1. Shell (Alacritty)
+## 2. IDE (PhpStorm)
+## 3. is used for... typing the `#` character.
+## 4. Testing (BumbleHotkeys)
+## 5. Browser (Chrome)
+## 6. Communication (Slack)
+## 7. Music (Spotify)
 ##
 ## Use command `aerospace list-apps` to find the app ID to use.
 ## ─────────────────────────────────────────────────────────────────────────────
 [[on-window-detected]]
+if.app-id = 'org.alacritty'
+run = ['move-node-to-workspace 1']
+
+[[on-window-detected]]
+if.app-id = 'com.jetbrains.PhpStorm'
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
+if.app-id = 'com.bumble.BumbleHotkeys'
+run = ['move-node-to-workspace 4']
+
+[[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = "move-node-to-workspace 2"
+run = ['move-node-to-workspace 5']
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = ['move-node-to-workspace 6']
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'
-run = "move-node-to-workspace 4"
+run = ['move-node-to-workspace 7']
+
+## ─────────────────────────────────────────────────────────────────────────────
+## On open, make window as floating one:
+## - Testing: BumbleHotkeys
+## - VPN: Cisco Secure Client
+## ─────────────────────────────────────────────────────────────────────────────
+[[on-window-detected]]
+if.app-id = 'com.bumble.BumbleHotkeys'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'com.cisco.secureclient.gui'
+run = ['layout floating']
