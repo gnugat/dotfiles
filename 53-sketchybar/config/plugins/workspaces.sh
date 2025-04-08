@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# File: /53-sketchybar/config/plugins/slack.sh
+# File: /53-sketchybar/config/plugins/workspaces.sh
 # ──────────────────────────────────────────────────────────────────────────────
 
 ## ─────────────────────────────────────────────────────────────────────────────
@@ -8,8 +8,20 @@
 source "${CONFIG_DIR}/themes/catppuccin-macchiato.sh"
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## Displays numbder of Slack direct unread notifications.
+## If the AeroSpace Workspace is the one in focus, then highlight it.
 ## ─────────────────────────────────────────────────────────────────────────────
-_SSDF_SB_SLACK_STATUS_LABEL=$(lsappinfo info -only StatusLabel Slack | sed -n 's/.*"label"="\(.*\)".*/\1/p')
+_SSDF_WS_ID=$1
+_SSDF_WS_FOCUSED="${FOCUSED_WORKSPACE}"
+if [[ -z "${_SSDF_WS_FOCUSED}" ]]; then
+    _SSDF_WS_FOCUSED=$(aerospace list-workspaces --focused)
+fi
 
-sketchybar --set "$NAME" label="${_SSDF_SB_SLACK_STATUS_LABEL}" label.color="${_SSDF_CM_RED}"
+if [ "${_SSDF_WS_ID}" = "${_SSDF_WS_FOCUSED}" ]; then
+    sketchybar --set $NAME \
+        label.color="${_SSDF_CM_MAUVE}" \
+        background.color="${_SSDF_CM_SURFACE_2}"
+else
+    sketchybar --set $NAME background.drawing=off \
+        label.color="${_SSDF_CM_SUBTEXT_0}" \
+        background.color="${_SSDF_CM_SURFACE_0}"
+fi

@@ -16,7 +16,7 @@ source "${CONFIG_DIR}/themes/catppuccin-macchiato.sh"
 ## ─────────────────────────────────────────────────────────────────────────────
 sketchybar --bar position=top \
                  height=35 \
-                 color=$_SSDF_CM_MANTLE
+                 color="${_SSDF_CM_MANTLE}"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## Item Properties. 
@@ -28,8 +28,8 @@ default=(
   padding_right=5
   icon.font="JetBrainsMono Nerd Font:Bold:17.0"
   label.font="JetBrainsMono Nerd Font:Bold:14.0"
-  icon.color=$_SSDF_CM_SUBTEXT_1
-  label.color=$_SSDF_CM_SUBTEXT_1
+  icon.color="${_SSDF_CM_SUBTEXT_1}"
+  label.color="${_SSDF_CM_SUBTEXT_1}"
   icon.padding_left=4
   icon.padding_right=4
   label.padding_left=4
@@ -41,6 +41,7 @@ sketchybar --default "${default[@]}"
 ### Items
 ### ────────────────────────────────────────────────────────────────────────────
 source "${CONFIG_DIR}/items/hostname.sh"
+source "${CONFIG_DIR}/items/workspaces.sh"
 
 source "${CONFIG_DIR}/items/datetime.sh"
 source "${CONFIG_DIR}/items/battery.sh"
