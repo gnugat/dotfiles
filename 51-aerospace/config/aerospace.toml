@@ -29,6 +29,13 @@ exec-on-workspace-change = [
 ]
 
 ## ─────────────────────────────────────────────────────────────────────────────
+## Default layout.
+##
+## Possible values: tiles|accordion
+## ─────────────────────────────────────────────────────────────────────────────
+default-root-container-layout = 'accordion'
+
+## ─────────────────────────────────────────────────────────────────────────────
 ## Gaps between:
 ## - `inner-*`: windows
 ## - `outer-*`: monitor edges
