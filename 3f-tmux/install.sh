@@ -38,9 +38,6 @@ if [ ! -e "${HOME}/.config/tmux/plugins/tpm" ]; then
     git clone https://github.com/tmux-plugins/tpm "${HOME}/.config/tmux/plugins/tpm"
 fi
 
-## For saved sessions
-mkdir -p "${HOME}/.config/tmux/resurrect"
-
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
 ## ─────────────────────────────────────────────────────────────────────────────
