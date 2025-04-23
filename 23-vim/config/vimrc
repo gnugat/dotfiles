@@ -22,6 +22,5 @@ Plug 'preservim/nerdtree'          " Tree navigation
 Plug 'ctrlpvim/ctrlp.vim'          " Fuzzy finder
 Plug 'shawncplus/phpcomplete.vim'  " PHP autocomplete
 Plug 'ervandew/supertab'           " Autocomplete
-Plug 'SirVer/ultisnips'            " Snippets
 
 call plug#end()
