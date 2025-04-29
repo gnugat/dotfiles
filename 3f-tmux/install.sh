@@ -27,6 +27,9 @@ mkdir -p "${HOME}/.config/tmux"
 ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/tmux.conf" \
     "${HOME}/.config/tmux/tmux.conf"
+ln -nsf \
+    "${_SSDF_PACKAGE_DIR}/config/status-bar.conf" \
+    "${HOME}/.config/tmux/status-bar.conf"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install
