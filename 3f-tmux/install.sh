@@ -27,9 +27,12 @@ mkdir -p "${HOME}/.config/tmux"
 ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/tmux.conf" \
     "${HOME}/.config/tmux/tmux.conf"
+
+## Items are smaller, specific, configuration settings
+mkdir -p "${HOME}/.config/tmux/items"
 ln -nsf \
-    "${_SSDF_PACKAGE_DIR}/config/status-bar.conf" \
-    "${HOME}/.config/tmux/status-bar.conf"
+    "${_SSDF_PACKAGE_DIR}/config/items/status-line.conf" \
+    "${HOME}/.config/tmux/items/status-line.conf"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install
