@@ -4,10 +4,10 @@
 #
 # Conventions used:
 #
-# - left alt: main
-# - right alt: secondary
-# - shift + left alt: tertiary
-# - shift + right alt: quaternary
+# 1. left alt: main
+# 2. right alt: secondary
+# 3. shift + left alt: tertiary
+# 4. shift + right alt: quaternary
 #
 # Do not use alt + hjkl, as they're used in AeroSpace (vim-like navigation).
 # ──────────────────────────────────────────────────────────────────────────────
@@ -22,7 +22,8 @@
 ## - `Left Option ⌥`  + `q`: [Q]A API open
 ## - `Left Option ⌥`  + `s`: [S]RV Copy Jira ID
 ## - `Right Option ⌥` + `s`: [S]RV Open Jira issue
-## - `Left Option ⌥`  + `Shift ⇧` + `s`: [S]RV Create shot
+## - `Left Option ⌥`  + `Shift ⇧` + `s`: [S]RV Create branch
+## - `Right Option ⌥`  + `Shift ⇧` + `s`: [S]RV Create shot
 ## ────────────────────────────────────────────────────────────────────────────
 lalt - q : lexemes-open
 
@@ -36,4 +37,5 @@ lalt - q : qaapi-open
 
 lalt - s : srv-copy-jira-id
 ralt - s : srv-open-jira-issue
-shift + lalt - s : srv-create-shot
+shift + lalt - s : srv-create-branch
+shift + ralt - s : srv-create-shot
