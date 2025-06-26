@@ -51,7 +51,7 @@ _RT_CLEAR="#[fg=#{@thm_subtext_1}, bg=#{@thm_mantle}]"
 _RT_SESSION_LIST=""
 _RT_INDEX=1
 for _RT_SESSION in $_RT_SESSIONS; do
-    _RT_STYLE="#[fg=#{@thm_subtext_0}, bg=#{@thm_surface_0}"
+    _RT_STYLE="#[fg=#{@thm_subtext_0}, bg=#{@thm_surface_0}]"
     _RT_FLAG=""
     if [ "$_RT_SESSION" = "$_RT_CURRENT_SESSION" ]; then
         _RT_STYLE="#[fg=#{@thm_mauve}, bg=#{@thm_surface_2}]"
@@ -60,7 +60,7 @@ for _RT_SESSION in $_RT_SESSIONS; do
         _RT_STYLE="#[fg=#{@thm_blue}, bg=#{@thm_surface_1}]"
         _RT_FLAG="-"
     fi
-    _RT_SESSION_ITEM="${_RT_STYLE}[${_RT_INDEX}:${_RT_SESSION}${_RT_FLAG}]${_RT_CLEAR}"
+    _RT_SESSION_ITEM="${_RT_STYLE}[${_RT_INDEX}]${_RT_SESSION}${_RT_FLAG}${_RT_CLEAR}"
 
     _RT_SESSION_LIST="${_RT_SESSION_LIST} ${_RT_SESSION_ITEM}"
 
