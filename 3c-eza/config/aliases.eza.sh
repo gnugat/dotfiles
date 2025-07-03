@@ -7,8 +7,8 @@
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 📃 Listing.
 ## ─────────────────────────────────────────────────────────────────────────────
-alias la='eza --color=always --tree --level=1 --icons=always --all'
-alias ll='eza --color=always --tree --level=1 --icons=always --long --group --git'
-alias lla='eza --color=always --tree --level=1 --icons=always --all --long --group --git'
-alias l='eza --color=always --tree --level=1 --icons=always'
+alias la='eza --color=always --tree --level=0 --icons=always --all'
+alias ll='eza --color=always --tree --level=0 --icons=always --long --group --git'
+alias lla='eza --color=always --tree --level=0 --icons=always --all --long --group --git'
+alias l='eza --color=always --tree --level=0 --icons=always'
 
