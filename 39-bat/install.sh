@@ -28,12 +28,19 @@ ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/config" \
     "${HOME}/.config/bat/config"
 ln -nsf \
+    "${_SSDF_PACKAGE_DIR}/config/aliases.bat.sh" \
+    "${HOME}/.config/bat/aliases.bat.sh"
+ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/envvars.bat.sh" \
     "${HOME}/.config/bat/envvars.bat.sh"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
+
+_ssdf_append_source \
+    "${HOME}/.config/shell/aliases.local.sh" \
+    "${HOME}/.config/bat/aliases.bat.sh"
 
 ## Adding catppuccin theme
 mkdir -p "${HOME}/.config/bat/themes"
@@ -49,7 +56,7 @@ curl -sfLo \
 curl -sfLo \
     "${HOME}/.config/bat/themes/catppuccin-mocha.tmTheme" \
     https://raw.githubusercontent.com/catppuccin/bat/main/themes/Catppuccin%20Mocha.tmTheme
-bat cache --build
+bat cache --build || batcat cache --build
 
 _ssdf_append_source \
     "${HOME}/.config/shell/envvars.local.sh" \
