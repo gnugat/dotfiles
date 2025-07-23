@@ -24,6 +24,8 @@ _ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${SSDF_PACKAGE_MANAGE
 ## ─────────────────────────────────────────────────────────────────────────────
 
 mkdir -p "${HOME}/.config/gnupg"
+chmod 700 "${HOME}/.config/gnupg"
+chmod 600 "${HOME}/.config/gnupg/*"
 ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/envvars.gnupg.sh" \
     "${HOME}/.config/gnupg/envvars.gnupg.sh"

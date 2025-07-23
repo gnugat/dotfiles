@@ -118,6 +118,9 @@
 [user]
     name  = Loïc Faugeron
     email = faugeron.loic@gmail.com
+    signingkey = 575BD08D7CF6DB860957F0DA073BE0C10B0C6C7F
+[commit]
+    gpgsign = true
 [github]
     user  = gnugat
 
