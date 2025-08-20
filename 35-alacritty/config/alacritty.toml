@@ -34,10 +34,6 @@ padding.y = 10
 ## Remove the top bar of the window that has close/minimize/maximize buttons.
 decorations = "None"
 
-## Allow to see background, but not in a distracting way.
-opacity = 0.9
-blur = true
-
 ## The window will be maximized on startup.
 startup_mode = "Maximized"
 
