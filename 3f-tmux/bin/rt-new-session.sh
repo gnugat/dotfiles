@@ -18,4 +18,11 @@
 # ──────────────────────────────────────────────────────────────────────────────
 
 _RT_NAME=$1
-z $_RT_NAME; tmux new-session -s $_RT_NAME
+_RT_DIR=$(zoxide query "${_RT_NAME}")
+
+if [[ -n "${_RT_DIR}" ]]; then
+    tmux new-session -s "${_RT_NAME}" -c "${_RT_DIR}"
+else
+    echo "Directory not found: ${_RT_DIR} (${_RT_NAME})"
+    exit 1
+fi
