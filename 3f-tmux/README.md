@@ -12,4 +12,4 @@ And by improve, I mean to make it fit this specific workflow:
 
 * being able to open/close sessions without detaching
 * switching to a session by its index
-
+* starting a new tmux session in a given directory (uses Zoxide)
