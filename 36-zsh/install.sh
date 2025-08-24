@@ -42,6 +42,8 @@ _ssdf_append_source \
     "${HOME}/.config/shell/envvars.local.sh" \
     "${HOME}/.config/zsh/envvars.zsh.sh"
 
+chsh -s $(which zsh)
+
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
 ## ─────────────────────────────────────────────────────────────────────────────
