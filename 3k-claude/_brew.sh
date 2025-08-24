@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-# File: /3j-nvm/__curl.sh
+# File: /3k-claude/_brew.sh
 # ──────────────────────────────────────────────────────────────────────────────
-# 📰🌐🚦 Installing nvm (curl).
+# 📰🍏✳ Installing claude, on Mac OS (brew).
+# Actually, there's no brew package for it, so doing it manually with npm.
 # ──────────────────────────────────────────────────────────────────────────────
 
-PROFILE=/dev/null \
-    bash -c 'curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash'
+_SSDF_PACKAGE_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
+
+source "${_SSDF_PACKAGE_DIR}/__npm.sh"

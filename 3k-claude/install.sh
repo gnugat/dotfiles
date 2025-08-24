@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
-# File: /3j-nvm/install.sh
+# File: /3k-claude/install.sh
 # ──────────────────────────────────────────────────────────────────────────────
-# 🚦 nvm
+# ✳ Claude Code
 # ──────────────────────────────────────────────────────────────────────────────
 
 _SSDF_PACKAGE_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
 SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_DIR}/..")"
 source "${SSDF_ROOT_DIR}/00-_ssdf/functions.sh"
 
-_SSDF_PACKAGE_NAME="nvm"
+_SSDF_PACKAGE_NAME="claude"
 
 _ssdf_echo_section_title "Installing ${_SSDF_PACKAGE_NAME}..."
 
@@ -23,24 +23,13 @@ _ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${SSDF_PACKAGE_MANAGE
 ## 🔗 Symbolic links.
 ## ─────────────────────────────────────────────────────────────────────────────
 
-mkdir -p "${HOME}/.config/nvm"
-ln -nsf \
-    "${_SSDF_PACKAGE_DIR}/config/boot.nvm.sh" \
-    "${HOME}/.config/nvm/boot.nvm.sh"
+## N/A
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
-_ssdf_append_source \
-    "${HOME}/.config/shell/boot.local.sh" \
-    "${HOME}/.config/nvm/boot.nvm.sh"
-
-source "${HOME}/.config/nvm/nvm.sh"
-nvm install node
-
-npm config set cache "${HOME}/.cache/npm"
-npm config set init-module "${HOME}/.config/npm/config/npm-init.js"
+## N/A
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
