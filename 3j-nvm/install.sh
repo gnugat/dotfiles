@@ -39,6 +39,10 @@ _ssdf_append_source \
 source "${HOME}/.config/nvm/nvm.sh"
 nvm install node
 
+npm config set prefix "$XDG_DATA_HOME/npm"
+npm config set cache "$XDG_CACHE_HOME/npm"
+npm config set init-module "$XDG_CONFIG_HOME/npm/config/npm-init.js"
+
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
 ## ─────────────────────────────────────────────────────────────────────────────
