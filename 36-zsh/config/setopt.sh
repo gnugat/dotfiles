@@ -58,6 +58,12 @@ if [ -e /opt/homebrew/share/zsh/site-functions ]; then
         /opt/homebrew/share/zsh/site-functions
         $fpath
     )
+elif [ -e /usr/share/zsh/site-functions ]; then
+    fpath=(
+        /usr/share/zsh/site-functions
+        /usr/share/zsh/vendor-completions
+        $fpath
+    )
 fi
 autoload -Uz compinit
 compinit
@@ -67,6 +73,8 @@ compinit
 ## ─────────────────────────────────────────────────────────────────────────────
 if [ -e /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+elif [ -e /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
+    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 fi
 
 ## ─────────────────────────────────────────────────────────────────────────────
@@ -74,6 +82,8 @@ fi
 ## ─────────────────────────────────────────────────────────────────────────────
 if [ -e /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
     source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [ -e /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]; then
+    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
 ## ─────────────────────────────────────────────────────────────────────────────

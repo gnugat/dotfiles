@@ -36,8 +36,7 @@ ln -nsf "${_SSDF_PACKAGE_DIR}/config/path.sh" "${HOME}/.config/shell/path.sh"
 # Ensure supported shells source the main generic shell config
 for _SSDF_SUPPORTED_SHELL in \
     "${HOME}/.bashrc" \
-    "${HOME}/.zshrc" \
-    "${HOME}/.profile"
+    "${HOME}/.zshrc"
 do
     if [ -f "${_SSDF_SUPPORTED_SHELL}" ]; then
         _ssdf_append_source \

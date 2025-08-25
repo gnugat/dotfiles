@@ -64,7 +64,7 @@ fi
 
 if ps -p $$ | grep -q "bash" && [ -f "${HOME}/.config/bash/shopt.sh" ]; then
     source "${HOME}/.config/bash/shopt.sh"
-elif ps -p $$ | grep -q "zsh" && [ "${HOME}/.config/zsh/setopt.sh" ]; then
+elif ps -p $$ | grep -q "zsh" && [ -f "${HOME}/.config/zsh/setopt.sh" ]; then
     source "${HOME}/.config/zsh/setopt.sh"
 fi
 
