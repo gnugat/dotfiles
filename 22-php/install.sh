@@ -82,6 +82,7 @@ fi
 ## Composer
 if ! command -v "composer" >/dev/null 2>&1; then
     curl -sS https://getcomposer.org/installer | php > /dev/null
+    sudo mkdir -p /usr/local/bin
     sudo mv composer.phar /usr/local/bin/composer
 fi
 
