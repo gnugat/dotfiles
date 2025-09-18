@@ -1,0 +1,3 @@
+# {{ _SSDF_INPUT_ORGANIZATION }} work
+[includeIf "hasconfig:remote.*.url:git@{{ _SSDF_INPUT_HOST_ALIAS }}:{{ _SSDF_INPUT_GITHUB_ORG }}/**"]
+    path = ~/.config/git/user/{{ _SSDF_INPUT_ORGANIZATION }}
