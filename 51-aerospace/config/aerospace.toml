@@ -144,13 +144,13 @@ default-root-container-layout = 'accordion'
     ###
     ### See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     ### ────────────────────────────────────────────────────────────────────────
-    alt-shift-1 = 'move-node-to-workspace 1'
-    alt-shift-2 = 'move-node-to-workspace 2'
+    alt-shift-1 = 'move-node-to-workspace --follow-focus 1'
+    alt-shift-2 = 'move-node-to-workspace --follow-focus 2'
     # alt-3 is used for... typing the `#` character.
-    alt-shift-4 = 'move-node-to-workspace 4'
-    alt-shift-5 = 'move-node-to-workspace 5'
-    alt-shift-6 = 'move-node-to-workspace 6'
-    alt-shift-7 = 'move-node-to-workspace 7'
+    alt-shift-4 = 'move-node-to-workspace --follow-focus 4'
+    alt-shift-5 = 'move-node-to-workspace --follow-focus 5'
+    alt-shift-6 = 'move-node-to-workspace --follow-focus 6'
+    alt-shift-7 = 'move-node-to-workspace --follow-focus 7'
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## On open, move an application tile to its workspace:
