@@ -173,6 +173,10 @@ if.app-id = 'com.jetbrains.PhpStorm'
 run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
+if.app-id = 'io.rancherdesktop.app'
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
 if.app-id = 'com.bumble.BumbleHotkeys'
 run = ['move-node-to-workspace 4']
 
