@@ -2,5 +2,8 @@
 [user]
     name  = Loïc Faugeron
     email = loic.faugeron@helloprima.com
+    signingkey = 980D5E53E3DE860576A97445394E28ECA17390D4
+[commit]
+    gpgsign = true
 [github]
     user  = loic-faugeron-prima
