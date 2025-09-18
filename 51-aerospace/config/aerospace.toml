@@ -189,6 +189,10 @@ if.app-id = 'com.tinyspeck.slackmacgap'
 run = ['move-node-to-workspace 6']
 
 [[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
+run = ['move-node-to-workspace 6']
+
+[[on-window-detected]]
 if.app-id = 'com.spotify.client'
 run = ['move-node-to-workspace 7']
 
