@@ -155,11 +155,11 @@ default-root-container-layout = 'accordion'
 ## ─────────────────────────────────────────────────────────────────────────────
 ## On open, move an application tile to its workspace:
 ## 1. Shell (Alacritty)
-## 2. IDE (PhpStorm)
+## 2. IDE (PhpStorm, Docker Desktop)
 ## 3. is used for... typing the `#` character.
-## 4. Testing (BumbleHotkeys)
+## 4. Testing
 ## 5. Browser (Chrome)
-## 6. Communication (Slack)
+## 6. Communication (Slack, Discord)
 ## 7. Music (Spotify)
 ##
 ## Use command `aerospace list-apps` to find the app ID to use.
@@ -175,10 +175,6 @@ run = ['move-node-to-workspace 2']
 [[on-window-detected]]
 if.app-id = 'io.rancherdesktop.app'
 run = ['move-node-to-workspace 2']
-
-[[on-window-detected]]
-if.app-id = 'com.bumble.BumbleHotkeys'
-run = ['move-node-to-workspace 4']
 
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
