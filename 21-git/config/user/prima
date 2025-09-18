@@ -7,3 +7,5 @@
     gpgsign = true
 [github]
     user  = loic-faugeron-prima
+[core]
+    hooksPath = /Users/loic.faugeron/Projects/primait/security-hooks/hooks
