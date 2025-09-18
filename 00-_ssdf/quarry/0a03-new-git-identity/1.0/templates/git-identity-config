@@ -1,0 +1,6 @@
+# {{ _SSDF_INPUT_ORGANIZATION }} work identity
+[user]
+    name  = {{ _SSDF_INPUT_USER_NAME }}
+    email = {{ _SSDF_INPUT_USER_EMAIL }}
+[github]
+    user  = {{ _SSDF_INPUT_GITHUB_USER }}
