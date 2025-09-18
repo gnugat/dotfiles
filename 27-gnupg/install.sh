@@ -25,10 +25,14 @@ _ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${SSDF_PACKAGE_MANAGE
 
 mkdir -p "${HOME}/.config/gnupg"
 chmod 700 "${HOME}/.config/gnupg"
-chmod 600 "${HOME}/.config/gnupg/*"
 ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/envvars.gnupg.sh" \
     "${HOME}/.config/gnupg/envvars.gnupg.sh"
+ln -nsf \
+    "${_SSDF_PACKAGE_DIR}/config/gpg-agent.conf" \
+    "${HOME}/.config/gnupg/gpg-agent.conf"
+
+chmod 600 "${HOME}/.config/gnupg"/*
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install
@@ -37,6 +41,8 @@ ln -nsf \
 _ssdf_append_source \
     "${HOME}/.config/shell/envvars.local.sh" \
     "${HOME}/.config/gnupg/envvars.gnupg.sh"
+
+_ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 🧹 Cleaning up local variables
