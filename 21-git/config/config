@@ -127,3 +127,7 @@
 # <work>
 #[includeIf "hasconfig:remote.*.url:git@<work>.github.com:<group>/**"]
 #    path = ~/.config/git/user/<provider-work>
+
+# Prima work
+[includeIf "hasconfig:remote.*.url:git@prima.github.com:primait/**"]
+    path = ~/.config/git/user/prima
