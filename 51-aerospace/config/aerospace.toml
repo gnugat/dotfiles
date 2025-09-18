@@ -144,22 +144,22 @@ default-root-container-layout = 'accordion'
     ###
     ### See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
     ### ────────────────────────────────────────────────────────────────────────
-    alt-shift-1 = 'move-node-to-workspace 1'
-    alt-shift-2 = 'move-node-to-workspace 2'
+    alt-shift-1 = 'move-node-to-workspace --follow-focus 1'
+    alt-shift-2 = 'move-node-to-workspace --follow-focus 2'
     # alt-3 is used for... typing the `#` character.
-    alt-shift-4 = 'move-node-to-workspace 4'
-    alt-shift-5 = 'move-node-to-workspace 5'
-    alt-shift-6 = 'move-node-to-workspace 6'
-    alt-shift-7 = 'move-node-to-workspace 7'
+    alt-shift-4 = 'move-node-to-workspace --follow-focus 4'
+    alt-shift-5 = 'move-node-to-workspace --follow-focus 5'
+    alt-shift-6 = 'move-node-to-workspace --follow-focus 6'
+    alt-shift-7 = 'move-node-to-workspace --follow-focus 7'
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## On open, move an application tile to its workspace:
 ## 1. Shell (Alacritty)
-## 2. IDE (PhpStorm)
+## 2. IDE (PhpStorm, Docker Desktop)
 ## 3. is used for... typing the `#` character.
-## 4. Testing (BumbleHotkeys)
+## 4. Testing
 ## 5. Browser (Chrome)
-## 6. Communication (Slack)
+## 6. Communication (Slack, Discord)
 ## 7. Music (Spotify)
 ##
 ## Use command `aerospace list-apps` to find the app ID to use.
@@ -177,15 +177,15 @@ if.app-id = 'io.rancherdesktop.app'
 run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
-if.app-id = 'com.bumble.BumbleHotkeys'
-run = ['move-node-to-workspace 4']
-
-[[on-window-detected]]
 if.app-id = 'com.google.Chrome'
 run = ['move-node-to-workspace 5']
 
 [[on-window-detected]]
 if.app-id = 'com.tinyspeck.slackmacgap'
+run = ['move-node-to-workspace 6']
+
+[[on-window-detected]]
+if.app-id = 'com.hnc.Discord'
 run = ['move-node-to-workspace 6']
 
 [[on-window-detected]]
