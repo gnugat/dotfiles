@@ -1,0 +1,3 @@
+# 🥧 Suite-py
+
+{{ _SSDF_INPUT_PACKAGE_SHORT_DESCRIPTION }}
