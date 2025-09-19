@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# File: /76-python/_brew.sh
+# File: /77-suite-py/_brew.sh
 # ──────────────────────────────────────────────────────────────────────────────
-# 📰🍏🐍 Installing python, on Mac OS (brew).
+# 📰🍏🥧 Installing suite-py, on Mac OS (brew).
+# Actually, there's no brew package for it, so doing it manually with pipx.
 # ──────────────────────────────────────────────────────────────────────────────
 
-# Install Python 3.13 (latest stable, avoiding 3.14)
-HOMEBREW_NO_ENV_HINTS=1 brew install -q python@3.13 pipx
+source "$(dirname "${BASH_SOURCE[0]}")/__pipx.sh"
