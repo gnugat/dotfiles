@@ -1,0 +1,32 @@
+# File: /77-suite-py/config/config.yml
+# ──────────────────────────────────────────────────────────────────────────────
+# 🥧 Suite-py config.
+# ──────────────────────────────────────────────────────────────────────────────
+---
+youtrack:
+  url: https://prima-assicurazioni-spa.myjetbrains.com/youtrack
+  picked_state: In progress
+  review_state: In Review
+  test_state: Testing
+  merged_state: Staging
+  release_state: Done
+  add_reviewers_tags: True
+  default_issue_type: Task
+
+user:
+  projects_home: /Users/loic.faugeron/Projects/primait
+  captainhook_url: https://captainhook.prima.it
+
+vault:
+  base_secret_profile: it
+  profiles:
+    - it
+    - uk
+
+qainit:
+  url: https://api.prima.qa
+  profile: dev
+  table_size: 10 #[1-100]
+
+aws:
+  profile: default
