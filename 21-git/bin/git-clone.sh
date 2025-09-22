@@ -18,6 +18,8 @@
 
 _GIT_CLONE_REPOSITORY=$1
 _GIT_CLONE_USERNAME=${2:-gnugat}
+_GIT_CLONE_PATH="${HOME}/Projects/${_GIT_CLONE_USERNAME}/${_GIT_CLONE_REPOSITORY}"
+_GIT_CLONE_HOST="github.com"
 
 if [ -z "${_GIT_CLONE_REPOSITORY}" ]; then
     echo "  [ERROR] Repository name is required"
@@ -25,15 +27,11 @@ if [ -z "${_GIT_CLONE_REPOSITORY}" ]; then
     exit 1
 fi
 
-_GIT_CLONE_PATH="${HOME}/Projects/${_GIT_CLONE_USERNAME}/${_GIT_CLONE_REPOSITORY}"
-
 mkdir -p "$(dirname "${_GIT_CLONE_PATH}")"
 
 # Check if SSH config has a specific host for this username
 if ssh -F ~/.ssh/config -G "${_GIT_CLONE_USERNAME}.github.com" >/dev/null 2>&1; then
     _GIT_CLONE_HOST="${_GIT_CLONE_USERNAME}.github.com"
-else
-    _GIT_CLONE_HOST="github.com"
 fi
 
 git clone "git@${_GIT_CLONE_HOST}:${_GIT_CLONE_USERNAME}/${_GIT_CLONE_REPOSITORY}.git" "${_GIT_CLONE_PATH}"
