@@ -4,5 +4,5 @@
 # ♻️ 🌩️ ENVVAR management, for aws-cli.
 # ──────────────────────────────────────────────────────────────────────────────
 
-export AWS_CONFIG_FILE=~/.config/aws/config
-export AWS_SHARED_CREDENTIALS_FILE=~/.config/aws/credentials
+export AWS_CONFIG_FILE=~/.config/aws-cli/config
+export AWS_SHARED_CREDENTIALS_FILE=~/.config/aws-cli/credentials
