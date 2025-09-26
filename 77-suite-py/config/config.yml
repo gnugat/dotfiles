@@ -2,7 +2,7 @@
 # ──────────────────────────────────────────────────────────────────────────────
 # 🥧 Suite-py config.
 # ──────────────────────────────────────────────────────────────────────────────
----
+
 youtrack:
   url: https://prima-assicurazioni-spa.myjetbrains.com/youtrack
   picked_state: In progress
@@ -12,6 +12,8 @@ youtrack:
   release_state: Done
   add_reviewers_tags: True
   default_issue_type: Task
+  default_slug: ''
+  skip_confirmation: True
 
 user:
   projects_home: /Users/loic.faugeron/Projects/primait
@@ -30,3 +32,4 @@ qainit:
 
 aws:
   profile: default
+
