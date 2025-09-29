@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# File: /3n-phpactor/_brew.sh
+# File: /3o-phpactor/_brew.sh
 # ──────────────────────────────────────────────────────────────────────────────
 # 📰🍏🅿️ Installing phpactor, on Mac OS (brew).
 # Actually, there's no brew package for it, so doing it manually with curl.

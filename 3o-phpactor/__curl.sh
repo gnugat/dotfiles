@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
-# File: /3n-phpactor/_apt.sh
+# File: /3o-phpactor/__curl.sh
 # ──────────────────────────────────────────────────────────────────────────────
-# 📰🍊🅿️ Installing phpactor, on Ubuntu (apt).
-# Actually, there's no apt package for it, so doing it manually with curl.
+# 📰🌐🅿️ Installing phpactor (curl).
 # ──────────────────────────────────────────────────────────────────────────────
 
-_SSDF_PACKAGE_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
-
-source "${_SSDF_PACKAGE_DIR}/__curl.sh"
+mkdir -p "${HOME}/.local/bin"
+curl -Lo "${HOME}/.local/bin/phpactor" https://github.com/phpactor/phpactor/releases/latest/download/phpactor.phar
+chmod +x "${HOME}/.local/bin/phpactor"
