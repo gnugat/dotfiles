@@ -13,11 +13,11 @@ youtrack:
   add_reviewers_tags: True
   default_issue_type: Task
   default_slug: ''
-  skip_confirmation: True
 
 user:
   projects_home: /Users/loic.faugeron/Projects/primait
   captainhook_url: https://captainhook.prima.it
+  skip_confirmation: True
 
 vault:
   base_secret_profile: it
