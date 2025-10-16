@@ -4,38 +4,18 @@
 #
 # Conventions used:
 #
-# 1. left alt: main
-# 2. right alt: secondary
-# 3. shift + left alt: tertiary
-# 4. shift + right alt: quaternary
+# 1. left alt: reserved for apps (e.g. [s]lack, [d]iscord, etc)
+# 2. shift + left alt: NEWT create branch (e.g. [S]uite-py, [P]rima, etc)
+# 3. right alt: NEWT open PR (e.g. [s]uite-py, [p]rima, etc)
+# 4. shift + right alt: NEWT ???
 #
 # Do not use alt + hjkl, as they're used in AeroSpace (vim-like navigation).
 # ──────────────────────────────────────────────────────────────────────────────
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## Launch scripts:
-## - `Left Option ⌥`  + `l`: [L]exemes open
-## - `Left Option ⌥`  + `m`: [M]API Copy Jira ID
-## - `Right Option ⌥` + `m`: [M]API Open Jira issue
-## - `Left Option ⌥`  + `Shift ⇧` + `m`: [M]API Create Jira issues
-## - `Left Option ⌥`  + `p`: [P]ATCH create
-## - `Left Option ⌥`  + `q`: [Q]A API open
-## - `Left Option ⌥`  + `s`: [S]RV Copy Jira ID
-## - `Right Option ⌥` + `s`: [S]RV Open Jira issue
-## - `Left Option ⌥`  + `Shift ⇧` + `s`: [S]RV Create branch
-## - `Right Option ⌥`  + `Shift ⇧` + `s`: [S]RV Create shot
+## 🦎 NEWT
+## - `Left Option ⌥` + `Shift ⇧` + `s`: [S]uite-py Create branch from YouTrack card
+## - `Left Option ⌥` + `Shift ⇧` + `p`: [P]rima    Create branch from YouTrack card
 ## ────────────────────────────────────────────────────────────────────────────
-lalt - q : lexemes-open
-
-lalt - m : mapi-copy-jira-id
-ralt - m : mapi-open-jira-issue
-shift + lalt - m : mapi-create-jira-issues
-
-lalt - p : patch-create
-
-lalt - q : qaapi-open
-
-lalt - s : srv-copy-jira-id
-ralt - s : srv-open-jira-issue
-shift + lalt - s : srv-create-branch
-shift + ralt - s : srv-create-shot
+shift + lalt - s : /Users/loic.faugeron/bin/newt/suite_py-create-branch.sh
+shift + lalt - p : /Users/loic.faugeron/bin/newt/prima-create-branch.sh
