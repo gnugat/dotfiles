@@ -32,17 +32,14 @@ ln -nsf \
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
-mkdir -p "${HOME}/.config/sketchybar/themes"
 ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/themes" \
     "${HOME}/.config/sketchybar/themes"
 
-mkdir -p "${HOME}/.config/sketchybar/items"
 ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/items" \
     "${HOME}/.config/sketchybar/items"
 
-mkdir -p "${HOME}/.config/sketchybar/plugins"
 ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/plugins" \
     "${HOME}/.config/sketchybar/plugins"
