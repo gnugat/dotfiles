@@ -80,7 +80,14 @@ Plug 'ctrlpvim/ctrlp.vim'          " Fuzzy finder
 Plug 'shawncplus/phpcomplete.vim'  " PHP autocomplete
 Plug 'ervandew/supertab'           " Autocomplete
 Plug 'vim-vdebug/vdebug'           " Integration with XDebug
+Plug 'catppuccin/vim', { 'as': 'catppuccin' } " Theme
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy Finder++
 Plug 'junegunn/fzf.vim'
 
 call plug#end()
+
+"" ─────────────────────────────────────────────────────────────────────────────
+"" catppuccin machiatto
+"" ─────────────────────────────────────────────────────────────────────────────
+set termguicolors
+colorscheme catppuccin_macchiato
