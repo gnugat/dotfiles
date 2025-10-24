@@ -40,11 +40,6 @@ let g:markdown_fenced_languages = ['bash', 'php', 'sql', 'json', 'yaml']
 :highlight LineNr ctermfg=grey
 
 "" ─────────────────────────────────────────────────────────────────────────────
-"" Display cursor's line and column current position.
-"" ─────────────────────────────────────────────────────────────────────────────
-:set ruler
-
-"" ─────────────────────────────────────────────────────────────────────────────
 "" Display vertical ruler to show column width limits.
 "" ─────────────────────────────────────────────────────────────────────────────
 :set colorcolumn=81,121
@@ -63,6 +58,7 @@ Plug 'vim-vdebug/vdebug'           " Integration with XDebug
 Plug 'catppuccin/vim', { 'as': 'catppuccin' } " Theme
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy Finder++
 Plug 'junegunn/fzf.vim'
+Plug 'itchyny/lightline.vim'      " status bar
 
 call plug#end()
 
@@ -91,3 +87,32 @@ nnoremap <leader>ff :Files<CR>
 nnoremap <leader>fo :History<CR>
 nnoremap <leader>fb :Buffers<CR>
 nnoremap <leader>fg :Rg<Space>
+
+"" ─────────────────────────────────────────────────────────────────────────────
+"" lightline
+""
+"" - set laststatus=2: always display status line (0: never, 1: when 2+ windows)
+"" - set noshowmode: removes --INSERT-- mode indicator (lightline shows it)
+"" - active.left: components shown on left side of active window's statusline
+""   - [ 'mode', 'paste' ]: current mode (INSERT/NORMAL) and paste status
+""   - [ 'readonly', 'relativepath', 'modified' ]:
+""     readonly: shows [RO] if file is read-only
+""     relativepath: file path relative to where vim was opened
+""     modified: shows [+] if file has unsaved changes
+"" - active.right: components shown on right side of active window's statusline
+""   - [ 'lineinfo' ]: cursor position (line:column)
+""   - [ 'percent' ]: percentage through file
+""   - [ 'filetype' ]: file type (php, python, etc.)
+"" ─────────────────────────────────────────────────────────────────────────────
+set laststatus=2
+set noshowmode
+let g:lightline = {
+\  'colorscheme': 'catppuccin_macchiato',
+\  'active': {
+\    'left': [ [ 'mode', 'paste' ],
+\              [ 'readonly', 'relativepath', 'modified' ] ],
+\    'right': [ [ 'lineinfo' ],
+\               [ 'percent' ],
+\               [ 'filetype' ] ]
+\  }
+\ }
