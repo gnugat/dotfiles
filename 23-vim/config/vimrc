@@ -59,6 +59,7 @@ Plug 'catppuccin/vim', { 'as': 'catppuccin' } " Theme
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy Finder++
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/lightline.vim'      " status bar
+Plug 'yegappan/lsp'               " LSP client for Vim 9
 
 call plug#end()
 
@@ -116,3 +117,42 @@ let g:lightline = {
 \               [ 'filetype' ] ]
 \  }
 \ }
+
+"" ─────────────────────────────────────────────────────────────────────────────
+"" LSP Configuration
+""
+"" PHP Language Server: phpactor
+"" - See: https://phpactor.readthedocs.io/en/master/
+""
+"" Key mappings:
+"" - gd: Go to definition
+"" - gr: Show references
+"" - K: Show hover documentation
+"" - <leader>rn: Rename symbol
+"" - <leader>ca: Code action
+"" - [d / ]d: Navigate diagnostics
+"" ─────────────────────────────────────────────────────────────────────────────
+let lspServers = [#{
+\   name: 'phpactor',
+\   filetype: ['php'],
+\   path: exepath('phpactor'),
+\   args: ['language-server'],
+\ }]
+
+autocmd VimEnter * call LspAddServer(lspServers)
+
+" LSP key mappings
+nnoremap <silent> gd :LspGotoDefinition<CR>
+nnoremap <silent> gr :LspShowReferences<CR>
+nnoremap <silent> K :LspHover<CR>
+nnoremap <silent> <leader>rn :LspRename<CR>
+nnoremap <silent> <leader>ca :LspCodeAction<CR>
+nnoremap <silent> [d :LspDiag prev<CR>
+nnoremap <silent> ]d :LspDiag next<CR>
+
+" LSP options
+let lspOpts = #{
+\   autoHighlightDiags: v:true,
+\   showDiagWithSign: v:true,
+\ }
+autocmd VimEnter * call LspOptionsSet(lspOpts)
