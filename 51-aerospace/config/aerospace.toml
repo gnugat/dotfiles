@@ -137,6 +137,7 @@ default-root-container-layout = 'accordion'
     alt-5 = 'workspace 5' # Browser
     alt-6 = 'workspace 6' # Communication
     alt-7 = 'workspace 7' # Music
+    alt-d = 'workspace d' # Discord
 
     ### ────────────────────────────────────────────────────────────────────────
     ### Move Tile to Workspace:
@@ -151,6 +152,7 @@ default-root-container-layout = 'accordion'
     alt-shift-5 = 'move-node-to-workspace --focus-follows-window 5'
     alt-shift-6 = 'move-node-to-workspace --focus-follows-window 6'
     alt-shift-7 = 'move-node-to-workspace --focus-follows-window 7'
+    alt-shift-d = 'move-node-to-workspace --focus-follows-window d'
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## On open, move an application tile to its workspace:
@@ -186,7 +188,7 @@ run = ['move-node-to-workspace 6']
 
 [[on-window-detected]]
 if.app-id = 'com.hnc.Discord'
-run = ['move-node-to-workspace 6']
+run = ['move-node-to-workspace d']
 
 [[on-window-detected]]
 if.app-id = 'com.spotify.client'

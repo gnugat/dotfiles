@@ -12,6 +12,7 @@
 ## - `\uf268` (nf-fa-chrome)
 ## - `\uf27a` (nf-fa-message)
 ## - `\uf1bc` (nf-fa-spotify)
+## - `\uf392` (nf-fa-discord)
 ## ─────────────────────────────────────────────────────────────────────────────
 sketchybar --add event aerospace_workspace_change
 
@@ -23,6 +24,7 @@ _ssdf_ws_icon() {
         5) printf "" ;; # Browser
         6) printf "" ;; # Communication
         7) printf "" ;; # Music
+        d) printf "" ;; # Discord
         *) printf "" ;;
     esac
 }
