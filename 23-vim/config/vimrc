@@ -127,6 +127,14 @@ let g:lightline = {
 \ }
 
 "" ─────────────────────────────────────────────────────────────────────────────
+"" PHP-specific settings
+""
+"" - iskeyword+=$: Treat $ as part of a keyword in PHP (for variable names)
+""   This prevents autocomplete from duplicating $ in variable completions
+"" ─────────────────────────────────────────────────────────────────────────────
+autocmd FileType php setlocal iskeyword+=$
+
+"" ─────────────────────────────────────────────────────────────────────────────
 "" LSP Configuration
 ""
 "" PHP Language Server: phpactor
