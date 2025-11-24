@@ -4,9 +4,6 @@
 # 📰🍊🐘 Installing php, on Ubuntu (apt).
 # ─────────────────────────────────────────────────────────────────────────────
 
-sudo apt-get install "php${SSDF_PHP_VERSION}" \
-    "php${SSDF_PHP_VERSION}-curl" \
-    "php${SSDF_PHP_VERSION}-intl" \
-    "php${SSDF_PHP_VERSION}-mbstring" \
-    "php${SSDF_PHP_VERSION}-zip" \
-    "php${SSDF_PHP_VERSION}-xml"
+sudo apt-get install \
+    "php${SSDF_PHP_VERSION}" \
+    autoconf automake libtool m4 make gcc # for PIE
