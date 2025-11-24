@@ -81,9 +81,21 @@ fi
 
 ## Composer
 if ! command -v "composer" >/dev/null 2>&1; then
-    curl -sS https://getcomposer.org/installer | php > /dev/null
-    sudo mkdir -p /usr/local/bin
-    sudo mv composer.phar /usr/local/bin/composer
+    curl -sS https://getcomposer.org/installer | php > /dev/null \
+        && sudo mkdir -p /usr/local/bin \
+        && sudo mv composer.phar /usr/local/bin/composer
+fi
+
+## PIE
+if ! command -v "pie" >/dev/null 2>&1; then
+    curl -fsSL -O https://github.com/php/pie/releases/latest/download/pie.phar \
+        && sudo mv pie.phar /usr/local/bin/pie \
+        && sudo chmod +x /usr/local/bin/pie
+fi
+
+## Install PHP extensions via PIE
+if command -v "pie" >/dev/null 2>&1; then
+    pie install --working-dir="${_SSDF_PACKAGE_DIR}/config"
 fi
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"

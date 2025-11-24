@@ -1,0 +1,21 @@
+{
+    "name": "ssc/dotfiles",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Loïc Faugeron",
+            "email": "faugeron.loic@gmail.com"
+        }
+    ],
+    "require": {
+        "ext-bcmath": "*",
+        "ext-curl": "*",
+        "ext-iconv": "*",
+        "ext-intl": "*",
+        "ext-mbstring": "*",
+        "ext-pdo_pgsql": "*",
+        "ext-simplexml": "*",
+        "ext-zip": "*"
+    }
+}

@@ -4,5 +4,7 @@
 # 📰🍏🐘 Installing php, on Mac OS (brew).
 # ─────────────────────────────────────────────────────────────────────────────
 
-HOMEBREW_NO_ENV_HINTS=1 brew install -q "php@${SSDF_PHP_VERSION}"
+HOMEBREW_NO_ENV_HINTS=1 brew install -q \
+    "php@${SSDF_PHP_VERSION}" \
+    autoconf automake libtool m4 make gcc # for PIE
 brew link -q "php@${SSDF_PHP_VERSION}"
