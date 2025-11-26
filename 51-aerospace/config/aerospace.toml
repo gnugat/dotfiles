@@ -130,14 +130,14 @@ default-root-container-layout = 'accordion'
     ###
     ### See: https://nikitabobko.github.io/AeroSpace/commands#workspace
     ### ────────────────────────────────────────────────────────────────────────
-    alt-1 = 'workspace 1' # Terminal
+    alt-1 = ['workspace 1', 'exec-and-forget ~/.dotfiles/51-aerospace/bin/as-launch-if-not-running.sh Alacritty'] # Terminal
     alt-2 = 'workspace 2' # IDE
     # alt-3 is used for... typing the `#` character.
     alt-4 = 'workspace 4' # Testing
     alt-5 = 'workspace 5' # Browser
-    alt-6 = 'workspace 6' # Communication
-    alt-7 = 'workspace 7' # Music
-    alt-d = 'workspace d' # Discord
+    alt-6 = ['workspace 6', 'exec-and-forget ~/.dotfiles/51-aerospace/bin/as-launch-if-not-running.sh Slack'] # Communication
+    alt-7 = ['workspace 7', 'exec-and-forget ~/.dotfiles/51-aerospace/bin/as-launch-if-not-running.sh Spotify'] # Music
+    alt-d = ['workspace d', 'exec-and-forget ~/.dotfiles/51-aerospace/bin/as-launch-if-not-running.sh Discord'] # Discord
 
     ### ────────────────────────────────────────────────────────────────────────
     ### Move Tile to Workspace:
@@ -157,12 +157,13 @@ default-root-container-layout = 'accordion'
 ## ─────────────────────────────────────────────────────────────────────────────
 ## On open, move an application tile to its workspace:
 ## 1. Shell (Alacritty)
-## 2. IDE (PhpStorm, Docker Desktop)
+## 2. IDE (PhpStorm, Docker Desktop, Rancher, Orbstack, 1Password, ...)
 ## 3. is used for... typing the `#` character.
 ## 4. Testing
 ## 5. Browser (Chrome)
-## 6. Communication (Slack, Discord)
+## 6. Communication (Slack)
 ## 7. Music (Spotify)
+## d. Discord
 ##
 ## Use command `aerospace list-apps` to find the app ID to use.
 ## ─────────────────────────────────────────────────────────────────────────────
