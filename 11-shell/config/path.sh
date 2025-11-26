@@ -61,6 +61,7 @@ _ssdf_prepend_path "${HOME}/bin"
 _ssdf_prepend_path "${SSDF_ROOT_DIR}/00-_ssdf/bin"
 _ssdf_prepend_path "${SSDF_ROOT_DIR}/21-git/bin"
 _ssdf_prepend_path "${SSDF_ROOT_DIR}/3f-tmux/bin"
+_ssdf_prepend_path "${SSDF_ROOT_DIR}/51-aerospace/bin"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 🐍 Python (eg Ansible).
