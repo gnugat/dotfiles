@@ -17,7 +17,7 @@ _ssdf_echo_section_title "Installing ${_SSDF_PACKAGE_NAME}..."
 ## ─────────────────────────────────────────────────────────────────────────────
 
 ## If not provided, setting PHP version to defaults
-export SSDF_PHP_VERSION="${SSDF_PHP_VERSION:-8.3}"
+export SSDF_PHP_VERSION="${SSDF_PHP_VERSION:-8.4}"
 
 ## Saving PHP version preference
 mkdir -p "${HOME}/.config/php"
