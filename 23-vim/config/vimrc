@@ -58,8 +58,9 @@ Plug 'vim-vdebug/vdebug'           " Integration with XDebug
 Plug 'catppuccin/vim', { 'as': 'catppuccin' } " Theme
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } } " Fuzzy Finder++
 Plug 'junegunn/fzf.vim'
-Plug 'itchyny/lightline.vim'      " status bar
-Plug 'yegappan/lsp'               " LSP client for Vim 9
+Plug 'itchyny/lightline.vim'       " status bar
+Plug 'yegappan/lsp'                " LSP client for Vim 9
+Plug 'elixir-editors/vim-elixir'      " Elixir syntax highlighting
 
 call plug#end()
 
