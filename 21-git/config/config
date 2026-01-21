@@ -27,7 +27,7 @@
     # Pulls upstream changes, and rebases while preserving merge commits
     up  = pull --rebase=merges
     # Fetches with prune, then removes local branches tracking deleted remotes
-    fep = !git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs -n 1 git branch -D 2>/dev/null || true
+    fep = !git fetch -p && git branch --no-color -vv | awk '/: gone]/{print $1}' | xargs -n 1 git branch -D 2>/dev/null || true
 
     # Logs history in a graph format with colours:
     # * abbreviated commit hash in red
