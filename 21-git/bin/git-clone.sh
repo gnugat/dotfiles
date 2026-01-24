@@ -30,8 +30,8 @@ fi
 mkdir -p "$(dirname "${_GIT_CLONE_PATH}")"
 
 # Check if SSH config has a specific host for this username
-if ssh -F ~/.ssh/config -G "${_GIT_CLONE_USERNAME}.github.com" >/dev/null 2>&1; then
-    _GIT_CLONE_HOST="${_GIT_CLONE_USERNAME}.github.com"
-fi
+# if ssh -F ~/.ssh/config -G "${_GIT_CLONE_USERNAME}.github.com" >/dev/null 2>&1; then
+#    _GIT_CLONE_HOST="${_GIT_CLONE_USERNAME}.github.com"
+# fi
 
 git clone "git@${_GIT_CLONE_HOST}:${_GIT_CLONE_USERNAME}/${_GIT_CLONE_REPOSITORY}.git" "${_GIT_CLONE_PATH}"
