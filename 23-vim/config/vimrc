@@ -144,6 +144,9 @@ autocmd FileType php setlocal iskeyword+=$
 "" Elixir Language Server: elixir-ls
 "" - See: https://github.com/elixir-lsp/elixir-ls
 ""
+"" Rust Language Server: rust-analyzer
+"" - See: https://rust-analyzer.github.io/
+""
 "" Key mappings:
 "" - gd: Go to definition
 "" - gr: Show references
@@ -163,6 +166,12 @@ let lspServers = [
 \     name: 'elixir-ls',
 \     filetype: ['elixir'],
 \     path: exepath('elixir-ls'),
+\     args: [],
+\   },
+\   #{
+\     name: 'rust-analyzer',
+\     filetype: ['rust'],
+\     path: exepath('rust-analyzer'),
 \     args: [],
 \   },
 \ ]
