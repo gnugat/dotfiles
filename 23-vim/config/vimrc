@@ -141,6 +141,9 @@ autocmd FileType php setlocal iskeyword+=$
 "" PHP Language Server: phpactor
 "" - See: https://phpactor.readthedocs.io/en/master/
 ""
+"" Elixir Language Server: elixir-ls
+"" - See: https://github.com/elixir-lsp/elixir-ls
+""
 "" Key mappings:
 "" - gd: Go to definition
 "" - gr: Show references
@@ -149,12 +152,20 @@ autocmd FileType php setlocal iskeyword+=$
 "" - <leader>ca: Code action
 "" - [d / ]d: Navigate diagnostics
 "" ─────────────────────────────────────────────────────────────────────────────
-let lspServers = [#{
-\   name: 'phpactor',
-\   filetype: ['php'],
-\   path: exepath('phpactor'),
-\   args: ['language-server'],
-\ }]
+let lspServers = [
+\   #{
+\     name: 'phpactor',
+\     filetype: ['php'],
+\     path: exepath('phpactor'),
+\     args: ['language-server'],
+\   },
+\   #{
+\     name: 'elixir-ls',
+\     filetype: ['elixir'],
+\     path: exepath('elixir-ls'),
+\     args: [],
+\   },
+\ ]
 
 autocmd VimEnter * call LspAddServer(lspServers)
 
