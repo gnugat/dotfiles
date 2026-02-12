@@ -28,6 +28,14 @@ ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/aliases.claude.sh" \
     "${HOME}/.config/claude/aliases.claude.sh"
 
+mkdir -p "${HOME}/.claude"
+ln -nsf \
+    "${_SSDF_PACKAGE_DIR}/config/statusline-command.sh" \
+    "${HOME}/.claude/statusline-command.sh"
+ln -nsf \
+    "${_SSDF_PACKAGE_DIR}/config/settings.json" \
+    "${HOME}/.claude/settings.json"
+
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────

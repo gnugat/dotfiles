@@ -25,7 +25,15 @@ if [ "${_GIT_MERGE_TO_BRANCH}" = "${_GIT_MERGE_FROM_BRANCH}" ]; then
     exit 1
 fi
 
-git checkout $_GIT_MERGE_TO_BRANCH && \
-    git merge --no-ff $_GIT_MERGE_FROM_BRANCH && \
+git fetch
+git checkout $_GIT_MERGE_TO_BRANCH
+
+if [ "$(git rev-parse HEAD)" != "$(git rev-parse origin/$_GIT_MERGE_TO_BRANCH)" ]; then
+    echo "  [ERROR] Local '$_GIT_MERGE_TO_BRANCH' is out of sync with remote, run git-fetch.sh and rebase your branch"
+    git checkout $_GIT_MERGE_FROM_BRANCH
+    exit 1
+fi
+
+git merge --no-ff $_GIT_MERGE_FROM_BRANCH && \
     git branch -D $_GIT_MERGE_FROM_BRANCH && \
     git push
