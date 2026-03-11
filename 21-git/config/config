@@ -33,7 +33,9 @@
     # * commit title in white
     # * author name in yellow
     # * author date in green (format: `Mon, 02 Jan 2006 15:04:05 +0000`)
-    lg  = log --graph --pretty=tformat:'%Cred%h%Creset -%C(cyan)%d %Creset%s (%C(yellow)%an%Creset %Cgreen%aD%Creset)' --abbrev-commit
+    # * committer name in cyan brackets (only if different from author)
+    # * co-author names in magenta with `+` prefix (from `Co-authored-by:` trailers, if any)
+    lg  = "!f() { git log --graph --abbrev-commit --color=always --pretty='tformat:%Cred%h%Creset -%C(cyan)%d %Creset%s%x00%an%x00%aD%x00%cn%x00%(trailers:key=Co-authored-by,valueonly=true,separator=%x01)' \"$@\" | perl -pe 'chomp; if (s/\\x00(.*?)\\x00(.*?)\\x00(.*?)\\x00(.*)$//) { my ($an,$aD,$cn,$co)=($1,$2,$3,$4); my $s=sprintf(\" (\\x1b[33m%s\\x1b[0m \\x1b[32m%s\\x1b[0m)\",$an,$aD); $s.=sprintf(\" [\\x1b[36m%s\\x1b[0m]\",$cn) if $cn ne $an; for my $ca (split(/\\x01/,$co)) { $ca=~s/\\s*<[^>]*>//; $s.=sprintf(\" +\\x1b[35m%s\\x1b[0m\",$ca) } $_.=$s } $_.=\"\\n\"' | less -FRX; }; f"
 
     # Displays commit details, including commiter name and date.
     sh  = show --pretty=format:\"%C(yellow)commit %H%d%C(reset)%nAuthor: %an <%ae>%nDate: %ad%nCommitter: %cn <%ce>%nDate: %cd%n%n%s%n%n%b\"
