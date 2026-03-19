@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# File: /3d-zoxide/config/boot.zoxide.sh
+# File: /314-zoxide/config/boot.zoxide.sh
 # ──────────────────────────────────────────────────────────────────────────────
 # 👢Z BOOT management, for zoxide.
 # ──────────────────────────────────────────────────────────────────────────────

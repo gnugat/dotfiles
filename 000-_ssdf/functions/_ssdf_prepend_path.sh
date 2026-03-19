@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# File: /000-_ssdf/functions/_ssdf_append_path.sh
+# File: /000-_ssdf/functions/_ssdf_prepend_path.sh
 # ──────────────────────────────────────────────────────────────────────────────
 # 🔭 Super Secret Dot Files functions.
 # ──────────────────────────────────────────────────────────────────────────────
