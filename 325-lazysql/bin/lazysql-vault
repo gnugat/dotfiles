@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# File: /325-lazysql/bin/lazysql-vault
+# ──────────────────────────────────────────────────────────────────────────────
+# 🗃️ lazysql wrapper: Vault authentication
+#
+# Usage: lazysql-vault <connection-name>
+#
+# Reads connection config from ~/.config/lazysql/vault.json,
+# fetches credentials from Vault, and launches lazysql.
+# Token is read from ~/.vault-token (vault CLI default).
+# ──────────────────────────────────────────────────────────────────────────────
+
+_CONFIG="${HOME}/.config/lazysql/vault.json"
+_CONNECTION_NAME="${1}"
+
+if [ -z "${_CONNECTION_NAME}" ]; then
+    echo "Usage: lazysql-vault <connection-name>"
+    exit 1
+fi
+
+if [ ! -f "${_CONFIG}" ]; then
+    echo "Config file not found: ${_CONFIG}"
+    exit 1
+fi
+
+_conn=$(jq -er --arg name "${_CONNECTION_NAME}" '.connection[] | select(.name == $name)' "${_CONFIG}")
+
+if [ $? -ne 0 ]; then
+    echo "error: connection '${_CONNECTION_NAME}' not found in ${_CONFIG}"
+    exit 1
+fi
+
+_VAULT_ADDR=$(echo "${_conn}"   | jq -r '.vault_addr')
+_VAULT_SECRET=$(echo "${_conn}" | jq -r '.vault_secret')
+_PROVIDER=$(echo "${_conn}"     | jq -r '.provider')
+_HOST=$(echo "${_conn}"         | jq -r '.host')
+_PORT=$(echo "${_conn}"         | jq -r '.port')
+_DATABASE=$(echo "${_conn}"     | jq -r '.database')
+
+# Fetch both credentials in a single vault call to get a matching username/password pair
+_creds=$(VAULT_ADDR="${_VAULT_ADDR}" vault read -format=json "${_VAULT_SECRET}")
+
+# URL-encode credentials (vault dynamic passwords can contain special characters)
+_encoded_user=$(echo "${_creds}"     | jq -r '.data.username | @uri')
+_encoded_password=$(echo "${_creds}" | jq -r '.data.password | @uri')
+
+lazysql "${_PROVIDER}://${_encoded_user}:${_encoded_password}@${_HOST}:${_PORT}/${_DATABASE}"

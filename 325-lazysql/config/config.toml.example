@@ -1,0 +1,29 @@
+# File: /325-lazysql/config/config.toml.example
+# ──────────────────────────────────────────────────────────────────────────────
+# 🗃️ lazysql
+# ──────────────────────────────────────────────────────────────────────────────
+
+# [[database]]
+# Name = 'My database'
+# Provider = 'postgres'
+# DBName = 'mydb'
+# URL = 'postgres://user:password@localhost:5432/mydb'
+# ReadOnly = false
+
+# Example with Vault authentication (database secrets engine):
+# Requires VAULT_ADDR to be set in the environment.
+# Token is read from ~/.vault-token (vault CLI default).
+# [[database]]
+# Name = 'My database'
+# Provider = 'postgres'
+# DBName = 'mydb'
+# URL = 'postgres://${user}:${password}@localhost:5432/mydb'
+# Commands = [
+#   { Command = 'vault read -field=username database/creds/<role>', SaveOutputTo = 'user' },
+#   { Command = 'vault read -field=password database/creds/<role>', SaveOutputTo = 'password' },
+# ]
+
+[application]
+DefaultPageSize = 300
+DisableSidebar = false
+SidebarOverlay = false

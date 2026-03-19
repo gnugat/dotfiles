@@ -61,6 +61,7 @@ _ssdf_prepend_path "${HOME}/bin"
 _ssdf_prepend_path "${SSDF_ROOT_DIR}/000-_ssdf/bin"
 _ssdf_prepend_path "${SSDF_ROOT_DIR}/201-git/bin"
 _ssdf_prepend_path "${SSDF_ROOT_DIR}/315-tmux/bin"
+_ssdf_prepend_path "${SSDF_ROOT_DIR}/325-lazysql/bin"
 _ssdf_prepend_path "${SSDF_ROOT_DIR}/501-aerospace/bin"
 
 ## ─────────────────────────────────────────────────────────────────────────────
