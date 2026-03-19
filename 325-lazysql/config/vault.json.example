@@ -1,0 +1,13 @@
+{
+  "connection": [
+    {
+      "name":         "my-database",
+      "provider":     "mysql",
+      "host":         "db.example.com",
+      "port":         3306,
+      "database":     "mydb",
+      "vault_addr":   "https://vault.example.com:8200",
+      "vault_secret": "database/creds/<role>"
+    }
+  ]
+}
