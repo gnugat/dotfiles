@@ -1,74 +1,40 @@
 #!/usr/bin/env bash
-# File: /install.mac.sh
+# File: /603-slack/install.sh
 # ──────────────────────────────────────────────────────────────────────────────
-# 🔵🍏🍺 Super Secret Dot Files (SSDF). Installation script for Mac OS (brew).
-#
-# ℹ️  **Requirements**:
-# - 💲 bash (for running scripts)
-# - 🌐 curl (for downloading homebrew)
+# 💬 Slack
 # ──────────────────────────────────────────────────────────────────────────────
 
-SSDF_ROOT_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
+_SSDF_PACKAGE_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
+SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_DIR}/..")"
 source "${SSDF_ROOT_DIR}/000-_ssdf/functions.sh"
 
-_SSDF_PACKAGE_NAME="homebrew"
+_SSDF_PACKAGE_NAME="slack"
+
+_ssdf_echo_section_title "Installing ${_SSDF_PACKAGE_NAME}..."
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## 🍏 Checking if system is Mac OS X (Darwin).
+## 📦 Call to `./_<package-manager>.sh` script.
 ## ─────────────────────────────────────────────────────────────────────────────
 
-_SSDF_SYSTEM=$(uname)
-if [ "${_SSDF_SYSTEM}" != 'Darwin' ]; then
-    _ssdf_echo_error "Expected OS to be 'Darwin', got '${_SSDF_SYSTEM}'"
-fi
+_ssdf_select_package_manager
+_ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${SSDF_PACKAGE_MANAGER}"
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## 🍺 Installing Homebrew, if it wasn't already.
+## 🔗 Symbolic links.
 ## ─────────────────────────────────────────────────────────────────────────────
 
-SSDF_PACKAGE_MANAGER='brew'
-if ! command -v "${SSDF_PACKAGE_MANAGER}" >/dev/null 2>&1; then
-    _ssdf_echo_section_title "Installing ${_SSDF_PACKAGE_NAME}..."
-    echo ''
-
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-    echo "Adding /opt/homebrew/bin to PATH"
-    export PATH="/opt/homebrew/bin:${PATH}"
-
-    _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
-fi
+## N/A
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## 🏷️ Selects the Mac OS specific tags, by setting `SSDF_TAGS`.
-## _Note_: The tags can be manually selected as follow:
-##
-## ```
-## SSDF_TAGS='0 1' bash install.mac.sh
-## ```
-##
-## Package folders follow this naming convention: `<xyy>-<package-name>`.
-## The `<xyy>` prefix digit indicates the package's:
-## * `x`: tag (category)
-##     * `0`: 🏭 Internal SSDF functions
-##     * `1`: 🧸 Bare minimum (ideal for ssh servers, or Docker Containers)
-##     * `2`: 🧱 Base minimal (common set up)
-##     * `3`: 💥 Bang (productivity, common)
-##     * `5`: 🍏 Mac OS (OS specific)
-## * `yy`: execution priority (numeric, 00-99)
+## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
-_ssdf_echo_section_title 'Selecting Tags'
+## N/A
 
-if [ -z "${SSDF_TAGS}" ]; then
-    SSDF_TAGS='0 1 2 3 5'
-fi
-
-_ssdf_echo_success "Tags ${SSDF_TAGS} selected"
+_ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## ➕ Call generic / common root `install.sh` script
+## 🧹 Cleaning up local variables
 ## ─────────────────────────────────────────────────────────────────────────────
 
-bash "${SSDF_ROOT_DIR}/install.sh"
-
+_ssdf_unset_envvars

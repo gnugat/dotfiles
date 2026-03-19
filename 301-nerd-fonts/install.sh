@@ -1,99 +1,63 @@
 #!/usr/bin/env bash
-# File: /install.sh
+# File: /301-nerd-fonts/install.sh
 # ──────────────────────────────────────────────────────────────────────────────
-# 🔵 Super Secret Dot Files.
+# 🤓 Nerd Fonts
 # ──────────────────────────────────────────────────────────────────────────────
 
-SSDF_ROOT_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
+_SSDF_PACKAGE_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
+SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_DIR}/..")"
 source "${SSDF_ROOT_DIR}/000-_ssdf/functions.sh"
 
-echo ' '
-echo 'Super Secret Dotfiles (_SSDF)'
-echo '============================'
-echo 'Backup, restore and sync shell / system prefs and settings'
-echo '----------------------------------------------------------'
+_SSDF_PACKAGE_NAME="nerd-fonts"
+
+_ssdf_echo_section_title "Installing ${_SSDF_PACKAGE_NAME}..."
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## 📦 Selects the Package Manager, by setting `SSDF_PACKAGE_MANAGER`.
-## _Note_: The package manager can be manually selected as follow:
-##
-## ```
-## SSDF_PACKAGE_MANAGER=apt bash install.sh
-## ```
+## ⬅️  Initialisation steps.
 ## ─────────────────────────────────────────────────────────────────────────────
 
-_ssdf_echo_section_title 'Selecting Package Manager'
+## If not provided, setting Nerd Fonts to defaults
+_SSDF_NERD_FONTS_DEFAULT="
+JetBrainsMono
+"
+export SSDF_NERD_FONTS="${SSDF_NERD_FONTS:-$_SSDF_NERD_FONTS_DEFAULT}"
+
+## Saving nerd fonts preference
+mkdir -p "${HOME}/.config/nerd-fonts"
+_ssdf_append_envvar \
+    "${HOME}/.config/nerd-fonts/envvars.nerd-fonts.sh" \
+    "SSDF_NERD_FONTS" \
+    "${SSDF_NERD_FONTS}"
+_ssdf_append_source \
+    "${HOME}/.config/shell/envvars.local.sh" \
+    "${HOME}/.config/nerd-fonts/envvars.nerd-fonts.sh"
+
+## ─────────────────────────────────────────────────────────────────────────────
+## 📦 Call to `./_<package-manager>.sh` script.
+## ─────────────────────────────────────────────────────────────────────────────
+
 _ssdf_select_package_manager
-_ssdf_echo_success "Package Manager ${SSDF_PACKAGE_MANAGER} selected"
-
-
-## ─────────────────────────────────────────────────────────────────────────────
-## 🏷️ Selects the tags, by setting `SSDF_TAGS`.
-## _Note_: The tags can be manually selected as follow:
-##
-## ```
-## SSDF_TAGS='0 1' bash install.sh
-## ```
-##
-## Package folders follow this naming convention: `<xyy>-<package-name>`.
-## The `<xyy>` prefix digit indicates the package's:
-## * `x`: tag (category)
-##     * `0`: 🏭 Internal SSDF functions
-##     * `1`: 🧸 Bare minimum (ideal for ssh servers, or Docker Containers)
-##     * `2`: 🧱 Base minimal (common set up)
-##     * `3`: 💥 Bang (productivity, common)
-##     * `4`: 🍊 Ubuntu (OS specific)
-## * `yy`: execution priority (numeric, 00-99)
-## ─────────────────────────────────────────────────────────────────────────────
-
-_ssdf_echo_section_title 'Selecting Tags'
-
-if [ -z "${SSDF_TAGS}" ]; then
-    SSDF_TAGS='0 1 2 3 4'
-fi
-
-_ssdf_echo_success "Tags ${SSDF_TAGS} selected"
+_ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${SSDF_PACKAGE_MANAGER}"
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## 📰 System update.
+## 🔗 Symbolic links.
 ## ─────────────────────────────────────────────────────────────────────────────
 
-if [ "${SSDF_PACKAGE_MANAGER}" == "apt" ]; then
-    _ssdf_echo_section_title 'Updating Package Manager...'
-    sudo apt-get -qq update
-    _ssdf_echo_success "Package Manager updated"
-fi
+mkdir -p "${HOME}/.config/nerd-fonts/bin"
+ln -nsf \
+    "${_SSDF_PACKAGE_DIR}/bin/test-nerd-fonts.sh" \
+    "${HOME}/.config/nerd-fonts/bin/test-nerd-fonts.sh"
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## ➕ For each package matching the selected tags, call its `install.sh` script.
+## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
-for _SSDF_PACKAGE_DIR in "${SSDF_ROOT_DIR}"/*/; do
-    _SSDF_PACKAGE_TAGGED_NAME="$(basename "${_SSDF_PACKAGE_DIR}")"
+## N/A
 
-    # Extract the tag (first digit of the folder name)
-    _SSDF_PACKAGE_TAG="${_SSDF_PACKAGE_TAGGED_NAME:0:1}"
-
-    # Check if the tag is in the allowed list
-    if [[ " ${SSDF_TAGS} " == *" ${_SSDF_PACKAGE_TAG} "* ]]; then
-        _SSDF_PACKAGE_INSTALL="${_SSDF_PACKAGE_DIR}install.sh"
-        if [ -f "${_SSDF_PACKAGE_INSTALL}" ]; then
-            bash "${_SSDF_PACKAGE_INSTALL}" -H || break
-        fi
-    fi
-done
-
-_ssdf_echo_success 'Super Secret Dotfiles installed'
-
-echo ' Now please run `source ~/.profile` to apply'
-echo ' ' 
+_ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 🧹 Cleaning up local variables
 ## ─────────────────────────────────────────────────────────────────────────────
 
 _ssdf_unset_envvars
-
-unset SSDF_ROOT_DIR \
-    SSDF_PACKAGE_MANAGER \
-    SSDF_TAGS

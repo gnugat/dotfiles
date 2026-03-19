@@ -1,0 +1,7 @@
+# editors
+*.bak
+*.swp
+
+# llms
+.claude/
+

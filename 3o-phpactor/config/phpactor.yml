@@ -1,8 +1,0 @@
-# File: /3o-phpactor/config/phpactor.yml
-# ──────────────────────────────────────────────────────────────────────────────
-# 🅿️ Phpactor
-# ──────────────────────────────────────────────────────────────────────────────
-
-"phpunit.enabled": true
-"prophecy.enabled": true
-"symfony.enabled": true

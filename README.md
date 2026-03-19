@@ -55,8 +55,8 @@ BRANCH="main" \
     && curl -fsSL "https://github.com/gnugat/dotfiles/archive/${BRANCH}.tar.gz" \
     | tar -xz -C "${HOME}/.dotfiles" --strip-components=1 \
     && cd "${HOME}/.dotfiles" \
-    && bash ./11-shell/install.sh \
-    && bash ./12-bash/install.sh
+    && bash ./101-shell/install.sh \
+    && bash ./102-bash/install.sh
 ```
 
 ---
@@ -80,7 +80,7 @@ The tree directory follows this convention:
 
 ```
 .
-├── <xy>-<package>
+├── <xyy>-<package>
 │   ├── _<package-manager>.sh
 │   ├── config/
 │   ├── install.sh
@@ -90,7 +90,7 @@ The tree directory follows this convention:
 
 The root `install.sh` script will call all the Package `install.sh` scripts.
 
-The `<xy>` prefix digit indicates the package's:
+The `<xyy>` prefix digit indicates the package's:
 
 * `x`: tag
     * `0`: 🏭 Internal SSDF functions
@@ -100,7 +100,7 @@ The `<xy>` prefix digit indicates the package's:
     * `4`: 🍊 Ubuntu (OS specific)
     * `5`: 🍏 Mac OS (OS specific)
     * `6`: 🐝 Nui-Rama (laptop specific)
-* `y`: priority
+* `yy`: priority (numeric, 00-99)
 
 As for each `<package>/install.sh` script, their responsibility is to:
 

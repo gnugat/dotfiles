@@ -1,0 +1,132 @@
+# File: /307-starship/config/starship.toml
+# ──────────────────────────────────────────────────────────────────────────────
+# 🚀 Starship
+#
+# Using "cartouche" style for the background of modules:
+# * using unicode characters  
+# * using style inverted to the module's content
+# * between two modules, using `\b` to go back one character and replace it
+# ──────────────────────────────────────────────────────────────────────────────
+
+## Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+palette = "catppuccin_macchiato"
+
+## ─────────────────────────────────────────────────────────────────────────────
+## 🎤 Prompt
+## ─────────────────────────────────────────────────────────────────────────────
+format = """
+$os\
+$username\
+$hostname\
+$directory\
+$git_branch\
+$git_status\
+$character
+"""
+
+## ─────────────────────────────────────────────────────────────────────────────
+## User and Host.
+## ─────────────────────────────────────────────────────────────────────────────
+
+### ────────────────────────────────────────────────────────────────────────────
+### 🦴 Operating System.
+### Using `\uef72` (nf-fa-ubuntu) icon.
+### Using `\\uf179` (nf-fa-apple) icon.
+### ────────────────────────────────────────────────────────────────────────────
+[os]
+format = "[](fg:green bg:base)[$symbol]($style)"
+style = "fg:black bg:green"
+disabled = false
+
+[os.symbols]
+Ubuntu = ' '
+Macos = ' '
+
+### ────────────────────────────────────────────────────────────────────────────
+### 🌐 SSH.
+### * Only shows user if they are:
+###     * root
+###     * different than logged in user
+###     * connected to ssh
+### * Only shows host if connected to SSH session
+### ────────────────────────────────────────────────────────────────────────────
+[username]
+format = "[ $user](fg:black bg:teal)"
+
+[hostname]
+format = "[@$hostname ]($style)"
+style = "fg:black bg:green"
+aliases = { "KFH7X7T56W" = "nui-rama" }
+
+ssh_only = true # only show when connected to an SSH session
+
+## ─────────────────────────────────────────────────────────────────────────────
+## 📁 Current working path.
+## Using `\uea83` (nf-cod-folder) icon.
+## ─────────────────────────────────────────────────────────────────────────────
+
+[directory]
+format = "[](fg:green bg:base)[](fg:base bg:blue)[  $path ]($style)[](fg:blue bg:base)"
+style = "fg:black bg:blue"
+
+truncation_symbol = '…/'
+truncation_length = 3 # number of parent folders to keep
+truncate_to_repo = true # truncate to git repo's root
+
+## ─────────────────────────────────────────────────────────────────────────────
+## 🐙 Git
+## Using `\ue702` (nf-dev-git) icon.
+## ─────────────────────────────────────────────────────────────────────────────
+
+[git_branch]
+format = "[](fg:base bg:yellow)[  $branch ]($style)"
+style = "fg:black bg:yellow"
+
+[git_status]
+format = "[$modified$staged$untracked]($style)[](fg:yellow bg:base)"
+modified = '[*](fg:black bg:yellow)'
+staged = '[+](fg:black bg:yellow)'
+untracked = '[%](fg:black bg:yellow)'
+style = "fg:black bg:yellow"
+
+## ─────────────────────────────────────────────────────────────────────────────
+## ❓ Last command's status (success or failure).
+## Using `HEAVY RIGHT-POINTING ANGLE QUOTATION MARK ORNAMENT` unicode.
+## ─────────────────────────────────────────────────────────────────────────────
+[character]
+success_symbol = '[❯](green)'
+error_symbol = '[❯](red)'
+
+## ─────────────────────────────────────────────────────────────────────────────
+## 🌈 Theme
+## ─────────────────────────────────────────────────────────────────────────────
+
+[palettes.catppuccin_macchiato]
+rosewater = "#f4dbd6"
+flamingo = "#f0c6c6"
+pink = "#f5bde6"
+mauve = "#c6a0f6"
+red = "#ed8796"
+maroon = "#ee99a0"
+peach = "#f5a97f"
+yellow = "#eed49f"
+green = "#a6da95"
+teal = "#8bd5ca"
+sky = "#91d7e3"
+sapphire = "#7dc4e4"
+blue = "#8aadf4"
+lavender = "#b7bdf8"
+text = "#cad3f5"
+subtext1 = "#b8c0e0"
+subtext0 = "#a5adcb"
+overlay2 = "#939ab7"
+overlay1 = "#8087a2"
+overlay0 = "#6e738d"
+surface2 = "#5b6078"
+surface1 = "#494d64"
+surface0 = "#363a4f"
+base = "#24273a"
+mantle = "#1e2030"
+crust = "#181926"

@@ -1,74 +1,41 @@
 #!/usr/bin/env bash
-# File: /install.mac.sh
+# File: /101-shell/config/envvars.sh
 # ──────────────────────────────────────────────────────────────────────────────
-# 🔵🍏🍺 Super Secret Dot Files (SSDF). Installation script for Mac OS (brew).
-#
-# ℹ️  **Requirements**:
-# - 💲 bash (for running scripts)
-# - 🌐 curl (for downloading homebrew)
+# ♻️  ENVVAR management.
 # ──────────────────────────────────────────────────────────────────────────────
 
-SSDF_ROOT_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
-source "${SSDF_ROOT_DIR}/000-_ssdf/functions.sh"
+## ─────────────────────────────────────────────────────────────────────────────
+## 🏺 Sets history size to "large".
+## ─────────────────────────────────────────────────────────────────────────────
+export HISTSIZE=100000
+export HISTFILESIZE="${HISTSIZE}"
 
-_SSDF_PACKAGE_NAME="homebrew"
+### ────────────────────────────────────────────────────────────────────────────
+### 🏺🙉 Ignores "mundane" commands.
+### ────────────────────────────────────────────────────────────────────────────
+export HISTIGNORE="ls:cd:bf:bg:exit"
+
+### ────────────────────────────────────────────────────────────────────────────
+### 🏺🙈 Ignores:
+### - lines starting with a space (to allow privacy)
+### - duplicates
+### ────────────────────────────────────────────────────────────────────────────
+export HISTCONTROL="ignoreboth"
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## 🍏 Checking if system is Mac OS X (Darwin).
+## 💻 Sets sensible program defaults.
 ## ─────────────────────────────────────────────────────────────────────────────
-
-_SSDF_SYSTEM=$(uname)
-if [ "${_SSDF_SYSTEM}" != 'Darwin' ]; then
-    _ssdf_echo_error "Expected OS to be 'Darwin', got '${_SSDF_SYSTEM}'"
-fi
+export PAGER=$(which less)
+export EDITOR=$(which vim)
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## 🍺 Installing Homebrew, if it wasn't already.
+## 🎨 Sets CLI colours for Mac OS.
 ## ─────────────────────────────────────────────────────────────────────────────
-
-SSDF_PACKAGE_MANAGER='brew'
-if ! command -v "${SSDF_PACKAGE_MANAGER}" >/dev/null 2>&1; then
-    _ssdf_echo_section_title "Installing ${_SSDF_PACKAGE_NAME}..."
-    echo ''
-
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-    echo "Adding /opt/homebrew/bin to PATH"
-    export PATH="/opt/homebrew/bin:${PATH}"
-
-    _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
-fi
+export CLICOLOR=1
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## 🏷️ Selects the Mac OS specific tags, by setting `SSDF_TAGS`.
-## _Note_: The tags can be manually selected as follow:
-##
-## ```
-## SSDF_TAGS='0 1' bash install.mac.sh
-## ```
-##
-## Package folders follow this naming convention: `<xyy>-<package-name>`.
-## The `<xyy>` prefix digit indicates the package's:
-## * `x`: tag (category)
-##     * `0`: 🏭 Internal SSDF functions
-##     * `1`: 🧸 Bare minimum (ideal for ssh servers, or Docker Containers)
-##     * `2`: 🧱 Base minimal (common set up)
-##     * `3`: 💥 Bang (productivity, common)
-##     * `5`: 🍏 Mac OS (OS specific)
-## * `yy`: execution priority (numeric, 00-99)
+## 🏠 Sets user config directory in `~/.config`.
 ## ─────────────────────────────────────────────────────────────────────────────
-
-_ssdf_echo_section_title 'Selecting Tags'
-
-if [ -z "${SSDF_TAGS}" ]; then
-    SSDF_TAGS='0 1 2 3 5'
-fi
-
-_ssdf_echo_success "Tags ${SSDF_TAGS} selected"
-
-## ─────────────────────────────────────────────────────────────────────────────
-## ➕ Call generic / common root `install.sh` script
-## ─────────────────────────────────────────────────────────────────────────────
-
-bash "${SSDF_ROOT_DIR}/install.sh"
-
+export XDG_CACHE_HOME="${HOME}/.cache"
+export XDG_CONFIG_HOME="${HOME}/.config"
+export XDG_DATA_HOME="${HOME}/.local/share"

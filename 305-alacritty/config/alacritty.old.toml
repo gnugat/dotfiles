@@ -1,74 +1,64 @@
-#!/usr/bin/env bash
-# File: /install.mac.sh
+# File: /305-alacritty/config/alacritty.toml
 # ──────────────────────────────────────────────────────────────────────────────
-# 🔵🍏🍺 Super Secret Dot Files (SSDF). Installation script for Mac OS (brew).
-#
-# ℹ️  **Requirements**:
-# - 💲 bash (for running scripts)
-# - 🌐 curl (for downloading homebrew)
+# 🔺 Alacritty
 # ──────────────────────────────────────────────────────────────────────────────
 
-SSDF_ROOT_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
-source "${SSDF_ROOT_DIR}/000-_ssdf/functions.sh"
-
-_SSDF_PACKAGE_NAME="homebrew"
-
 ## ─────────────────────────────────────────────────────────────────────────────
-## 🍏 Checking if system is Mac OS X (Darwin).
+## 🎨 Theme.
 ## ─────────────────────────────────────────────────────────────────────────────
 
-_SSDF_SYSTEM=$(uname)
-if [ "${_SSDF_SYSTEM}" != 'Darwin' ]; then
-    _ssdf_echo_error "Expected OS to be 'Darwin', got '${_SSDF_SYSTEM}'"
-fi
+import = [
+    "~/.config/alacritty/themes/catppuccin-macchiato.toml"
+]
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## 🍺 Installing Homebrew, if it wasn't already.
+## ♻️  Environment variables.
 ## ─────────────────────────────────────────────────────────────────────────────
 
-SSDF_PACKAGE_MANAGER='brew'
-if ! command -v "${SSDF_PACKAGE_MANAGER}" >/dev/null 2>&1; then
-    _ssdf_echo_section_title "Installing ${_SSDF_PACKAGE_NAME}..."
-    echo ''
+[env]
 
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-    echo "Adding /opt/homebrew/bin to PATH"
-    export PATH="/opt/homebrew/bin:${PATH}"
-
-    _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
-fi
+# Needed for tmux
+TERM = "screen-256color"
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## 🏷️ Selects the Mac OS specific tags, by setting `SSDF_TAGS`.
-## _Note_: The tags can be manually selected as follow:
-##
-## ```
-## SSDF_TAGS='0 1' bash install.mac.sh
-## ```
-##
-## Package folders follow this naming convention: `<xyy>-<package-name>`.
-## The `<xyy>` prefix digit indicates the package's:
-## * `x`: tag (category)
-##     * `0`: 🏭 Internal SSDF functions
-##     * `1`: 🧸 Bare minimum (ideal for ssh servers, or Docker Containers)
-##     * `2`: 🧱 Base minimal (common set up)
-##     * `3`: 💥 Bang (productivity, common)
-##     * `5`: 🍏 Mac OS (OS specific)
-## * `yy`: execution priority (numeric, 00-99)
+## 🪟 Window.
 ## ─────────────────────────────────────────────────────────────────────────────
 
-_ssdf_echo_section_title 'Selecting Tags'
+[window]
 
-if [ -z "${SSDF_TAGS}" ]; then
-    SSDF_TAGS='0 1 2 3 5'
-fi
+## Avoid having text glued to the edge of the window.
+padding.x = 10
+padding.y = 10
 
-_ssdf_echo_success "Tags ${SSDF_TAGS} selected"
+## Remove the top bar of the window that has close/minimize/maximize buttons.
+decorations = "None"
+
+## The window will be maximized on startup.
+startup_mode = "Maximized"
+
+## For macOS keyboards, keep right option to type eg `#`.
+option_as_alt = "OnlyLeft"
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## ➕ Call generic / common root `install.sh` script
+## 📄 Scrolling.
 ## ─────────────────────────────────────────────────────────────────────────────
 
-bash "${SSDF_ROOT_DIR}/install.sh"
+[scrolling]
 
+## Maximum history to allow long long scrolls.
+history = 10000
+
+## Scroll up/down 3 lines at a time.
+multiplier = 3
+
+## ─────────────────────────────────────────────────────────────────────────────
+## 🔤 Font.
+## ─────────────────────────────────────────────────────────────────────────────
+
+[font]
+size = 16
+
+normal = { family = "JetBrainsMono Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMono Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMono Nerd Font", style = "Italic" }
+bold_italic = { family = "JetBrainsMono Nerd Font", style = "Bold Italic" }

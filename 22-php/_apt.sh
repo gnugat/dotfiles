@@ -1,9 +1,0 @@
-#!/usr/bin/env bash
-# File: /22-php/_apt.sh
-# ─────────────────────────────────────────────────────────────────────────────
-# 📰🍊🐘 Installing php, on Ubuntu (apt).
-# ─────────────────────────────────────────────────────────────────────────────
-
-sudo apt-get install \
-    "php${SSDF_PHP_VERSION}" \
-    autoconf automake libtool m4 make gcc # for PIE
