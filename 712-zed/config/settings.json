@@ -1,0 +1,27 @@
+{
+    "agent": {
+        "default_model": {
+            "provider": "copilot_chat",
+            "model": "claude-sonnet-4.6",
+            "enable_thinking": false,
+            "effort": "medium"
+        },
+        "favorite_models": [],
+        "model_parameters": []
+    },
+    "auto_install_extensions": {
+        "catppuccin": true,
+        "php": true
+    },
+    "theme": "Catppuccin Macchiato",
+    "buffer_font_family": "JetBrainsMono Nerd Font",
+    "buffer_font_size": 16,
+    "vim_mode": true,
+    "relative_line_numbers": "enabled",
+    "tab_size": 4,
+    "languages": {
+        "PHP": {
+            "language_servers": ["phpactor"]
+        }
+    }
+}

@@ -157,7 +157,7 @@ default-root-container-layout = 'accordion'
 ## ─────────────────────────────────────────────────────────────────────────────
 ## On open, move an application tile to its workspace:
 ## 1. Shell (Alacritty)
-## 2. IDE (PhpStorm, Docker Desktop, Rancher, Orbstack, 1Password, ...)
+## 2. IDE (PhpStorm, Zed, Docker Desktop, Rancher, Orbstack, 1Password, ...)
 ## 3. is used for... typing the `#` character.
 ## 4. Testing
 ## 5. Browser (Chrome)
@@ -181,6 +181,10 @@ run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
 if.app-id = 'com.1password.1password'
+run = ['move-node-to-workspace 2']
+
+[[on-window-detected]]
+if.app-id = 'dev.zed.Zed'
 run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
