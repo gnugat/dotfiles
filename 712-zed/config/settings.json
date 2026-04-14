@@ -1,5 +1,13 @@
 {
+    "format_on_save": "off",
     "agent": {
+        "tool_permissions": {
+            "tools": {
+                "terminal": {
+                    "default": "allow"
+                }
+            }
+        },
         "default_model": {
             "provider": "copilot_chat",
             "model": "claude-sonnet-4.6",
@@ -11,7 +19,8 @@
     },
     "auto_install_extensions": {
         "catppuccin": true,
-        "php": true
+        "php": true,
+        "elm": true
     },
     "theme": "Catppuccin Macchiato",
     "buffer_font_family": "JetBrainsMono Nerd Font",
