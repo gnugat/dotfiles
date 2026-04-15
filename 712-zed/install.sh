@@ -27,6 +27,10 @@ mkdir -p "${HOME}/.config/zed"
 ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/settings.json" \
     "${HOME}/.config/zed/settings.json"
+ln -nsf \
+    "${_SSDF_PACKAGE_DIR}/config/keymap.json" \
+    "${HOME}/.config/zed/keymap.json"
+
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
