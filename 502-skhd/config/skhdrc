@@ -17,7 +17,9 @@
 ## - `Left Option ⌥` + `Shift ⇧` + `s`: [S]uite-py Create branch from YouTrack card
 ## - `Left Option ⌥` + `Shift ⇧` + `p`: [P]rima    Create branch from YouTrack card
 ## - `Left Option ⌥` + `Shift ⇧` + `b`: s[B]arter  Create branch from YouTrack card
+## - `Left Option ⌥` + `Shift ⇧` + `e`: p[E]ano    Create branch from YouTrack card
 ## ────────────────────────────────────────────────────────────────────────────
 shift + lalt - s : /Users/loic.faugeron/bin/newt/suite_py-create-branch.sh
 shift + lalt - p : /Users/loic.faugeron/bin/newt/prima-create-branch.sh
 shift + lalt - b : /Users/loic.faugeron/bin/newt/sbarter-create-branch.sh
+shift + lalt - e : /Users/loic.faugeron/bin/newt/peano-create-branch.sh
