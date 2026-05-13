@@ -1,7 +1,9 @@
 {
   "model": "Sonnet",
+  "effortLevel": "medium",
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
-  }
+  },
+  "preferredNotifChannel": "terminal_bell"
 }
