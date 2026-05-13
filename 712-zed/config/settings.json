@@ -1,6 +1,19 @@
 {
+    "project_panel": {
+        "dock": "left"
+    },
+    "outline_panel": {
+        "dock": "left"
+    },
+    "collaboration_panel": {
+        "dock": "left"
+    },
+    "git_panel": {
+        "dock": "left"
+    },
     "format_on_save": "off",
     "agent": {
+        "dock": "right",
         "tool_permissions": {
             "tools": {
                 "terminal": {
@@ -10,8 +23,8 @@
         },
         "default_model": {
             "provider": "copilot_chat",
-            "model": "claude-sonnet-4.6",
-            "enable_thinking": false,
+            "model": "gpt-5.3-codex",
+            "enable_thinking": true,
             "effort": "medium"
         },
         "favorite_models": [],
