@@ -3,7 +3,13 @@
 # ──────────────────────────────────────────────────────────────────────────────
 # 📰🍏🅿️ Installing phpactor, on Mac OS (brew).
 # Actually, there's no brew package for it, so doing it manually with curl.
+# 
+# Also installs fswatch: instead of re-scanning periodically using `find`,
+# for changes in files (even when nothing changed),
+# `fswatch` gets notified by macOS FSEvents when files actually change.
 # ──────────────────────────────────────────────────────────────────────────────
+
+HOMEBREW_NO_ENV_HINTS=1 brew install -q fswatch
 
 _SSDF_PACKAGE_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
 
