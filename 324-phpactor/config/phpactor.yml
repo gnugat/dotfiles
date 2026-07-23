@@ -6,3 +6,9 @@
 "phpunit.enabled": true
 "prophecy.enabled": true
 "symfony.enabled": true
+
+"indexer.enabled_watchers":
+    - "lsp"
+    - "inotify"
+    - "fswatch"
+    - "find"
