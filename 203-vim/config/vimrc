@@ -141,8 +141,8 @@ autocmd FileType php setlocal iskeyword+=$
 "" PHP Language Server: phpactor
 "" - See: https://phpactor.readthedocs.io/en/master/
 ""
-"" Elixir Language Server: elixir-ls
-"" - See: https://github.com/elixir-lsp/elixir-ls
+"" Elixir Language Server: expert
+"" - See: https://github.com/expert-lsp/expert/
 ""
 "" Rust Language Server: rust-analyzer
 "" - See: https://rust-analyzer.github.io/
@@ -163,14 +163,14 @@ let lspServers = [
 \     args: ['language-server'],
 \   },
 \   #{
-\     name: 'elixir-ls',
-\     filetype: ['elixir'],
-\     path: exepath('elixir-ls'),
-\     args: [],
+\     name: 'expert',
+\     filetype: ['elixir', 'ex'],
+\     path: exepath('expert'),
+\     args: ['--stdio'],
 \   },
 \   #{
 \     name: 'rust-analyzer',
-\     filetype: ['rust'],
+\     filetype: ['rust', 'rs'],
 \     path: exepath('/opt/homebrew/bin/rust-analyzer'),
 \     args: [],
 \   },

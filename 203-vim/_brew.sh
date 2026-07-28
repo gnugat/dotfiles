@@ -4,4 +4,4 @@
 # 📰🍏✌️ Installing vim, on Mac OS (brew).
 # ─────────────────────────────────────────────────────────────────────────────
 
-HOMEBREW_NO_ENV_HINTS=1 brew install -q vim elixir-ls rust-analyzer
+HOMEBREW_NO_ENV_HINTS=1 brew install -q vim expert rust-analyzer
