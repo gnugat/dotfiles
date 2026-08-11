@@ -29,7 +29,10 @@ mkdir -p "${HOME}/Pictures/Screenshots"
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
-## N/A
+mkdir -p "${HOME}/.config/shell"
+_ssdf_append_source \
+    "${HOME}/.config/shell/demat.local.sh" \
+    "${_SSDF_PACKAGE_DIR}/config/demat.mac.sh"
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 

@@ -1,53 +1,25 @@
 #!/usr/bin/env bash
-# File: /101-shell/install.sh
+# File: /700-_tarakava/config/demat.tarakava.sh
 # ──────────────────────────────────────────────────────────────────────────────
-# 🐚 Generic shell stuff that can apply to bash, zsh, etc.
+# 🚙 Tarakava daily routine.
 # ──────────────────────────────────────────────────────────────────────────────
 
-_SSDF_PACKAGE_DIR="$(dirname "$(readlink -f "${BASH_SOURCE[0]:-$0}")")"
-SSDF_ROOT_DIR="$(realpath "${_SSDF_PACKAGE_DIR}/..")"
-source "${SSDF_ROOT_DIR}/000-_ssdf/functions.sh"
-
-_SSDF_PACKAGE_NAME="shell"
-
-_ssdf_echo_section_title "Installing ${_SSDF_PACKAGE_NAME} stuff (generic)..."
+## ─────────────────────────────────────────────────────────────────────────────
+## 🏷️  Hostname fix (reset by Kandji MDM on every reboot).
+## ─────────────────────────────────────────────────────────────────────────────
+sudo scutil --set HostName 'tarakava'
+sudo scutil --set LocalHostName 'tarakava'
+sudo scutil --set ComputerName 'tarakava'
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## 📦 Call to `./_<package-manager>.sh` script.
+## 🔑 SSH keys.
 ## ─────────────────────────────────────────────────────────────────────────────
-
-# N/A
-
-## ─────────────────────────────────────────────────────────────────────────────
-## 🔗 Symbolic links.
-## ─────────────────────────────────────────────────────────────────────────────
-
-mkdir -p "${HOME}/.config/shell"
-ln -nsf "${_SSDF_PACKAGE_DIR}/config/common.sh" "${HOME}/.config/shell/common.sh"
-ln -nsf "${_SSDF_PACKAGE_DIR}/config/aliases.sh" "${HOME}/.config/shell/aliases.sh"
-ln -nsf "${_SSDF_PACKAGE_DIR}/config/envvars.sh" "${HOME}/.config/shell/envvars.sh"
-ln -nsf "${_SSDF_PACKAGE_DIR}/config/path.sh" "${HOME}/.config/shell/path.sh"
+ssh-add --apple-use-keychain ~/.ssh/loic-faugeron-prima
 
 ## ─────────────────────────────────────────────────────────────────────────────
-## ➕ Additional config / install
+## ☁️  Cloud access.
 ## ─────────────────────────────────────────────────────────────────────────────
-
-# Ensure supported shells source the main generic shell config
-for _SSDF_SUPPORTED_SHELL in \
-    "${HOME}/.bashrc" \
-    "${HOME}/.zshrc"
-do
-    if [ -f "${_SSDF_SUPPORTED_SHELL}" ]; then
-        _ssdf_append_source \
-            "${_SSDF_SUPPORTED_SHELL}" \
-            "${HOME}/.config/shell/common.sh"
-    fi
-done
-
-_ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
-
-## ─────────────────────────────────────────────────────────────────────────────
-## 🧹 Cleaning up local variables
-## ─────────────────────────────────────────────────────────────────────────────
-
-_ssdf_unset_envvars
+aws sso login --profile conversions-staging
+aws ecr get-login-password --profile=conversions-staging --region eu-west-1 \
+    | docker login --username AWS --password-stdin 279066465364.dkr.ecr.eu-west-1.amazonaws.com
+vault login -method=oidc -path=okta --no-print
