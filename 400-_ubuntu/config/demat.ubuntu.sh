@@ -1,17 +1,16 @@
 #!/usr/bin/env bash
-# File: /101-shell/config/aliases.apt.sh
+# File: /400-_ubuntu/config/demat.ubuntu.sh
 # ──────────────────────────────────────────────────────────────────────────────
-# 😎🍊 ALIAS management, for Ubuntu's apt.
+# 🍊 Ubuntu daily routine.
 # ──────────────────────────────────────────────────────────────────────────────
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## 📰 System update.
 ## ─────────────────────────────────────────────────────────────────────────────
-alias apt_up='
-sudo apt-get --allow-releaseinfo-change update;
+sudo apt-get --allow-releaseinfo-change update
 sudo apt-get -qqy upgrade
 sudo apt-get -qqy full-upgrade
 sudo apt-get -qqy autoremove --purge
 sudo apt-get -qqy autoclean
 sudo apt-get -qqy clean
-sudo snap refresh'
+sudo snap refresh

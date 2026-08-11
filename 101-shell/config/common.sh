@@ -33,10 +33,6 @@ source "${SSDF_ROOT_DIR}/000-_ssdf/functions/_ssdf_select_package_manager.sh"
 
 _ssdf_select_package_manager
 
-if [ "apt" = "${SSDF_PACKAGE_MANAGER}" ]; then
-    source "${_SSDF_PACKAGE_CONFIG_DIR}/aliases.apt.sh"
-fi
-
 if [ -f "${HOME}/.config/shell/aliases.local.sh" ]; then
     source "${HOME}/.config/shell/aliases.local.sh"
 fi

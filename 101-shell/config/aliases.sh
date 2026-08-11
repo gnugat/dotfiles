@@ -40,3 +40,12 @@ alias reset='
 source ~/.profile
 /usr/bin/reset
 /usr/bin/clear'
+
+## ─────────────────────────────────────────────────────────────────────────────
+## 🌅 Daily greeting.
+## ─────────────────────────────────────────────────────────────────────────────
+demat() {
+    if [ -f "${HOME}/.config/shell/demat.local.sh" ]; then
+        source "${HOME}/.config/shell/demat.local.sh"
+    fi
+}
