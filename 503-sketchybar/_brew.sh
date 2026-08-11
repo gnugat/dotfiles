@@ -5,5 +5,6 @@
 # ──────────────────────────────────────────────────────────────────────────────
 
 brew tap FelixKratz/formulae
+brew trust --formula felixkratz/formulae/sketchybar
 HOMEBREW_NO_ENV_HINTS=1 brew install -q sketchybar
 brew services start sketchybar

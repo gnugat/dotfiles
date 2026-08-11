@@ -4,4 +4,6 @@
 # 📰🍏💀 Installing skhd, on Mac OS (brew).
 # ──────────────────────────────────────────────────────────────────────────────
 
-HOMEBREW_NO_ENV_HINTS=1 brew install -q koekeishiya/formulae/skhd
+brew tap asmvik/formulae
+brew trust --formula asmvik/formulae/skhd
+HOMEBREW_NO_ENV_HINTS=1 brew install -q asmvik/formulae/skhd
