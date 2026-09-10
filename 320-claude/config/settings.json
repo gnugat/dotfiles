@@ -1,5 +1,8 @@
 {
   "model": "claude-sonnet-4-6",
+  "permissions": {
+    "defaultMode": "manual"
+  },
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
