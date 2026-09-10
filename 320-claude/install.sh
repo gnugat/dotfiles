@@ -35,6 +35,9 @@ ln -nsf \
 ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/settings.json" \
     "${HOME}/.claude/settings.json"
+ln -nsf \
+    "${_SSDF_PACKAGE_DIR}/config/installed_plugins.json" \
+    "${HOME}/.claude/plugins/installed_plugins.json"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install

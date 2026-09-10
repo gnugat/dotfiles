@@ -1,4 +1,7 @@
 {
+  "permissions": {
+    "defaultMode": "manual"
+  },
   "model": "claude-sonnet-4-6",
   "statusLine": {
     "type": "command",
@@ -6,5 +9,8 @@
   },
   "effortLevel": "medium",
   "tui": "fullscreen",
-  "preferredNotifChannel": "terminal_bell"
+  "preferredNotifChannel": "terminal_bell",
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true
+  }
 }
