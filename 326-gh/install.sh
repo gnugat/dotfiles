@@ -32,7 +32,7 @@ ln -nsf \
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
-## N/A
+gh extension install github/gh-stack
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
