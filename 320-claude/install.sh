@@ -24,9 +24,6 @@ _ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${SSDF_PACKAGE_MANAGE
 ## ─────────────────────────────────────────────────────────────────────────────
 
 mkdir -p ~/.config/claude
-ln -nsf \
-    "${_SSDF_PACKAGE_DIR}/config/aliases.claude.sh" \
-    "${HOME}/.config/claude/aliases.claude.sh"
 
 mkdir -p "${HOME}/.claude"
 ln -nsf \
@@ -35,17 +32,10 @@ ln -nsf \
 ln -nsf \
     "${_SSDF_PACKAGE_DIR}/config/settings.json" \
     "${HOME}/.claude/settings.json"
-ln -nsf \
-    "${_SSDF_PACKAGE_DIR}/config/installed_plugins.json" \
-    "${HOME}/.claude/plugins/installed_plugins.json"
 
 ## ─────────────────────────────────────────────────────────────────────────────
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
-
-_ssdf_append_source \
-    "${HOME}/.config/shell/aliases.local.sh" \
-    "${HOME}/.config/claude/aliases.claude.sh"
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
