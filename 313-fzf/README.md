@@ -7,7 +7,7 @@ A command-line fuzzy finder.
 ### Keybindings
 
 * `Ctrl + t`: looks for files and directories under the current working directory
-* `Alt + t`: like `Ctrl + t`, but on selection runs `cd` on it
+* `Alt + c`: like `Ctrl + t`, but on selection runs `cd` on it
 * `Ctrl + r`: looks for shell history
 
 ### Fuzy Finder navigation
