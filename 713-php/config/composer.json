@@ -1,0 +1,14 @@
+{
+    "name": "ssc/dotfiles-tarakava",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Loïc Faugeron",
+            "email": "faugeron.loic@gmail.com"
+        }
+    ],
+    "require": {
+        "ext-rdkafka": "*"
+    }
+}
