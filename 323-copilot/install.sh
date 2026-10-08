@@ -29,7 +29,8 @@ _ssdf_install_with_package_manager "${_SSDF_PACKAGE_DIR}" "${SSDF_PACKAGE_MANAGE
 ## ➕ Additional config / install
 ## ─────────────────────────────────────────────────────────────────────────────
 
-## N/A
+### 🧠 Skills (https://github.com/mattpocock/skills), into ~/.agents/skills
+npx -y skills@latest add mattpocock/skills --global --agent github-copilot --skill '*' --yes
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
