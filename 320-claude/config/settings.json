@@ -1,13 +1,18 @@
 {
   "permissions": {
-    "defaultMode": "manual"
+    "defaultMode": "default"
   },
-  "model": "claude-opus-5.5",
+  "model": "opus",
   "statusLine": {
     "type": "command",
     "command": "bash ~/.claude/statusline-command.sh"
   },
   "effortLevel": "medium",
+  "modelSettings": {
+    "claude-haiku-5-5": {
+      "autoCompactWindow": 100000
+    }
+  },
   "tui": "fullscreen",
   "preferredNotifChannel": "terminal_bell"
 }
