@@ -13,14 +13,17 @@
       "format": "\u001b[90m┌──────────────────────Hardware──────────────────────┐"
     },
     {
-      "type": "host",
+      // Shortens e.g. `16-inch` to `16"`, `Thunderbolt 5` to `TB5`
+      "type": "command",
       "key": "\uf109 Host",
-      "keyColor": "cyan"
+      "keyColor": "cyan",
+      "text": "fastfetch --config none --pipe -l none -s host | sed -e 's/^Host: //' -e 's/-inch/\"/' -e 's/Thunderbolt /TB/'"
     },
     {
       "type": "display",
       "key": "│ ├\udb80\udf79 Display",
-      "keyColor": "cyan"
+      "keyColor": "cyan",
+      "format": "{width}x{height}, {scale-factor~0,1}x {inch}\", {refresh-rate} Hz{?is-primary} *{?}"
     },
     {
       "type": "cpu",
@@ -45,7 +48,8 @@
     {
       "type": "disk",
       "key": "└ └\udb85\udedf Disk",
-      "keyColor": "cyan"
+      "keyColor": "cyan",
+      "format": "{size-used} / {size-total} ({size-percentage}) - {filesystem}"
     },
     {
       "type": "custom",
@@ -74,7 +78,8 @@
     {
       "type": "wm",
       "key": "│ ├\ueb23 Window Manager",
-      "keyColor": "yellow"
+      "keyColor": "yellow",
+      "format": "{pretty-name} {version}"
     },
     {
       "type": "command",
