@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# File: /716-ntn/__npm.sh
+# File: /716-ntn/__curl.sh
 # ──────────────────────────────────────────────────────────────────────────────
-# 📰🌐📓 Installing ntn (nvm).
+# 📰🌐📓 Installing ntn (curl).
 # ──────────────────────────────────────────────────────────────────────────────
 
-npm install -g ntn
+curl -fsSL https://ntn.dev | bash
