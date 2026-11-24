@@ -36,6 +36,9 @@ _ssdf_append_source \
     "${HOME}/.config/shell/envvars.local.sh" \
     "${HOME}/.config/pup/envvars.pup.sh"
 
+### 🧠 Skills (https://github.com/datadog-labs/agent-skills)
+gh skill install datadog-labs/agent-skills dd-pup dd-logs dd-monitor
+
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
 ## ─────────────────────────────────────────────────────────────────────────────
