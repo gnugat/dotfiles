@@ -37,7 +37,11 @@ _ssdf_append_source \
     "${HOME}/.config/pup/envvars.pup.sh"
 
 ### 🧠 Skills (https://github.com/datadog-labs/agent-skills)
-gh skill install datadog-labs/agent-skills dd-pup dd-logs dd-monitor
+for _SSDF_SKILL in dd-pup dd-logs dd-monitor; do
+    gh skill install datadog-labs/agent-skills "${_SSDF_SKILL}" \
+        --agent universal --scope user --force
+done
+unset _SSDF_SKILL
 
 _ssdf_echo_success "${_SSDF_PACKAGE_NAME} installed"
 
