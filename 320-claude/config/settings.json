@@ -2,6 +2,11 @@
   "permissions": {
     "defaultMode": "default"
   },
+  "attribution": {
+    "commit": "",
+    "pr": "",
+    "sessionUrl": false
+  },
   "model": "opus",
   "statusLine": {
     "type": "command",
